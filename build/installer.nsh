@@ -33,8 +33,11 @@
 
 !include LogicLib.nsh
 !include FileFunc.nsh
+!include StdUtils.nsh
 !include nsDialogs.nsh
 !include WinMessages.nsh
+
+!define LANOTE_INSTALL_MARKER ".lanote-install-root"
 
 !ifndef BUILD_UNINSTALLER
   Var LanoteWelcomePage
@@ -49,7 +52,24 @@
 !macro customInit
   !ifndef BUILD_UNINSTALLER
     Call LanoteUsePreferredInstallDir
+    Call LanoteDisableUnsafeOldUninstallers
+    ${If} ${Silent}
+      Call LanoteValidateInstallDir
+    ${EndIf}
   !endif
+!macroend
+
+!macro customInstall
+  FileOpen $0 "$INSTDIR\${LANOTE_INSTALL_MARKER}" w
+  ${IfNot} ${Errors}
+    FileWrite $0 "Lanote install root$\r$\n"
+    FileWrite $0 "appId=com.lanote.desktop$\r$\n"
+    FileClose $0
+  ${EndIf}
+!macroend
+
+!macro customRemoveFiles
+  Call un.LanoteRemoveInstalledFiles
 !macroend
 
 !macro customWelcomePage
@@ -205,13 +225,152 @@ Function LanoteUsePreferredInstallDir
   ${AndIf} $R1 != ""
     StrCpy $INSTDIR "$R1"
   ${Else}
-    IfFileExists "D:\*.*" 0 +2
-    StrCpy $INSTDIR "D:\Lanote"
+    Call LanoteUseRegisteredInstallDir
+    Pop $R2
+    ${If} $R2 != "1"
+      Call LanoteUseFirstAvailableInstallDir
+    ${EndIf}
   ${EndIf}
+  Push "$INSTDIR"
+  Call LanoteNormalizeInstallDir
+  Pop $INSTDIR
+FunctionEnd
+
+Function LanoteUseFirstAvailableInstallDir
+  IfFileExists "D:\*.*" driveD 0
+  IfFileExists "E:\*.*" driveE 0
+  IfFileExists "F:\*.*" driveF 0
+  IfFileExists "G:\*.*" driveG 0
+  IfFileExists "H:\*.*" driveH 0
+  IfFileExists "I:\*.*" driveI 0
+  IfFileExists "J:\*.*" driveJ 0
+  IfFileExists "K:\*.*" driveK 0
+  IfFileExists "L:\*.*" driveL 0
+  IfFileExists "M:\*.*" driveM 0
+  IfFileExists "N:\*.*" driveN 0
+  IfFileExists "O:\*.*" driveO 0
+  IfFileExists "P:\*.*" driveP 0
+  IfFileExists "Q:\*.*" driveQ 0
+  IfFileExists "R:\*.*" driveR 0
+  IfFileExists "S:\*.*" driveS 0
+  IfFileExists "T:\*.*" driveT 0
+  IfFileExists "U:\*.*" driveU 0
+  IfFileExists "V:\*.*" driveV 0
+  IfFileExists "W:\*.*" driveW 0
+  IfFileExists "X:\*.*" driveX 0
+  IfFileExists "Y:\*.*" driveY 0
+  IfFileExists "Z:\*.*" driveZ 0
+  StrCpy $INSTDIR "C:\Lanote"
+  Return
+
+  driveD:
+    StrCpy $INSTDIR "D:\Lanote"
+    Return
+  driveE:
+    StrCpy $INSTDIR "E:\Lanote"
+    Return
+  driveF:
+    StrCpy $INSTDIR "F:\Lanote"
+    Return
+  driveG:
+    StrCpy $INSTDIR "G:\Lanote"
+    Return
+  driveH:
+    StrCpy $INSTDIR "H:\Lanote"
+    Return
+  driveI:
+    StrCpy $INSTDIR "I:\Lanote"
+    Return
+  driveJ:
+    StrCpy $INSTDIR "J:\Lanote"
+    Return
+  driveK:
+    StrCpy $INSTDIR "K:\Lanote"
+    Return
+  driveL:
+    StrCpy $INSTDIR "L:\Lanote"
+    Return
+  driveM:
+    StrCpy $INSTDIR "M:\Lanote"
+    Return
+  driveN:
+    StrCpy $INSTDIR "N:\Lanote"
+    Return
+  driveO:
+    StrCpy $INSTDIR "O:\Lanote"
+    Return
+  driveP:
+    StrCpy $INSTDIR "P:\Lanote"
+    Return
+  driveQ:
+    StrCpy $INSTDIR "Q:\Lanote"
+    Return
+  driveR:
+    StrCpy $INSTDIR "R:\Lanote"
+    Return
+  driveS:
+    StrCpy $INSTDIR "S:\Lanote"
+    Return
+  driveT:
+    StrCpy $INSTDIR "T:\Lanote"
+    Return
+  driveU:
+    StrCpy $INSTDIR "U:\Lanote"
+    Return
+  driveV:
+    StrCpy $INSTDIR "V:\Lanote"
+    Return
+  driveW:
+    StrCpy $INSTDIR "W:\Lanote"
+    Return
+  driveX:
+    StrCpy $INSTDIR "X:\Lanote"
+    Return
+  driveY:
+    StrCpy $INSTDIR "Y:\Lanote"
+    Return
+  driveZ:
+    StrCpy $INSTDIR "Z:\Lanote"
+    Return
+FunctionEnd
+
+Function LanoteHasPreferredInstallDrive
+  IfFileExists "D:\*.*" hasPreferred 0
+  IfFileExists "E:\*.*" hasPreferred 0
+  IfFileExists "F:\*.*" hasPreferred 0
+  IfFileExists "G:\*.*" hasPreferred 0
+  IfFileExists "H:\*.*" hasPreferred 0
+  IfFileExists "I:\*.*" hasPreferred 0
+  IfFileExists "J:\*.*" hasPreferred 0
+  IfFileExists "K:\*.*" hasPreferred 0
+  IfFileExists "L:\*.*" hasPreferred 0
+  IfFileExists "M:\*.*" hasPreferred 0
+  IfFileExists "N:\*.*" hasPreferred 0
+  IfFileExists "O:\*.*" hasPreferred 0
+  IfFileExists "P:\*.*" hasPreferred 0
+  IfFileExists "Q:\*.*" hasPreferred 0
+  IfFileExists "R:\*.*" hasPreferred 0
+  IfFileExists "S:\*.*" hasPreferred 0
+  IfFileExists "T:\*.*" hasPreferred 0
+  IfFileExists "U:\*.*" hasPreferred 0
+  IfFileExists "V:\*.*" hasPreferred 0
+  IfFileExists "W:\*.*" hasPreferred 0
+  IfFileExists "X:\*.*" hasPreferred 0
+  IfFileExists "Y:\*.*" hasPreferred 0
+  IfFileExists "Z:\*.*" hasPreferred 0
+  Push "0"
+  Return
+
+  hasPreferred:
+    Push "1"
+    Return
 FunctionEnd
 
 Function LanoteNormalizeInstallDir
   Exch $0
+  Push "$0"
+  Call LanoteTrimInstallDir
+  Pop $0
   StrLen $1 "$0"
   ${If} $1 == 2
     StrCpy $2 "$0" 1 1
@@ -226,9 +385,407 @@ Function LanoteNormalizeInstallDir
       StrCpy $0 "$0Lanote"
     ${EndIf}
   ${EndIf}
+
+  StrLen $1 "$0"
+  StrCpy $2 "$0" 10 -10
+  ${If} $1 < 10
+  ${OrIf} $2 != "\Lanote"
+  ${AndIf} $2 != "\lanote"
+    StrCpy $0 "$0\Lanote"
+  ${EndIf}
   Exch $0
 FunctionEnd
 
+Function LanoteTrimInstallDir
+  Exch $0
+
+  trim:
+    StrLen $1 "$0"
+    ${If} $1 > 3
+      StrCpy $2 "$0" 1 -1
+      ${If} $2 == "\"
+        StrCpy $0 "$0" -1
+        Goto trim
+      ${EndIf}
+    ${EndIf}
+
+  Exch $0
+FunctionEnd
+
+Function LanoteInstallDirLooksOwned
+  Exch $0
+  StrCpy $1 "0"
+
+  IfFileExists "$0\${LANOTE_INSTALL_MARKER}" 0 +2
+    StrCpy $1 "1"
+
+  StrCpy $0 "$1"
+  Exch $0
+FunctionEnd
+
+Function LanoteExistingInstallPathCanBeAdopted
+  Exch $0
+  StrCpy $1 "0"
+
+  ${If} $0 == ""
+    Goto done
+  ${EndIf}
+
+  Push "$0"
+  Call LanoteTrimInstallDir
+  Pop $2
+  ${If} $2 == ""
+    Goto done
+  ${EndIf}
+
+  Push "$2"
+  Call LanoteNormalizeInstallDir
+  Pop $3
+  ${If} $2 != $3
+    Goto done
+  ${EndIf}
+
+  IfFileExists "$2\*.*" 0 done
+  IfFileExists "$2\${LANOTE_INSTALL_MARKER}" adopt 0
+  IfFileExists "$2\${PRODUCT_FILENAME}.exe" adopt 0
+  IfFileExists "$2\resources\app.asar" adopt 0
+  IfFileExists "$2\resources\app\package.json" adopt 0
+  IfFileExists "$2\resources\app\server.js" adopt 0
+  Goto done
+
+  adopt:
+    StrCpy $1 "1"
+
+  done:
+    StrCpy $0 "$1"
+    Exch $0
+FunctionEnd
+
+Function LanoteUseRegisteredInstallDir
+  ReadRegStr $0 HKCU "Software\${APP_GUID}" InstallLocation
+  Push "$0"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $1
+  ${If} $1 == "1"
+    Push "$0"
+    Call LanoteNormalizeInstallDir
+    Pop $INSTDIR
+    Push "1"
+    Return
+  ${EndIf}
+
+  ReadRegStr $0 HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${UNINSTALL_APP_KEY}" InstallLocation
+  Push "$0"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $1
+  ${If} $1 == "1"
+    Push "$0"
+    Call LanoteNormalizeInstallDir
+    Pop $INSTDIR
+    Push "1"
+    Return
+  ${EndIf}
+
+  ReadRegStr $0 HKLM "Software\${APP_GUID}" InstallLocation
+  Push "$0"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $1
+  ${If} $1 == "1"
+    Push "$0"
+    Call LanoteNormalizeInstallDir
+    Pop $INSTDIR
+    Push "1"
+    Return
+  ${EndIf}
+
+  ReadRegStr $0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${UNINSTALL_APP_KEY}" InstallLocation
+  Push "$0"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $1
+  ${If} $1 == "1"
+    Push "$0"
+    Call LanoteNormalizeInstallDir
+    Pop $INSTDIR
+    Push "1"
+    Return
+  ${EndIf}
+
+  Push "0"
+FunctionEnd
+
+Function LanoteRegisteredInstallDirCanBeAdopted
+  Exch $0
+  StrCpy $1 "0"
+
+  ${If} $0 == ""
+    Goto done
+  ${EndIf}
+
+  Push "$0"
+  Call LanoteNormalizeInstallDir
+  Pop $2
+
+  ReadRegStr $3 HKCU "Software\${APP_GUID}" InstallLocation
+  Push "$3"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $4
+  ${If} $4 == "1"
+    Push "$3"
+    Call LanoteNormalizeInstallDir
+    Pop $5
+    ${If} $5 == $2
+      StrCpy $1 "1"
+      Goto done
+    ${EndIf}
+  ${EndIf}
+
+  ReadRegStr $3 HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${UNINSTALL_APP_KEY}" InstallLocation
+  Push "$3"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $4
+  ${If} $4 == "1"
+    Push "$3"
+    Call LanoteNormalizeInstallDir
+    Pop $5
+    ${If} $5 == $2
+      StrCpy $1 "1"
+      Goto done
+    ${EndIf}
+  ${EndIf}
+
+  ReadRegStr $3 HKLM "Software\${APP_GUID}" InstallLocation
+  Push "$3"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $4
+  ${If} $4 == "1"
+    Push "$3"
+    Call LanoteNormalizeInstallDir
+    Pop $5
+    ${If} $5 == $2
+      StrCpy $1 "1"
+      Goto done
+    ${EndIf}
+  ${EndIf}
+
+  ReadRegStr $3 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${UNINSTALL_APP_KEY}" InstallLocation
+  Push "$3"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $4
+  ${If} $4 == "1"
+    Push "$3"
+    Call LanoteNormalizeInstallDir
+    Pop $5
+    ${If} $5 == $2
+      StrCpy $1 "1"
+      Goto done
+    ${EndIf}
+  ${EndIf}
+
+  done:
+    StrCpy $0 "$1"
+    Exch $0
+FunctionEnd
+
+Function LanoteInstallDirIsEmpty
+  Exch $0
+  FindFirst $1 $2 "$0\*.*"
+  StrCpy $3 "1"
+
+  loop:
+    StrCmp $2 "" done
+    StrCmp $2 "." next
+    StrCmp $2 ".." next
+    StrCpy $3 "0"
+    Goto done
+
+  next:
+    FindNext $1 $2
+    Goto loop
+
+  done:
+    FindClose $1
+    StrCpy $0 "$3"
+    Exch $0
+FunctionEnd
+
+Function LanoteOldInstallPathNeedsQuarantine
+  Exch $0
+  StrCpy $1 "0"
+
+  ${If} $0 == ""
+    Goto done
+  ${EndIf}
+
+  Push "$0"
+  Call LanoteTrimInstallDir
+  Pop $2
+  Push "$2"
+  Call LanoteNormalizeInstallDir
+  Pop $3
+
+  ${If} $2 != $3
+    StrCpy $1 "1"
+    Goto done
+  ${EndIf}
+
+  IfFileExists "$2\${LANOTE_INSTALL_MARKER}" done 0
+  Push "$2"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $4
+  ${If} $4 == "1"
+    Goto done
+  ${EndIf}
+
+  StrCpy $1 "1"
+
+  done:
+    StrCpy $0 "$1"
+    Exch $0
+FunctionEnd
+
+Function LanoteDisableUnsafeOldUninstallers
+  StrCpy $2 "0"
+
+  ReadRegStr $0 HKCU "Software\${APP_GUID}" InstallLocation
+  Push "$0"
+  Call LanoteDeleteLegacyUninstallerFileIfMissingMarker
+  Push "$0"
+  Call LanoteOldInstallPathNeedsQuarantine
+  Pop $1
+  ${If} $1 == "1"
+    DetailPrint "Skip unsafe legacy Lanote uninstaller: $0"
+    StrCpy $2 "1"
+  ${EndIf}
+
+  ReadRegStr $0 HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${UNINSTALL_APP_KEY}" InstallLocation
+  Push "$0"
+  Call LanoteDeleteLegacyUninstallerFileIfMissingMarker
+  Push "$0"
+  Call LanoteOldInstallPathNeedsQuarantine
+  Pop $1
+  ${If} $1 == "1"
+    DetailPrint "Skip unsafe legacy Lanote uninstaller: $0"
+    StrCpy $2 "1"
+  ${EndIf}
+
+  ${If} $2 == "1"
+    DeleteRegKey HKCU "Software\Microsoft\Windows\CurrentVersion\Uninstall\${UNINSTALL_APP_KEY}"
+    DeleteRegKey HKCU "Software\${APP_GUID}"
+  ${EndIf}
+
+  StrCpy $2 "0"
+
+  ReadRegStr $0 HKLM "Software\${APP_GUID}" InstallLocation
+  Push "$0"
+  Call LanoteDeleteLegacyUninstallerFileIfMissingMarker
+  Push "$0"
+  Call LanoteOldInstallPathNeedsQuarantine
+  Pop $1
+  ${If} $1 == "1"
+    DetailPrint "Skip unsafe legacy Lanote uninstaller: $0"
+    StrCpy $2 "1"
+  ${EndIf}
+
+  ReadRegStr $0 HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${UNINSTALL_APP_KEY}" InstallLocation
+  Push "$0"
+  Call LanoteDeleteLegacyUninstallerFileIfMissingMarker
+  Push "$0"
+  Call LanoteOldInstallPathNeedsQuarantine
+  Pop $1
+  ${If} $1 == "1"
+    DetailPrint "Skip unsafe legacy Lanote uninstaller: $0"
+    StrCpy $2 "1"
+  ${EndIf}
+
+  ${If} $2 == "1"
+    DeleteRegKey HKLM "Software\Microsoft\Windows\CurrentVersion\Uninstall\${UNINSTALL_APP_KEY}"
+    DeleteRegKey HKLM "Software\${APP_GUID}"
+  ${EndIf}
+FunctionEnd
+
+Function LanoteDeleteLegacyUninstallerFileIfMissingMarker
+  Pop $0
+  ${If} $0 != ""
+    Push "$0"
+    Call LanoteTrimInstallDir
+    Pop $1
+    ${If} $1 != ""
+      IfFileExists "$1\${LANOTE_INSTALL_MARKER}" done 0
+      DetailPrint "Remove legacy Lanote uninstaller file: $1"
+      Delete "$1\Uninstall ${PRODUCT_FILENAME}.exe"
+    ${EndIf}
+  ${EndIf}
+
+  done:
+FunctionEnd
+
+Function LanoteValidateInstallDir
+  Push "$INSTDIR"
+  Call LanoteNormalizeInstallDir
+  Pop $INSTDIR
+
+  Push "$INSTDIR"
+  Call LanoteRegisteredInstallDirCanBeAdopted
+  Pop $3
+
+  Push "$INSTDIR"
+  Call LanoteExistingInstallPathCanBeAdopted
+  Pop $4
+
+  StrCpy $0 "$INSTDIR" 1 0
+  StrCpy $1 "$INSTDIR" 1 1
+  ${If} $1 == ":"
+    ${If} $0 == "C"
+    ${OrIf} $0 == "c"
+      Call LanoteHasPreferredInstallDrive
+      Pop $2
+      ${If} $2 == "1"
+      ${AndIf} $3 != "1"
+      ${AndIf} $4 != "1"
+        MessageBox MB_ICONSTOP|MB_OK "检测到这台电脑还有 D-Z 盘，Lanote 不安装到 C 盘。请改选 D 盘或其它非 C 盘的 Lanote 文件夹。$\r$\n$\r$\n如果电脑只有 C 盘，安装器会自动放行 C:\Lanote。"
+        Abort
+      ${EndIf}
+    ${EndIf}
+  ${EndIf}
+
+  StrLen $0 "$INSTDIR"
+  StrCpy $1 "$INSTDIR" 10 -10
+  ${If} $0 < 10
+  ${OrIf} $1 != "\Lanote"
+  ${AndIf} $1 != "\lanote"
+    MessageBox MB_ICONSTOP|MB_OK "安装目录必须是独立的 Lanote 文件夹。请选择一个上级目录，安装器会自动创建 Lanote 子文件夹。"
+    Abort
+  ${EndIf}
+
+  IfFileExists "$INSTDIR\*.*" 0 valid
+
+  Push "$INSTDIR"
+  Call LanoteInstallDirLooksOwned
+  Pop $0
+  ${If} $0 == "1"
+    Goto valid
+  ${EndIf}
+
+  ${If} $3 == "1"
+    Goto valid
+  ${EndIf}
+
+  ${If} $4 == "1"
+    Goto valid
+  ${EndIf}
+
+  Push "$INSTDIR"
+  Call LanoteInstallDirIsEmpty
+  Pop $0
+  ${If} $0 == "1"
+    Goto valid
+  ${EndIf}
+
+  MessageBox MB_ICONSTOP|MB_OK "为避免卸载时误删其它文件，Lanote 不能安装到已有文件的非专属目录。请新建或选择一个空的 Lanote 文件夹。$\r$\n$\r$\n当前路径：$INSTDIR"
+  Abort
+
+  valid:
+FunctionEnd
 Function LanoteWelcomeShow
   Call LanoteUsePreferredInstallDir
 
@@ -342,5 +899,125 @@ Function LanoteDirectoryLeave
   Pop $0
   StrCpy $INSTDIR "$0"
   SendMessage $LanoteDirectoryInput ${WM_SETTEXT} 0 "STR:$INSTDIR"
+  Call LanoteValidateInstallDir
+FunctionEnd
+!endif
+
+!ifdef BUILD_UNINSTALLER
+!macro customUnInit
+  Call un.LanoteValidateUninstallDir
+!macroend
+
+Function un.LanoteInstallDirLooksOwned
+  Exch $0
+  StrCpy $1 "0"
+
+  IfFileExists "$0\${LANOTE_INSTALL_MARKER}" 0 +2
+    StrCpy $1 "1"
+
+  StrCpy $0 "$1"
+  Exch $0
+FunctionEnd
+
+Function un.LanoteNormalizeInstallDir
+  Exch $0
+  Push "$0"
+  Call un.LanoteTrimInstallDir
+  Pop $0
+  StrLen $1 "$0"
+  ${If} $1 == 2
+    StrCpy $2 "$0" 1 1
+    ${If} $2 == ":"
+      StrCpy $0 "$0\Lanote"
+    ${EndIf}
+  ${ElseIf} $1 == 3
+    StrCpy $2 "$0" 1 1
+    StrCpy $3 "$0" 1 2
+    ${If} $2 == ":"
+    ${AndIf} $3 == "\"
+      StrCpy $0 "$0Lanote"
+    ${EndIf}
+  ${EndIf}
+
+  StrLen $1 "$0"
+  StrCpy $2 "$0" 10 -10
+  ${If} $1 < 10
+  ${OrIf} $2 != "\Lanote"
+  ${AndIf} $2 != "\lanote"
+    StrCpy $0 "$0\Lanote"
+  ${EndIf}
+  Exch $0
+FunctionEnd
+
+Function un.LanoteTrimInstallDir
+  Exch $0
+
+  trim:
+    StrLen $1 "$0"
+    ${If} $1 > 3
+      StrCpy $2 "$0" 1 -1
+      ${If} $2 == "\"
+        StrCpy $0 "$0" -1
+        Goto trim
+      ${EndIf}
+    ${EndIf}
+
+  Exch $0
+FunctionEnd
+
+Function un.LanoteValidateUninstallDir
+  Push "$INSTDIR"
+  Call un.LanoteTrimInstallDir
+  Pop $0
+  Push "$0"
+  Call un.LanoteNormalizeInstallDir
+  Pop $1
+  ${If} $0 != $1
+    MessageBox MB_OK|MB_ICONSTOP "当前卸载路径不是 Lanote 专属目录，已阻止卸载以避免误删其它文件。$\r$\n$\r$\n当前路径：$INSTDIR$\r$\n安全路径应为：$0"
+    SetErrorLevel 2
+    Quit
+  ${EndIf}
+  StrCpy $INSTDIR "$0"
+
+  Push "$INSTDIR"
+  Call un.LanoteInstallDirLooksOwned
+  Pop $0
+  ${If} $0 != "1"
+    MessageBox MB_OK|MB_ICONSTOP "无法确认当前目录属于 Lanote，已阻止卸载以避免误删其它文件。$\r$\n$\r$\n当前路径：$INSTDIR"
+    SetErrorLevel 2
+    Quit
+  ${EndIf}
+FunctionEnd
+
+Function un.LanoteRemoveInstalledFiles
+  SetOutPath $TEMP
+
+  Delete "$INSTDIR\${PRODUCT_FILENAME}.exe"
+  Delete "$INSTDIR\Uninstall ${PRODUCT_FILENAME}.exe"
+  Delete "$INSTDIR\uninstallerIcon.ico"
+
+  Delete "$INSTDIR\chrome_100_percent.pak"
+  Delete "$INSTDIR\chrome_200_percent.pak"
+  Delete "$INSTDIR\d3dcompiler_47.dll"
+  Delete "$INSTDIR\dxcompiler.dll"
+  Delete "$INSTDIR\dxil.dll"
+  Delete "$INSTDIR\ffmpeg.dll"
+  Delete "$INSTDIR\icudtl.dat"
+  Delete "$INSTDIR\libEGL.dll"
+  Delete "$INSTDIR\libGLESv2.dll"
+  Delete "$INSTDIR\LICENSE.electron.txt"
+  Delete "$INSTDIR\LICENSES.chromium.html"
+  Delete "$INSTDIR\resources.pak"
+  Delete "$INSTDIR\snapshot_blob.bin"
+  Delete "$INSTDIR\v8_context_snapshot.bin"
+  Delete "$INSTDIR\vk_swiftshader.dll"
+  Delete "$INSTDIR\vk_swiftshader_icd.json"
+  Delete "$INSTDIR\vulkan-1.dll"
+
+  RMDir "$INSTDIR\locales"
+  RMDir "$INSTDIR\resources"
+  RMDir "$INSTDIR\swiftshader"
+
+  RMDir "$INSTDIR"
 FunctionEnd
 !endif
