@@ -1,18 +1,18 @@
-# Mineradio Project Memory
+# Lanote Project Memory
 
 这个文件用于解决新开 Codex 对话时“失忆”的问题。每次用户明确说“保留”“喜欢”“这个很好”“记住”“保存一下”等表达时，要把关键结论追加到这里。
 
 ## Stable Project Facts
 
-- 可运行程序：`E:\桌面\播放器软件\Mineradio\Mineradio.exe`
-- 运行版主目录：`E:\桌面\播放器软件\Mineradio`
-- 真实代码/Git 仓库：`E:\桌面\播放器软件\Mineradio\resources\app`
-- GitHub 仓库：`https://github.com/XxHuberrr/Mineradio.git`
+- 可运行程序：`E:\桌面\播放器软件\Lanote\Lanote.exe`
+- 运行版主目录：`E:\桌面\播放器软件\Lanote`
+- 真实代码/Git 仓库：`E:\桌面\播放器软件\Lanote\resources\app`
+- GitHub 仓库：`https://github.com/XxHuberrr/Lanote.git`
 - 统一备份目录：`E:\桌面\播放器软件\工作区备份`
 - 当前源码检查点：`v1.1.0`
 - 最近正式安装包 Release 基线：`v1.1.0` 纯净安装版；`v1.0.10` 及更早安装包需隔离，不再建议安装或传播。
 - 发布入口：GitHub Releases，更新检查依赖 `latest.yml` 和可选轻量补丁 JSON。
-- 更新包命名规则：从 `v1.0.10` 起，快速补丁本地文件名和 GitHub Release label 使用 `Mineradio-旧版本→新版本.patch.json` 这种右箭头格式；GitHub 资产底层 `name` 可能会把 `→` 净化成点号，但更新解析仍可识别 from/to 版本。
+- 更新包命名规则：从 `v1.0.10` 起，快速补丁本地文件名和 GitHub Release label 使用 `Lanote-旧版本→新版本.patch.json` 这种右箭头格式；GitHub 资产底层 `name` 可能会把 `→` 净化成点号，但更新解析仍可识别 from/to 版本。
 - 快速补丁范围规则：从 `v1.0.10` 起，每次发布只为低于新版的最近 4 个版本生成补丁；更早版本不再从 `1.0.0` 开始补丁，提示用户下载完整安装包更新。
 - 安装包样式：以后按 `docs/INSTALLER_STYLE.md` 的中文极简黑白蓝格式打包。
 
@@ -20,118 +20,118 @@
 
 2026-06-18 已整理工作区：
 
-- 真正项目移动到 `E:\桌面\播放器软件\Mineradio`。
+- 真正项目移动到 `E:\桌面\播放器软件\Lanote`。
 - 旧的 `editable-install`、历史 `backups`、`备份`、截图、旧计划文档和验证目录都归档到 `E:\桌面\播放器软件\工作区备份\2026-06-18-workspace-cleanup`。
 - 项目内历史 `backups` 也归档到 `E:\桌面\播放器软件\工作区备份\2026-06-18-workspace-cleanup\project-internal`。
 - 根目录 `AGENTS.md` 负责给新对话指路；项目内 `AGENTS.md` 负责项目规则。
 
 ## Release Memory
 
-- `v1.1.0` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.1.0`
-- 仓库已设为公开：`https://github.com/XxHuberrr/Mineradio`
+- `v1.1.0` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.1.0`
+- 仓库已设为公开：`https://github.com/XxHuberrr/Lanote`
 - `v1.1.0` Release 资产包括：
-  - `Mineradio-1.1.0-Setup.exe`
-  - `Mineradio-1.1.0-Setup.exe.blockmap`
-  - `Mineradio-1.1.0-SHA256SUMS.txt`
+  - `Lanote-1.1.0-Setup.exe`
+  - `Lanote-1.1.0-Setup.exe.blockmap`
+  - `Lanote-1.1.0-SHA256SUMS.txt`
 - `v1.1.0` 安装包 SHA256：`bd53aae4e551f5b0b5a398a51e6ec1de5a9a57cb42e5eecedb0a1647fdcee6e6`
 - `v1.1.0` 未上传 `latest.yml`，Release 创建时使用 `--latest=false`；GitHub `/releases/latest` 仍返回 `v1.0.10`，避免 `v1.0.10` 客户端软件内更新到 1.1.0。
 - 已批量给旧 Release（`v1.0.10` 到 `v0.9.9`）正文顶部追加旧安装包隔离警示；不要删除旧资产，只标记不可信和建议隔离。
-- `v1.0.10` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.0.10`
+- `v1.0.10` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.0.10`
 - `v1.0.10` Release 资产包括：
   - `latest.yml`
-  - `Mineradio-1.0.10-Setup.exe`
-  - `Mineradio-1.0.10-Setup.exe.blockmap`
-  - `Mineradio-1.0.6.1.0.10.patch.json`（Release label：`Mineradio-1.0.6→1.0.10.patch.json`）
-  - `Mineradio-1.0.7.1.0.10.patch.json`（Release label：`Mineradio-1.0.7→1.0.10.patch.json`）
-  - `Mineradio-1.0.8.1.0.10.patch.json`（Release label：`Mineradio-1.0.8→1.0.10.patch.json`）
-  - `Mineradio-1.0.9.1.0.10.patch.json`（Release label：`Mineradio-1.0.9→1.0.10.patch.json`）
+  - `Lanote-1.0.10-Setup.exe`
+  - `Lanote-1.0.10-Setup.exe.blockmap`
+  - `Lanote-1.0.6.1.0.10.patch.json`（Release label：`Lanote-1.0.6→1.0.10.patch.json`）
+  - `Lanote-1.0.7.1.0.10.patch.json`（Release label：`Lanote-1.0.7→1.0.10.patch.json`）
+  - `Lanote-1.0.8.1.0.10.patch.json`（Release label：`Lanote-1.0.8→1.0.10.patch.json`）
+  - `Lanote-1.0.9.1.0.10.patch.json`（Release label：`Lanote-1.0.9→1.0.10.patch.json`）
 - `v1.0.10` 发布时 `gh` keyring token 失效，但普通 `git push` 仍可用；Release 通过 Git Credential Manager 取 GitHub token 后调用 GitHub API 创建并上传资产。
-- `v1.0.9` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.0.9`
+- `v1.0.9` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.0.9`
 - `v1.0.9` Release 资产包括：
   - `latest.yml`
-  - `Mineradio-1.0.9-Setup.exe`
-  - `Mineradio-1.0.9-Setup.exe.blockmap`
-  - `Mineradio-1.0.0-to-1.0.9.patch.json`
-  - `Mineradio-1.0.1-to-1.0.9.patch.json`
-  - `Mineradio-1.0.2-to-1.0.9.patch.json`
-  - `Mineradio-1.0.3-to-1.0.9.patch.json`
-  - `Mineradio-1.0.4-to-1.0.9.patch.json`
-  - `Mineradio-1.0.5-to-1.0.9.patch.json`
-  - `Mineradio-1.0.6-to-1.0.9.patch.json`
-  - `Mineradio-1.0.7-to-1.0.9.patch.json`
-  - `Mineradio-1.0.8-to-1.0.9.patch.json`
-- `v1.0.9` 修复安装包文字对比度，允许用户自由选择安装目录，选择盘符根目录时自动补成 `Mineradio` 文件夹；软件启动改为单实例，重复启动会唤起已运行窗口；移除每次启动都重新创建桌面快捷方式的行为。
-- `v1.0.9` 安装器热修：用户实测旧安装包仍显示 C 盘 `AppData\Local\Programs\Mineradio`，原因是 electron-builder 内置目录页和旧安装注册表回填覆盖了默认路径。已关闭内置目录页，保留自定义安装目录页，并在目录页显示前强制优先使用 `D:\Mineradio`；tag 已更新到 `9d5f60c`，Release 资产已覆盖上传。
+  - `Lanote-1.0.9-Setup.exe`
+  - `Lanote-1.0.9-Setup.exe.blockmap`
+  - `Lanote-1.0.0-to-1.0.9.patch.json`
+  - `Lanote-1.0.1-to-1.0.9.patch.json`
+  - `Lanote-1.0.2-to-1.0.9.patch.json`
+  - `Lanote-1.0.3-to-1.0.9.patch.json`
+  - `Lanote-1.0.4-to-1.0.9.patch.json`
+  - `Lanote-1.0.5-to-1.0.9.patch.json`
+  - `Lanote-1.0.6-to-1.0.9.patch.json`
+  - `Lanote-1.0.7-to-1.0.9.patch.json`
+  - `Lanote-1.0.8-to-1.0.9.patch.json`
+- `v1.0.9` 修复安装包文字对比度，允许用户自由选择安装目录，选择盘符根目录时自动补成 `Lanote` 文件夹；软件启动改为单实例，重复启动会唤起已运行窗口；移除每次启动都重新创建桌面快捷方式的行为。
+- `v1.0.9` 安装器热修：用户实测旧安装包仍显示 C 盘 `AppData\Local\Programs\Lanote`，原因是 electron-builder 内置目录页和旧安装注册表回填覆盖了默认路径。已关闭内置目录页，保留自定义安装目录页，并在目录页显示前强制优先使用 `D:\Lanote`；tag 已更新到 `9d5f60c`，Release 资产已覆盖上传。
 - `v1.0.9` 安装器 UI 后续热修：安装包改为中文极简风格，白底黑字，`#3257F7` 蓝色点缀；欢迎页和安装目录页都简化为中文信息、默认路径和可选目录控件。该格式已保存到 `docs/INSTALLER_STYLE.md`，以后安装包按这套方式打包。
-- 补充：快速补丁可修复运行时单实例和快捷方式问题；安装器 UI/安装目录选择体验需要使用完整 `Mineradio-1.0.9-Setup.exe`。
-- `v1.0.8` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.0.8`
+- 补充：快速补丁可修复运行时单实例和快捷方式问题；安装器 UI/安装目录选择体验需要使用完整 `Lanote-1.0.9-Setup.exe`。
+- `v1.0.8` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.0.8`
 - `v1.0.8` Release 资产包括：
   - `latest.yml`
-  - `Mineradio-1.0.8-Setup.exe`
-  - `Mineradio-1.0.8-Setup.exe.blockmap`
-  - `Mineradio-1.0.0-to-1.0.8.patch.json`
-  - `Mineradio-1.0.1-to-1.0.8.patch.json`
-  - `Mineradio-1.0.2-to-1.0.8.patch.json`
-  - `Mineradio-1.0.3-to-1.0.8.patch.json`
-  - `Mineradio-1.0.4-to-1.0.8.patch.json`
-  - `Mineradio-1.0.5-to-1.0.8.patch.json`
-  - `Mineradio-1.0.6-to-1.0.8.patch.json`
-  - `Mineradio-1.0.7-to-1.0.8.patch.json`
+  - `Lanote-1.0.8-Setup.exe`
+  - `Lanote-1.0.8-Setup.exe.blockmap`
+  - `Lanote-1.0.0-to-1.0.8.patch.json`
+  - `Lanote-1.0.1-to-1.0.8.patch.json`
+  - `Lanote-1.0.2-to-1.0.8.patch.json`
+  - `Lanote-1.0.3-to-1.0.8.patch.json`
+  - `Lanote-1.0.4-to-1.0.8.patch.json`
+  - `Lanote-1.0.5-to-1.0.8.patch.json`
+  - `Lanote-1.0.6-to-1.0.8.patch.json`
+  - `Lanote-1.0.7-to-1.0.8.patch.json`
 - `v1.0.8` 包含 QQ 音乐播放授权修复、Home 施工卡片和控制台展开、视觉预设顺序调整、用户存档、歌词颜色重启恢复、播放/暂停淡入淡出，以及安魂十字架选中态蓝色修复。
-- `v1.0.7` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.0.7`
+- `v1.0.7` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.0.7`
 - `v1.0.7` Release 资产包括：
   - `latest.yml`
-  - `Mineradio-1.0.7-Setup.exe`
-  - `Mineradio-1.0.7-Setup.exe.blockmap`
-  - `Mineradio-1.0.0-to-1.0.7.patch.json`
-  - `Mineradio-1.0.1-to-1.0.7.patch.json`
-  - `Mineradio-1.0.2-to-1.0.7.patch.json`
-  - `Mineradio-1.0.3-to-1.0.7.patch.json`
-  - `Mineradio-1.0.4-to-1.0.7.patch.json`
-  - `Mineradio-1.0.5-to-1.0.7.patch.json`
-  - `Mineradio-1.0.6-to-1.0.7.patch.json`
+  - `Lanote-1.0.7-Setup.exe`
+  - `Lanote-1.0.7-Setup.exe.blockmap`
+  - `Lanote-1.0.0-to-1.0.7.patch.json`
+  - `Lanote-1.0.1-to-1.0.7.patch.json`
+  - `Lanote-1.0.2-to-1.0.7.patch.json`
+  - `Lanote-1.0.3-to-1.0.7.patch.json`
+  - `Lanote-1.0.4-to-1.0.7.patch.json`
+  - `Lanote-1.0.5-to-1.0.7.patch.json`
+  - `Lanote-1.0.6-to-1.0.7.patch.json`
 - `v1.0.7` 包含电影镜头快节奏节拍分析试调，以及骷髅预设改名为“安魂”、副标题“骷髅·YUI7W”、黑体卡片和更明显的自定义视觉色粒子染色。
-- `v1.0.6` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.0.6`
+- `v1.0.6` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.0.6`
 - `v1.0.6` Release 资产包括：
   - `latest.yml`
-  - `Mineradio-1.0.6-Setup.exe`
-  - `Mineradio-1.0.6-Setup.exe.blockmap`
-  - `Mineradio-1.0.0-to-1.0.6.patch.json`
-  - `Mineradio-1.0.1-to-1.0.6.patch.json`
-  - `Mineradio-1.0.2-to-1.0.6.patch.json`
-  - `Mineradio-1.0.3-to-1.0.6.patch.json`
-  - `Mineradio-1.0.4-to-1.0.6.patch.json`
-  - `Mineradio-1.0.5-to-1.0.6.patch.json`
+  - `Lanote-1.0.6-Setup.exe`
+  - `Lanote-1.0.6-Setup.exe.blockmap`
+  - `Lanote-1.0.0-to-1.0.6.patch.json`
+  - `Lanote-1.0.1-to-1.0.6.patch.json`
+  - `Lanote-1.0.2-to-1.0.6.patch.json`
+  - `Lanote-1.0.3-to-1.0.6.patch.json`
+  - `Lanote-1.0.4-to-1.0.6.patch.json`
+  - `Lanote-1.0.5-to-1.0.6.patch.json`
 - `v1.0.6` 将桌面歌词、桌面歌词穿透和壁纸模式入口标记为开发中并强制关闭；软件内更新日志文案改为“反正没什么人看，布想写日志了”。
-- `v1.0.5` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.0.5`
+- `v1.0.5` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.0.5`
 - `v1.0.5` Release 资产包括：
   - `latest.yml`
-  - `Mineradio-1.0.5-Setup.exe`
-  - `Mineradio-1.0.5-Setup.exe.blockmap`
-  - `Mineradio-1.0.0-to-1.0.5.patch.json`
-  - `Mineradio-1.0.1-to-1.0.5.patch.json`
-  - `Mineradio-1.0.2-to-1.0.5.patch.json`
-  - `Mineradio-1.0.3-to-1.0.5.patch.json`
-  - `Mineradio-1.0.4-to-1.0.5.patch.json`
+  - `Lanote-1.0.5-Setup.exe`
+  - `Lanote-1.0.5-Setup.exe.blockmap`
+  - `Lanote-1.0.0-to-1.0.5.patch.json`
+  - `Lanote-1.0.1-to-1.0.5.patch.json`
+  - `Lanote-1.0.2-to-1.0.5.patch.json`
+  - `Lanote-1.0.3-to-1.0.5.patch.json`
+  - `Lanote-1.0.4-to-1.0.5.patch.json`
 - `v1.0.5` 更新链路新增国内分流下载、下载速度/剩余时间显示、失败原因提示、digest 校验和更严格的补丁版本匹配。
 - 2026-06-18 已确认 GitHub CLI / `gh auth refresh` 使用 `127.0.0.1:10808` 可正常登录；不要走旧代理 `127.0.0.1:26001`，该端口会 `connection refused`。需要临时修复时先清空 `HTTP_PROXY`/`HTTPS_PROXY`，再设为 `http://127.0.0.1:10808`。
-- `v1.0.4` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.0.4`
+- `v1.0.4` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.0.4`
 - `v1.0.4` Release 资产包括：
   - `latest.yml`
-  - `Mineradio-1.0.4-Setup.exe`
-  - `Mineradio-1.0.4-Setup.exe.blockmap`
-  - `Mineradio-1.0.0-to-1.0.4.patch.json`
-  - `Mineradio-1.0.1-to-1.0.4.patch.json`
-  - `Mineradio-1.0.2-to-1.0.4.patch.json`
-  - `Mineradio-1.0.3-to-1.0.4.patch.json`
-- `v1.0.3` 已发布到 GitHub：`https://github.com/XxHuberrr/Mineradio/releases/tag/v1.0.3`
+  - `Lanote-1.0.4-Setup.exe`
+  - `Lanote-1.0.4-Setup.exe.blockmap`
+  - `Lanote-1.0.0-to-1.0.4.patch.json`
+  - `Lanote-1.0.1-to-1.0.4.patch.json`
+  - `Lanote-1.0.2-to-1.0.4.patch.json`
+  - `Lanote-1.0.3-to-1.0.4.patch.json`
+- `v1.0.3` 已发布到 GitHub：`https://github.com/XxHuberrr/Lanote/releases/tag/v1.0.3`
 - `v1.0.3` Release 资产包括：
   - `latest.yml`
-  - `Mineradio-1.0.3-Setup.exe`
-  - `Mineradio-1.0.3-Setup.exe.blockmap`
-  - `Mineradio-1.0.0-1.0.3.json`
-  - `Mineradio-1.0.1-1.0.3.json`
-  - `Mineradio-1.0.2-1.0.3.json`
+  - `Lanote-1.0.3-Setup.exe`
+  - `Lanote-1.0.3-Setup.exe.blockmap`
+  - `Lanote-1.0.0-1.0.3.json`
+  - `Lanote-1.0.1-1.0.3.json`
+  - `Lanote-1.0.2-1.0.3.json`
 - 用户明确说过：0.9 系列不要再做安装补丁，直接跳过。
 
 ## Visual And Interaction Preferences
@@ -171,13 +171,13 @@
 ### 2026-06-24 - 1.1.0 纯净安装发布边界
 - 用户认可/要求保留：`v1.1.0` 从当前可信源码重新打包为纯净安装版并发布到 GitHub；旧 `v1.0.10` 及更早 `.exe` 安装包需要标记隔离，不再作为推荐安装来源。
 - 涉及文件：`CHANGELOG.md`、`README.md`、`SECURITY.md`、`RELEASE.md`、`docs/SECURITY_REBUILD_2026-06-24.md`、`docs/RELEASE_NOTES_v1.1.0.md`。
-- 关键参数/实现：本次不生成 `v1.0.10 -> v1.1.0` 快速补丁，不上传 `latest.yml`，GitHub Release 不作为旧版软件内更新通道 latest；用户需要手动下载 `Mineradio-1.1.0-Setup.exe` 并纯净安装。
+- 关键参数/实现：本次不生成 `v1.0.10 -> v1.1.0` 快速补丁，不上传 `latest.yml`，GitHub Release 不作为旧版软件内更新通道 latest；用户需要手动下载 `Lanote-1.1.0-Setup.exe` 并纯净安装。
 - 禁止回退或改坏的点：不要把旧安装包重新标为可信；不要让 `v1.0.10` 客户端通过软件内更新自动拉取 `v1.1.0`；不要复用旧 `dist`、旧备份包或历史 packaged build。
 
 ### 2026-06-24 - 默认测试作为默认用户存档
 - 用户认可/要求保留：`E:\Download\默认测试.json` 需要成为软件首次启用默认用户存档，并且软件内视觉参数默认值也按这份 JSON 快照初始化。
 - 涉及文件：`public/index.html`、`public/default-user-fx-archive.json`。
-- 关键参数/实现：`fxDefaults` 与 `PACKAGED_DEFAULT_FX_SNAPSHOT` 同步为「默认测试」；没有本地 `mineradio-lyric-layout-v1` 时 `readSavedLyricLayout()` 使用 packaged snapshot；没有本地用户存档 key 时自动创建「默认测试」存档槽位。
+- 关键参数/实现：`fxDefaults` 与 `PACKAGED_DEFAULT_FX_SNAPSHOT` 同步为「默认测试」；没有本地 `lanote-lyric-layout-v1` 时 `readSavedLyricLayout()` 使用 packaged snapshot；没有本地用户存档 key 时自动创建「默认测试」存档槽位。
 - 禁止回退或改坏的点：不要让首次启动回到旧青色 UI、动态自动隐藏歌单架或播客默认显示；不要覆盖已有用户本地存档，只在首次没有用户存档 key 时种入默认槽。
 
 ### 2026-06-24 - 歌单详情页歌词透明度边界
@@ -248,7 +248,7 @@
 
 ### 2026-06-24 - 1.1.0 安全重建源码优先
 
-- 用户认可/要求保留：火绒全盘查杀并隔离大量感染文件后，Mineradio 先走源码可信重建路线；该边界已升级为 `v1.1.0` 纯净安装发布流程，旧安装包仍不可信。
+- 用户认可/要求保留：火绒全盘查杀并隔离大量感染文件后，Lanote 先走源码可信重建路线；该边界已升级为 `v1.1.0` 纯净安装发布流程，旧安装包仍不可信。
 - 涉及文件：`package.json`、`package-lock.json`、`CHANGELOG.md`、`server.js`、`public/index.html`、`.gitignore`、`docs/SECURITY_REBUILD_2026-06-24.md`。
 - 关键参数/实现：`v1.1.0` 作为安全重建版本；`.playwright-cli/`、`output/`、`tmp/` 不进 Git；软件内更新失败时不再自动无限切换到完整安装包，下载好的安装包需用户手动打开；发布安装包必须从当前 Git-tracked 源码重新构建并扫描。
 - 禁止回退或改坏的点：不要复用旧感染环境产出的安装包；不要把旧 `dist`、旧 `node_modules`、浏览器 profile 或临时扫描资料提交到 GitHub；旧安装包需要隔离标注。
@@ -278,7 +278,7 @@
 
 - 用户认可/要求保留：当前安装包格式以后继续沿用，中文极简、黑白为主、蓝色点缀。
 - 涉及文件：`build/installer.nsh`、`build/installerHeader.bmp`、`build/installerSidebar.bmp`、`docs/INSTALLER_STYLE.md`。
-- 关键参数/实现：白底 `#FFFFFF`、主文字 `#111217`、弱文字 `#4B5263`/`#6B7280`、蓝色 `#3257F7`；自定义欢迎页和自定义安装目录页；默认 `D:\Mineradio`；`浏览...` 必须可用。
+- 关键参数/实现：白底 `#FFFFFF`、主文字 `#111217`、弱文字 `#4B5263`/`#6B7280`、蓝色 `#3257F7`；自定义欢迎页和自定义安装目录页；默认 `D:\Lanote`；`浏览...` 必须可用。
 - 禁止回退或改坏的点：不要恢复红色 MR、深色大卡片、英文大段说明、复杂装饰；不要改回 electron-builder 原生目录页导致 C 盘旧路径回填；发布前必须打开安装器验证默认路径和浏览按钮。
 
 ### 2026-06-21 - 新对话交接文件
@@ -299,21 +299,21 @@
 
 - 用户认可/要求保留：播放器控制台当前 SVG 玻璃质感，后续要作为其它面板/按钮的参考基线。
 - 涉及文件：`public/index.html`、`docs/GLASS_SVG_TEXTURE.md`
-- 关键参数/实现：`#mineradio-control-glass-filter`、`generateControlGlassDisplacementMap()`、`--saved-panel-glass-*`、`--saved-button-glass-*`。
+- 关键参数/实现：`#lanote-control-glass-filter`、`generateControlGlassDisplacementMap()`、`--saved-panel-glass-*`、`--saved-button-glass-*`。
 - 禁止回退或改坏的点：不要改成普通毛玻璃；不要把中心做成一团糊；不要让右侧缺块、整体右偏或廉价白渐变重新出现。
 
 ### 2026-06-18 - 建立干净工作区和新对话接力规则
 
-- 用户认可/要求保留：工作区根目录保持清晰，项目叫 `Mineradio`，备份统一进入 `工作区备份`。
-- 涉及文件：根目录 `AGENTS.md`、项目 `AGENTS.md`、本文件、用户技能 `mineradio-project-memory`。
+- 用户认可/要求保留：工作区根目录保持清晰，项目叫 `Lanote`，备份统一进入 `工作区备份`。
+- 涉及文件：根目录 `AGENTS.md`、项目 `AGENTS.md`、本文件、用户技能 `lanote-project-memory`。
 - 关键参数/实现：新对话先读取项目说明；遇到“保留/喜欢/记住”类表达时更新本文件。
 - 禁止回退或改坏的点：不要再把项目藏回 `editable-install\...\resources\app`；不要把散落备份重新放到根目录。
 
-### 2026-06-18 - 将 win-unpacked 设为 Mineradio 主运行目录
+### 2026-06-18 - 将 win-unpacked 设为 Lanote 主运行目录
 
-- 用户认可/要求保留：用户实际检查软件靠 `win-unpacked` 里的 `Mineradio.exe`，所以 `win-unpacked` 已提升为 `E:\桌面\播放器软件\Mineradio` 主目录。
-- 涉及文件：`E:\桌面\播放器软件\AGENTS.md`、`E:\桌面\播放器软件\Mineradio\AGENTS.md`、`AGENTS.md`、本文件。
-- 关键参数/实现：真实代码/Git 仓库移动到 `E:\桌面\播放器软件\Mineradio\resources\app`；可运行程序在 `E:\桌面\播放器软件\Mineradio\Mineradio.exe`。
+- 用户认可/要求保留：用户实际检查软件靠 `win-unpacked` 里的 `Lanote.exe`，所以 `win-unpacked` 已提升为 `E:\桌面\播放器软件\Lanote` 主目录。
+- 涉及文件：`E:\桌面\播放器软件\AGENTS.md`、`E:\桌面\播放器软件\Lanote\AGENTS.md`、`AGENTS.md`、本文件。
+- 关键参数/实现：真实代码/Git 仓库移动到 `E:\桌面\播放器软件\Lanote\resources\app`；可运行程序在 `E:\桌面\播放器软件\Lanote\Lanote.exe`。
 - 禁止回退或改坏的点：以后不要修改外层旧源码路径；改代码必须进入 `resources\app`，否则用户打开 exe 看不到效果。
 - 补充：运行版 `node_modules` 可能没有打包依赖；发布前如缺少 `electron-builder`，在 `resources\app` 里执行 `npm install`。
 

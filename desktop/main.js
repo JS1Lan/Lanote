@@ -25,16 +25,16 @@ let mainWindowStateTimer = null;
 const registeredGlobalHotkeys = new Map();
 
 const WINDOWED_ASPECT = 16 / 9;
-const WINDOWED_SCALE = 3 / 4;
-const WINDOWED_MARGIN = 32;
-const MIN_WINDOWED_WIDTH = 960;
-const MIN_WINDOWED_HEIGHT = 540;
-const APP_NAME = 'Mineradio';
-const APP_USER_MODEL_ID = 'com.mineradio.desktop';
+const WINDOWED_SCALE = 1 / 2;
+const WINDOWED_MARGIN = 48;
+const MIN_WINDOWED_WIDTH = 820;
+const MIN_WINDOWED_HEIGHT = 520;
+const APP_NAME = 'Lanote';
+const APP_USER_MODEL_ID = 'com.lanote.desktop';
 const APP_ICON_ICO = path.join(__dirname, '..', 'build', 'icon.ico');
-const NETEASE_LOGIN_PARTITION = 'persist:mineradio-netease-login';
+const NETEASE_LOGIN_PARTITION = 'persist:lanote-netease-login';
 const NETEASE_LOGIN_URL = 'https://music.163.com/#/login';
-const QQ_LOGIN_PARTITION = 'persist:mineradio-qqmusic-login';
+const QQ_LOGIN_PARTITION = 'persist:lanote-qqmusic-login';
 const QQ_LOGIN_URL = 'https://y.qq.com/n/ryqq/profile';
 
 const CHROMIUM_PERFORMANCE_SWITCHES = [
@@ -130,18 +130,18 @@ function sendWindowState(win) {
 
 function sendGlobalHotkeyAction(action) {
   if (!mainWindow || mainWindow.isDestroyed() || !action) return;
-  mainWindow.webContents.send('mineradio-global-hotkey', { action });
+  mainWindow.webContents.send('lanote-global-hotkey', { action });
 }
 
-function unregisterMineradioGlobalHotkeys() {
+function unregisterLanoteGlobalHotkeys() {
   for (const accelerator of registeredGlobalHotkeys.keys()) {
     try { globalShortcut.unregister(accelerator); } catch (e) {}
   }
   registeredGlobalHotkeys.clear();
 }
 
-function configureMineradioGlobalHotkeys(bindings = []) {
-  unregisterMineradioGlobalHotkeys();
+function configureLanoteGlobalHotkeys(bindings = []) {
+  unregisterLanoteGlobalHotkeys();
   const results = [];
   const seen = new Set();
   for (const item of Array.isArray(bindings) ? bindings : []) {
@@ -274,8 +274,8 @@ function getUpdateDownloadDir() {
 
 function shouldEnsureDesktopShortcut() {
   if (process.platform !== 'win32') return false;
-  if (process.env.MINERADIO_NO_DESKTOP_SHORTCUT === '1') return false;
-  return app.isPackaged || process.env.MINERADIO_CREATE_DESKTOP_SHORTCUT === '1';
+  if (process.env.LANOTE_NO_DESKTOP_SHORTCUT === '1') return false;
+  return app.isPackaged || process.env.LANOTE_CREATE_DESKTOP_SHORTCUT === '1';
 }
 
 function ensureDesktopShortcut() {
@@ -287,7 +287,7 @@ function ensureDesktopShortcut() {
       target,
       cwd: path.dirname(target),
       args: '',
-      description: 'Mineradio desktop music player',
+      description: 'Lanote desktop music player',
       icon: fs.existsSync(APP_ICON_ICO) ? APP_ICON_ICO : target,
       iconIndex: 0,
       appUserModelId: APP_USER_MODEL_ID,
@@ -817,13 +817,13 @@ $ErrorActionPreference = "SilentlyContinue"
 Add-Type @"
 using System;
 using System.Runtime.InteropServices;
-public class MineradioMousePoll {
+public class LanoteMousePoll {
   [DllImport("user32.dll")] public static extern short GetAsyncKeyState(int vKey);
 }
 "@
 $prev = $false
 while ($true) {
-  $down = (([MineradioMousePoll]::GetAsyncKeyState(4) -band 0x8000) -ne 0)
+  $down = (([LanoteMousePoll]::GetAsyncKeyState(4) -band 0x8000) -ne 0)
   if ($down -and -not $prev) {
     [Console]::Out.WriteLine("MMB")
     [Console]::Out.Flush()
@@ -871,14 +871,14 @@ function stopDesktopLyricsMousePoller() {
 function broadcastDesktopLyricsLockState() {
   const locked = desktopLyricsState.clickThrough !== false;
   if (mainWindow && !mainWindow.isDestroyed()) {
-    mainWindow.webContents.send('mineradio-desktop-lyrics-lock-state', { locked });
+    mainWindow.webContents.send('lanote-desktop-lyrics-lock-state', { locked });
   }
   sendDesktopLyricsState();
 }
 
 function broadcastDesktopLyricsEnabledState(enabled) {
   if (mainWindow && !mainWindow.isDestroyed()) {
-    mainWindow.webContents.send('mineradio-desktop-lyrics-enabled-state', { enabled: !!enabled });
+    mainWindow.webContents.send('lanote-desktop-lyrics-enabled-state', { enabled: !!enabled });
   }
 }
 
@@ -893,7 +893,7 @@ function positionDesktopLyricsWindow(payload = desktopLyricsState, options = {})
 
 function sendDesktopLyricsState() {
   if (!desktopLyricsWindow || desktopLyricsWindow.isDestroyed()) return;
-  desktopLyricsWindow.webContents.send('mineradio-desktop-lyrics-state', desktopLyricsState);
+  desktopLyricsWindow.webContents.send('lanote-desktop-lyrics-state', desktopLyricsState);
 }
 
 function createDesktopLyricsWindow(payload = {}) {
@@ -929,7 +929,7 @@ function createDesktopLyricsWindow(payload = {}) {
     focusable: false,
     skipTaskbar: true,
     show: false,
-    title: 'Mineradio Desktop Lyrics',
+    title: 'Lanote Desktop Lyrics',
     webPreferences: {
       preload: path.join(__dirname, 'overlay-preload.js'),
       contextIsolation: true,
@@ -987,11 +987,11 @@ function attachWallpaperToWorkerW(win) {
   const hwnd = nativeWindowHandleDecimal(win);
   const script = `
 $ErrorActionPreference = "Stop"
-if (-not ("MineradioNativeWin" -as [type])) {
+if (-not ("LanoteNativeWin" -as [type])) {
 Add-Type @"
 using System;
 using System.Runtime.InteropServices;
-public class MineradioNativeWin {
+public class LanoteNativeWin {
   public delegate bool EnumWindowsProc(IntPtr hWnd, IntPtr lParam);
   [DllImport("user32.dll", SetLastError=true)] public static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
   [DllImport("user32.dll", SetLastError=true)] public static extern IntPtr FindWindowEx(IntPtr parent, IntPtr childAfter, string className, string windowName);
@@ -1002,23 +1002,23 @@ public class MineradioNativeWin {
 }
 "@
 }
-$progman = [MineradioNativeWin]::FindWindow("Progman", $null)
+$progman = [LanoteNativeWin]::FindWindow("Progman", $null)
 $result = [IntPtr]::Zero
-[MineradioNativeWin]::SendMessageTimeout($progman, 0x052C, [IntPtr]::Zero, [IntPtr]::Zero, 0, 1000, [ref]$result) | Out-Null
+[LanoteNativeWin]::SendMessageTimeout($progman, 0x052C, [IntPtr]::Zero, [IntPtr]::Zero, 0, 1000, [ref]$result) | Out-Null
 $script:workerw = [IntPtr]::Zero
-$enum = [MineradioNativeWin+EnumWindowsProc]{
+$enum = [LanoteNativeWin+EnumWindowsProc]{
   param([IntPtr]$top, [IntPtr]$param)
-  $shell = [MineradioNativeWin]::FindWindowEx($top, [IntPtr]::Zero, "SHELLDLL_DefView", $null)
+  $shell = [LanoteNativeWin]::FindWindowEx($top, [IntPtr]::Zero, "SHELLDLL_DefView", $null)
   if ($shell -ne [IntPtr]::Zero) {
-    $script:workerw = [MineradioNativeWin]::FindWindowEx([IntPtr]::Zero, $top, "WorkerW", $null)
+    $script:workerw = [LanoteNativeWin]::FindWindowEx([IntPtr]::Zero, $top, "WorkerW", $null)
   }
   return $true
 }
-[MineradioNativeWin]::EnumWindows($enum, [IntPtr]::Zero) | Out-Null
+[LanoteNativeWin]::EnumWindows($enum, [IntPtr]::Zero) | Out-Null
 if ($script:workerw -eq [IntPtr]::Zero) { $script:workerw = $progman }
 $target = [IntPtr]::new([Int64]${hwnd})
-[MineradioNativeWin]::SetParent($target, $script:workerw) | Out-Null
-[MineradioNativeWin]::SetWindowPos($target, [IntPtr]::Zero, 0, 0, 0, 0, 0x0013) | Out-Null
+[LanoteNativeWin]::SetParent($target, $script:workerw) | Out-Null
+[LanoteNativeWin]::SetWindowPos($target, [IntPtr]::Zero, 0, 0, 0, 0, 0x0013) | Out-Null
 `;
   execFile('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', '-Command', script], {
     windowsHide: true,
@@ -1036,7 +1036,7 @@ function positionWallpaperWindow() {
 
 function sendWallpaperState() {
   if (!wallpaperWindow || wallpaperWindow.isDestroyed()) return;
-  wallpaperWindow.webContents.send('mineradio-wallpaper-state', wallpaperState);
+  wallpaperWindow.webContents.send('lanote-wallpaper-state', wallpaperState);
 }
 
 function createWallpaperWindow(payload = {}) {
@@ -1058,7 +1058,7 @@ function createWallpaperWindow(payload = {}) {
     focusable: false,
     skipTaskbar: true,
     show: false,
-    title: 'Mineradio Wallpaper',
+    title: 'Lanote Wallpaper',
     webPreferences: {
       preload: path.join(__dirname, 'overlay-preload.js'),
       contextIsolation: true,
@@ -1121,16 +1121,16 @@ ipcMain.handle('desktop-window-close', (event) => {
   getSenderWindow(event)?.close();
 });
 
-ipcMain.handle('mineradio-hotkeys-configure-global', (_event, bindings) => {
-  return configureMineradioGlobalHotkeys(bindings);
+ipcMain.handle('lanote-hotkeys-configure-global', (_event, bindings) => {
+  return configureLanoteGlobalHotkeys(bindings);
 });
 
-ipcMain.handle('mineradio-export-json-file', async (event, payload = {}) => {
+ipcMain.handle('lanote-export-json-file', async (event, payload = {}) => {
   try {
     const owner = getSenderWindow(event);
-    const defaultName = String(payload.defaultName || 'mineradio-export.json').replace(/[\\/:*?"<>|]+/g, '-');
+    const defaultName = String(payload.defaultName || 'lanote-export.json').replace(/[\\/:*?"<>|]+/g, '-');
     const result = await dialog.showSaveDialog(owner, {
-      title: '导出 Mineradio 存档',
+      title: '导出 Lanote 存档',
       defaultPath: defaultName.toLowerCase().endsWith('.json') ? defaultName : `${defaultName}.json`,
       filters: [{ name: 'JSON', extensions: ['json'] }],
     });
@@ -1143,11 +1143,11 @@ ipcMain.handle('mineradio-export-json-file', async (event, payload = {}) => {
   }
 });
 
-ipcMain.handle('mineradio-import-json-file', async (event) => {
+ipcMain.handle('lanote-import-json-file', async (event) => {
   try {
     const owner = getSenderWindow(event);
     const result = await dialog.showOpenDialog(owner, {
-      title: '导入 Mineradio 存档',
+      title: '导入 Lanote 存档',
       properties: ['openFile'],
       filters: [{ name: 'JSON', extensions: ['json'] }],
     });
@@ -1176,7 +1176,7 @@ ipcMain.handle('qq-music-clear-login', async () => {
   return clearQQMusicLoginSession();
 });
 
-ipcMain.handle('mineradio-open-update-installer', async (_event, filePath) => {
+ipcMain.handle('lanote-open-update-installer', async (_event, filePath) => {
   try {
     const target = path.resolve(String(filePath || ''));
     const updateDir = path.resolve(getUpdateDownloadDir());
@@ -1191,7 +1191,7 @@ ipcMain.handle('mineradio-open-update-installer', async (_event, filePath) => {
   }
 });
 
-ipcMain.handle('mineradio-restart-app', async () => {
+ipcMain.handle('lanote-restart-app', async () => {
   try {
     app.relaunch();
     app.exit(0);
@@ -1201,7 +1201,7 @@ ipcMain.handle('mineradio-restart-app', async () => {
   }
 });
 
-ipcMain.handle('mineradio-desktop-lyrics-set-enabled', async (_event, enabled, payload) => {
+ipcMain.handle('lanote-desktop-lyrics-set-enabled', async (_event, enabled, payload) => {
   try {
     if (enabled) {
       createDesktopLyricsWindow(payload || {});
@@ -1215,7 +1215,7 @@ ipcMain.handle('mineradio-desktop-lyrics-set-enabled', async (_event, enabled, p
   }
 });
 
-ipcMain.handle('mineradio-desktop-lyrics-update', async (_event, payload) => {
+ipcMain.handle('lanote-desktop-lyrics-update', async (_event, payload) => {
   try {
     const nextState = { ...desktopLyricsState, ...(payload || {}) };
     if (nextState.enabled) {
@@ -1232,11 +1232,11 @@ ipcMain.handle('mineradio-desktop-lyrics-update', async (_event, payload) => {
   }
 });
 
-ipcMain.handle('mineradio-desktop-lyrics-set-dragging', async () => {
+ipcMain.handle('lanote-desktop-lyrics-set-dragging', async () => {
   return { ok: true };
 });
 
-ipcMain.handle('mineradio-desktop-lyrics-set-pointer-capture', async (_event, active) => {
+ipcMain.handle('lanote-desktop-lyrics-set-pointer-capture', async (_event, active) => {
   try {
     desktopLyricsPointerCapture = !!active;
     applyDesktopLyricsMouseBehavior();
@@ -1246,7 +1246,7 @@ ipcMain.handle('mineradio-desktop-lyrics-set-pointer-capture', async (_event, ac
   }
 });
 
-ipcMain.handle('mineradio-desktop-lyrics-set-hot-bounds', async (_event, bounds) => {
+ipcMain.handle('lanote-desktop-lyrics-set-hot-bounds', async (_event, bounds) => {
   try {
     const left = clampNumber(bounds && bounds.left, -2000, 4000, 0);
     const top = clampNumber(bounds && bounds.top, -2000, 4000, 0);
@@ -1259,7 +1259,7 @@ ipcMain.handle('mineradio-desktop-lyrics-set-hot-bounds', async (_event, bounds)
   }
 });
 
-ipcMain.handle('mineradio-desktop-lyrics-set-lock-state', async (_event, locked) => {
+ipcMain.handle('lanote-desktop-lyrics-set-lock-state', async (_event, locked) => {
   try {
     desktopLyricsState = { ...desktopLyricsState, clickThrough: !!locked };
     if (desktopLyricsState.clickThrough !== false) desktopLyricsPointerCapture = false;
@@ -1271,7 +1271,7 @@ ipcMain.handle('mineradio-desktop-lyrics-set-lock-state', async (_event, locked)
   }
 });
 
-ipcMain.handle('mineradio-desktop-lyrics-move-by', async (_event, dx, dy) => {
+ipcMain.handle('lanote-desktop-lyrics-move-by', async (_event, dx, dy) => {
   try {
     if (!desktopLyricsWindow || desktopLyricsWindow.isDestroyed()) return { ok: false, error: 'NO_DESKTOP_LYRICS_WINDOW' };
     if (desktopLyricsState.clickThrough !== false) return { ok: false, error: 'DESKTOP_LYRICS_LOCKED' };
@@ -1289,7 +1289,7 @@ ipcMain.handle('mineradio-desktop-lyrics-move-by', async (_event, dx, dy) => {
   }
 });
 
-ipcMain.handle('mineradio-wallpaper-set-enabled', async (_event, enabled, payload) => {
+ipcMain.handle('lanote-wallpaper-set-enabled', async (_event, enabled, payload) => {
   try {
     if (enabled) createWallpaperWindow(payload || {});
     else closeWallpaperWindow();
@@ -1299,7 +1299,7 @@ ipcMain.handle('mineradio-wallpaper-set-enabled', async (_event, enabled, payloa
   }
 });
 
-ipcMain.handle('mineradio-wallpaper-update', async (_event, payload) => {
+ipcMain.handle('lanote-wallpaper-update', async (_event, payload) => {
   try {
     wallpaperState = { ...wallpaperState, ...(payload || {}) };
     if (wallpaperState.enabled) {
@@ -1327,7 +1327,7 @@ async function createWindow() {
   process.env.PORT = String(port);
   process.env.COOKIE_FILE = path.join(app.getPath('userData'), '.cookie');
   process.env.QQ_COOKIE_FILE = path.join(app.getPath('userData'), '.qq-cookie');
-  process.env.MINERADIO_UPDATE_DIR = getUpdateDownloadDir();
+  process.env.LANOTE_UPDATE_DIR = getUpdateDownloadDir();
   try {
     const legacyQQCookie = path.join(__dirname, '..', '.qq-cookie');
     if (fs.existsSync(legacyQQCookie)) {
@@ -1347,8 +1347,8 @@ async function createWindow() {
 
   mainWindow = new BrowserWindow({
     ...initialBounds,
-    minWidth: 960,
-    minHeight: 540,
+    minWidth: MIN_WINDOWED_WIDTH,
+    minHeight: MIN_WINDOWED_HEIGHT,
     show: false,
     frame: false,
     fullscreen: false,
@@ -1384,6 +1384,8 @@ async function createWindow() {
   });
 
   mainWindow.once('ready-to-show', () => {
+    mainWindow.setAspectRatio(WINDOWED_ASPECT);
+    mainWindow.webContents.setZoomFactor(0.85);
     mainWindow.show();
     sendWindowState(mainWindow);
   });
@@ -1459,7 +1461,7 @@ if (!gotSingleInstanceLock) {
   });
 
   app.on('before-quit', () => {
-    unregisterMineradioGlobalHotkeys();
+    unregisterLanoteGlobalHotkeys();
     closeOverlayWindows();
     if (localServer && localServer.close) localServer.close();
   });

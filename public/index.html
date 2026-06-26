@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mineradio</title>
+<title>Lanote</title>
 <meta name="referrer" content="no-referrer">
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Inter:wght@200;300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700;900&family=UnifrakturCook:wght@700&display=swap" rel="stylesheet">
 <script src="vendor/three.r128.min.js"></script>
@@ -11,7 +11,7 @@
 <script src="vendor/gsap.min.js"></script>
 <script>
 try {
-  document.documentElement.classList.add(localStorage.getItem('mineradio-diy-player-mode-v1') === '1' ? 'diy-mode-preload' : 'simple-mode-preload');
+  document.documentElement.classList.add(localStorage.getItem('lanote-diy-player-mode-v1') === '1' ? 'diy-mode-preload' : 'simple-mode-preload');
 } catch (e) {
   document.documentElement.classList.add('simple-mode-preload');
 }
@@ -23,7 +23,7 @@ body.cursor-hidden,body.cursor-hidden *{cursor:none!important}
 html.desktop-shell-root,html.desktop-shell-root body{background:transparent}
 :root{--font-sans:"Noto Sans SC","PingFang SC","HarmonyOS Sans SC","Alibaba PuHuiTi","Inter",-apple-system,BlinkMacSystemFont,system-ui,sans-serif;--font-mono:"JetBrains Mono","Geist Mono","SF Mono",ui-monospace,monospace;--fc-bg:#08090B;--fc-paper:#0E1014;--fc-ink:#E8ECEF;--fc-ink-2:#D2D7DC;--fc-muted:#8A9099;--fc-hair:#1A1D22;--fc-hair-2:#262A31;--fc-accent:#00F5D4;--fc-accent-hov:#00E0BE;--fc-accent-rgb:0,245,212;--fc-blue:#2442ff;--fc-warm:#f8f4ee;--chill-ink:#030608;--chill-deep:#061116;--chill-cyan:#8fe9ff;--chill-blue:#73a7ff;--chill-mint:#9cffdf;--chill-soft:rgba(214,248,255,.9);--champagne:#f4d28a;--champagne-deep:#9a6f2c;--home-accent:#00f5d4;--home-accent-rgb:0,245,212;--visual-tint:#9db8cf;--source-netease:#d95b67;--source-qq:#00F5D4;--source-local:#9db8cf}
 :root{--glass-bg:linear-gradient(112deg,rgba(72,74,76,.62),rgba(24,27,30,.70) 48%,rgba(8,12,14,.74));--glass-bg-focus:linear-gradient(112deg,rgba(88,91,92,.68),rgba(28,32,35,.76) 50%,rgba(8,13,15,.82));--glass-border:rgba(0,245,212,.30);--glass-border-soft:rgba(255,255,255,.095);--glass-shadow:0 22px 64px rgba(0,0,0,.30),0 0 34px rgba(0,245,212,.052),inset 0 1px 0 rgba(255,255,255,.16),inset 0 -24px 58px rgba(0,0,0,.16);--glass-shadow-focus:0 24px 72px rgba(0,0,0,.34),0 0 0 1px rgba(0,245,212,.13),0 0 42px rgba(0,245,212,.075),inset 0 1px 0 rgba(255,255,255,.20)}
-:root{--saved-panel-glass-bg:rgba(0,0,0,.10);--saved-panel-glass-filter:blur(12px) saturate(1.8) brightness(1.16);--saved-panel-glass-svg-filter:url(#mineradio-control-glass-filter) saturate(1);--saved-panel-glass-shadow:inset 0 0 2px 1px rgba(255,255,255,.35),inset 0 0 10px 4px rgba(255,255,255,.15),0 4px 16px rgba(17,17,26,.05),0 8px 24px rgba(17,17,26,.05),0 16px 56px rgba(17,17,26,.05),inset 0 4px 16px rgba(17,17,26,.05),inset 0 8px 24px rgba(17,17,26,.05),inset 0 16px 56px rgba(17,17,26,.05);--saved-panel-glass-radius:50px;--saved-button-glass-bg:rgba(0,0,0,.10);--saved-button-glass-filter:blur(12px) saturate(1.8) brightness(1.16);--saved-button-glass-svg-filter:url(#mineradio-control-glass-filter) saturate(1);--saved-button-glass-shadow:inset 0 0 2px 1px rgba(255,255,255,.34),inset 0 0 10px 4px rgba(255,255,255,.13),0 10px 30px rgba(0,0,0,.18);--saved-button-glass-hover-bg:rgba(255,255,255,.055);--saved-button-glass-hover-shadow:inset 0 0 2px 1px rgba(255,255,255,.42),inset 0 0 12px 5px rgba(255,255,255,.17),0 12px 34px rgba(0,0,0,.22),0 0 18px rgba(255,255,255,.06)}
+:root{--saved-panel-glass-bg:rgba(0,0,0,.10);--saved-panel-glass-filter:blur(12px) saturate(1.8) brightness(1.16);--saved-panel-glass-svg-filter:url(#lanote-control-glass-filter) saturate(1);--saved-panel-glass-shadow:inset 0 0 2px 1px rgba(255,255,255,.35),inset 0 0 10px 4px rgba(255,255,255,.15),0 4px 16px rgba(17,17,26,.05),0 8px 24px rgba(17,17,26,.05),0 16px 56px rgba(17,17,26,.05),inset 0 4px 16px rgba(17,17,26,.05),inset 0 8px 24px rgba(17,17,26,.05),inset 0 16px 56px rgba(17,17,26,.05);--saved-panel-glass-radius:50px;--saved-button-glass-bg:rgba(0,0,0,.10);--saved-button-glass-filter:blur(12px) saturate(1.8) brightness(1.16);--saved-button-glass-svg-filter:url(#lanote-control-glass-filter) saturate(1);--saved-button-glass-shadow:inset 0 0 2px 1px rgba(255,255,255,.34),inset 0 0 10px 4px rgba(255,255,255,.13),0 10px 30px rgba(0,0,0,.18);--saved-button-glass-hover-bg:rgba(255,255,255,.055);--saved-button-glass-hover-shadow:inset 0 0 2px 1px rgba(255,255,255,.42),inset 0 0 12px 5px rgba(255,255,255,.17),0 12px 34px rgba(0,0,0,.22),0 0 18px rgba(255,255,255,.06)}
 :root{--home-icon-color:#f4d28a;--home-icon-rgb:244,210,138;--visual-icon-color:#7fd8ff;--visual-icon-rgb:127,216,255}
 .glass-saved-panel{background:var(--saved-panel-glass-bg);border:0;border-radius:var(--saved-panel-glass-radius);backdrop-filter:var(--saved-panel-glass-filter);-webkit-backdrop-filter:var(--saved-panel-glass-filter);box-shadow:var(--saved-panel-glass-shadow)}
 html.control-glass-svg-ok .glass-saved-panel{background:var(--saved-panel-glass-bg);backdrop-filter:var(--saved-panel-glass-svg-filter);-webkit-backdrop-filter:var(--saved-panel-glass-svg-filter)}
@@ -54,7 +54,8 @@ body.desktop-shell #desktop-titlebar::after{content:none}
 .desktop-mode-btn.on{color:#fff;border-color:rgba(255,83,103,.50);background:rgba(255,83,103,.13);box-shadow:0 12px 34px rgba(255,83,103,.09),inset 0 1px 0 rgba(255,255,255,.08)}
 .desktop-mode-btn.on::before{background:#ff5367;box-shadow:0 0 16px rgba(255,83,103,.56)}
 body.desktop-shell #desktop-titlebar #visual-guide-btn,
-body.desktop-shell #desktop-titlebar #update-entry{width:30px;height:30px;border-radius:10px;box-shadow:none;background:rgba(4,8,10,.42);border-color:rgba(255,255,255,.08);color:rgba(224,250,255,.70);backdrop-filter:none;-webkit-backdrop-filter:none}
+body.desktop-shell #desktop-titlebar #settings-btn{width:30px;height:30px;border-radius:10px;box-shadow:none;background:rgba(4,8,10,.42);border-color:rgba(255,255,255,.08);color:rgba(224,250,255,.70);backdrop-filter:none;-webkit-backdrop-filter:none}
+body.desktop-shell #desktop-titlebar #update-entry{display:none!important}
 body.desktop-shell #desktop-titlebar #visual-guide-btn{font-size:14px}
 body.desktop-shell #desktop-titlebar #update-entry.available{display:flex}
 body.desktop-shell #desktop-titlebar #update-entry svg{width:18px;height:18px}
@@ -66,6 +67,10 @@ body.desktop-shell #search-area{top:-92px}
 body.desktop-shell #search-area.peek{top:34px}
 body.desktop-shell #search-area.stage-mode.peek{top:32px}
 body.desktop-shell #top-right{top:58px;right:24px}
+body.desktop-shell #search-stack{width:min(380px,44vw)!important}
+body.desktop-shell #search-box{height:44px!important;border-radius:16px!important;padding:0 14px!important}
+body.desktop-shell #search-input{font-size:12px!important}
+#search-stack{width:min(380px,50vw)}
 body.desktop-shell #trial-banner{top:112px}
 body.desktop-shell #ai-depth-chip{top:112px}
 body.desktop-shell #beat-chip{top:154px}
@@ -525,7 +530,7 @@ html.control-glass-svg-ok #bottom-bar{backdrop-filter:none;-webkit-backdrop-filt
 #bottom-bar::before{content:none}
 #bottom-bar::after{content:none}
 #bottom-bar.visible{opacity:.91;pointer-events:auto;transform:translateX(-50%) translateY(0) scale(1);filter:blur(0);background:rgba(0,0,0,.10);backdrop-filter:blur(12px) saturate(1.8) brightness(1.16);-webkit-backdrop-filter:blur(12px) saturate(1.8) brightness(1.16);box-shadow:inset 0 0 2px 1px rgba(255,255,255,.35),inset 0 0 10px 4px rgba(255,255,255,.15),0 4px 16px rgba(17,17,26,.05),0 8px 24px rgba(17,17,26,.05),0 16px 56px rgba(17,17,26,.05),inset 0 4px 16px rgba(17,17,26,.05),inset 0 8px 24px rgba(17,17,26,.05),inset 0 16px 56px rgba(17,17,26,.05)}
-html.control-glass-svg-ok #bottom-bar.visible{background:rgba(0,0,0,.10);backdrop-filter:url(#mineradio-control-glass-filter) saturate(1);-webkit-backdrop-filter:url(#mineradio-control-glass-filter) saturate(1)}
+html.control-glass-svg-ok #bottom-bar.visible{background:rgba(0,0,0,.10);backdrop-filter:url(#lanote-control-glass-filter) saturate(1);-webkit-backdrop-filter:url(#lanote-control-glass-filter) saturate(1)}
 #bottom-bar.soft-hidden{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(88px) scale(.972);filter:none;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none;box-shadow:none}
 body.home-controls-locked #bottom-bar{opacity:0!important;pointer-events:none!important;transform:translateX(-50%) translateY(92px) scale(.985)!important;filter:none!important;background:transparent!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;box-shadow:none!important}
 #bottom-bar.stage-mode{bottom:14px;width:calc(100vw - 56px)}
@@ -1507,8 +1512,8 @@ html.control-glass-svg-ok #playlist-panel{
   -webkit-backdrop-filter:var(--saved-panel-glass-filter)!important;
 }
 html.control-glass-svg-ok #search-box{
-  backdrop-filter:url(#mineradio-search-box-glass-filter) saturate(1)!important;
-  -webkit-backdrop-filter:url(#mineradio-search-box-glass-filter) saturate(1)!important;
+  backdrop-filter:url(#lanote-search-box-glass-filter) saturate(1)!important;
+  -webkit-backdrop-filter:url(#lanote-search-box-glass-filter) saturate(1)!important;
 }
 #home-btn,#upload-btn,#visual-guide-btn,#fx-fab,.top-account-pill,#top-right .icon-btn{
   background:var(--saved-button-glass-bg)!important;
@@ -1676,8 +1681,8 @@ html.control-glass-svg-ok .search-history-chip{
   border-color:transparent!important;
   color:rgba(var(--fc-accent-rgb),.78)!important;
   box-shadow:var(--saved-button-glass-shadow)!important;
-  backdrop-filter:url(#mineradio-search-pill-glass-filter) saturate(1)!important;
-  -webkit-backdrop-filter:url(#mineradio-search-pill-glass-filter) saturate(1)!important;
+  backdrop-filter:url(#lanote-search-pill-glass-filter) saturate(1)!important;
+  -webkit-backdrop-filter:url(#lanote-search-pill-glass-filter) saturate(1)!important;
   overflow:visible!important;
 }
 html.control-glass-svg-ok .search-mode-tabs button:hover,
@@ -1850,7 +1855,8 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
     <div class="desktop-app-title" aria-hidden="true"></div>
   </div>
   <div class="desktop-window-controls">
-    <button id="visual-guide-btn" class="icon-btn" type="button" onclick="startVisualGuide({ manual: true })" title="查看使用引导" aria-label="查看使用引导">?</button>
+    <button id="settings-btn" class="icon-btn" type="button" onclick="(function(){var m=document.getElementById('settings-modal');m&&m.classList.toggle('show')})()" title="设置" aria-label="设置" style="display:none">⚙</button>
+    <button id="visual-guide-btn" class="icon-btn" type="button" title="查看使用引导" aria-label="查看使用引导" style="display:none">?</button>
     <button id="update-entry" class="update-entry" type="button" onclick="openUpdatePanel()" title="发现新版本" aria-label="发现新版本">
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <circle class="update-ring" cx="12" cy="12" r="8.8"></circle>
@@ -1887,12 +1893,9 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
 
   <!-- 主内容 -->
   <div class="splash-content">
-    <div class="splash-wordmark" id="splash-wordmark" aria-label="Mineradio">
-      <span class="splash-word-mine">Mine</span>
-      <span class="splash-word-radio" aria-label="radio">rad<span class="splash-word-i" aria-hidden="true"></span><span class="splash-word-o">o</span></span>
-    </div>
+    <div class="splash-wordmark" id="splash-wordmark" aria-label="Lanote" style="font-size:clamp(62px,9vw,120px);font-weight:760;letter-spacing:-.03em;background:linear-gradient(94deg,#fff 20%,rgba(244,210,138,.95) 45%,rgba(122,215,194,.88) 68%,#fff 85%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 0 28px rgba(244,210,138,.1));height:auto;min-width:0">Lanote</div>
     <div class="splash-signal-line"></div>
-    <div class="splash-sub">private visual radio</div>
+    <div class="splash-sub">你的私人音乐空间</div>
     <div class="splash-enter" aria-hidden="true">点击进入</div>
   </div>
 </div>
@@ -1928,12 +1931,15 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
 </div>
 
 <!-- 空场 Home -->
-<section id="empty-home" aria-label="Mineradio home">
+<section id="empty-home" aria-label="Lanote home">
   <div class="empty-home-shell">
     <div class="home-hero">
-      <div class="home-hero-inner home-construction-inner">
-        <div class="home-title home-construction-title">🚧此处施工，敬请期待🚧</div>
-        <button class="home-chip home-console-chip" type="button" onclick="openHomePlayerConsole()">展开播放器控制台</button>
+      <div class="home-hero-inner">
+        <div class="home-kicker" id="home-weather-kicker">Lanote</div>
+        <div class="home-title" id="home-weather-title">我的音乐库</div>
+        <div class="home-sub" id="home-subtitle">从你的歌单和最近播放开始</div>
+        <div class="home-weather-meta" id="home-weather-meta"></div>
+        <div id="home-lyric-quote" style="grid-column:1;margin-top:28px;font-size:18px;line-height:1.6;color:rgba(255,255,255,.5);max-width:440px;transition:opacity .6s;letter-spacing:.02em"></div>
       </div>
     </div>
 
@@ -1951,9 +1957,9 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
         <div class="home-card-art" id="home-daily-art"></div>
       </button>
       <button class="home-card" data-home-tone="playlist" type="button" onclick="playHomeSong(1)">
-        <div class="home-card-label">Song</div>
+        <div class="home-card-label">Radio</div>
         <div class="home-card-title" id="home-private-title">私人电台</div>
-        <div class="home-card-sub" id="home-private-sub">从你的推荐和歌单里开播</div>
+        <div class="home-card-sub" id="home-private-sub">从推荐和歌单随机开播</div>
         <div class="home-card-art" id="home-private-art"></div>
       </button>
       <button class="home-card" data-home-tone="mix" type="button" onclick="playHomeRecent()">
@@ -1962,26 +1968,16 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
         <div class="home-card-sub" id="home-continue-sub">最近播放会出现在这里</div>
         <div class="home-card-art" id="home-continue-art"></div>
       </button>
-      <button class="home-card" data-home-tone="local" type="button" onclick="openHomeInsight()">
-        <div class="home-card-label">Profile</div>
-        <div class="home-card-title" id="home-profile-title">听歌画像</div>
-        <div class="home-card-sub" id="home-profile-sub">播放几首后生成偏好</div>
-        <div class="home-card-art" id="home-profile-art"></div>
+      <button class="home-card" data-home-tone="mix" type="button" onclick="runHomeSearch('华语新歌')">
+        <div class="home-card-label">Discover</div>
+        <div class="home-card-title">新歌速递</div>
+        <div class="home-card-sub">发现最新华语新歌</div>
       </button>
-      <button class="home-card" data-home-tone="local" type="button" onclick="playHomeSong(2)">
-        <div class="home-card-label">Song</div>
-        <div class="home-card-title" id="home-library-title">常听歌手</div>
-        <div class="home-card-sub" id="home-library-sub">你的偏好会在这里汇总</div>
-        <div class="home-card-art" id="home-library-art"></div>
+      <button class="home-card" data-home-tone="playlist" type="button" onclick="startWeatherRadio({preserveHomeState:true})">
+        <div class="home-card-label">Weather</div>
+        <div class="home-card-title">天气电台</div>
+        <div class="home-card-sub">根据天气推荐歌单</div>
       </button>
-    </div>
-
-    <div class="home-rail">
-      <div class="home-section-head">
-        <div class="home-section-title" id="home-rail-title">为你准备</div>
-        <div class="home-section-note" id="home-rail-note">正在整理推荐</div>
-      </div>
-      <div id="home-tile-row" class="home-tile-row"></div>
     </div>
   </div>
 </section>
@@ -1992,6 +1988,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
   <button id="home-btn" class="icon-btn" onclick="goHome()" title="回到 Home" aria-label="回到 Home">
     <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8"/><path d="M5 10v10h14V10"/><path d="M9.5 20v-5h5v5"/></svg>
   </button>
+  <span id="city-switch-btn" onclick="changeWeatherCity()" title="切换城市" style="display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:999px;border:1px solid rgba(0,245,212,.2);background:rgba(0,245,212,.06);color:rgba(0,245,212,.75);font-size:11px;cursor:pointer;white-space:nowrap;font-weight:600">📍 <span id="city-switch-label">上海</span> ▾</span>
   <button id="user-btn" class="icon-btn logged-out" onclick="onUserBtnClick()" title="登录账号">
     <span class="login-word">登录</span>
   </button>
@@ -2005,7 +2002,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
 <!-- 控制台 (右侧贴边自动显示, 无关闭按钮) -->
 <div id="fx-panel">
   <div class="fx-head">
-    <div><div class="fx-title">视觉控制台</div><div class="fx-sub">MINERADIO VISUALS · 鼠标移开自动隐藏</div></div>
+    <div><div class="fx-title">视觉控制台</div><div class="fx-sub">LANOTE VISUALS · 鼠标移开自动隐藏</div></div>
   </div>
 
   <div class="fx-section-label">视觉预设</div>
@@ -2315,6 +2312,8 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
 <!-- 节拍分析角标 -->
 <div id="beat-chip"><div class="mini-spin"></div><span id="beat-text">分析节奏…</span></div>
 
+<!-- 评论气泡容器 -->
+<div id="comment-bubbles"></div>
 <!-- 舞台歌词 (大字 3D, 由 JS 动态填充) -->
 <div id="stage-lyrics"></div>
 
@@ -2339,7 +2338,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
 <!-- 底部控件 -->
 <svg id="control-glass-svg" class="control-glass-filter-svg" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
   <defs>
-    <filter id="mineradio-control-glass-filter" color-interpolation-filters="sRGB" x="-12%" y="-28%" width="124%" height="156%">
+    <filter id="lanote-control-glass-filter" color-interpolation-filters="sRGB" x="-12%" y="-28%" width="124%" height="156%">
       <feImage id="control-glass-map" x="0" y="0" width="100%" height="100%" preserveAspectRatio="none" result="map"></feImage>
       <feDisplacementMap in="SourceGraphic" in2="map" scale="180" xChannelSelector="R" yChannelSelector="B" result="dispRed"></feDisplacementMap>
       <feOffset in="dispRed" dx="-90" dy="0" result="dispRedShifted"></feOffset>
@@ -2357,7 +2356,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
       <feBlend in="rg" in2="blue" mode="screen" result="output"></feBlend>
       <feGaussianBlur in="output" stdDeviation="0.5"></feGaussianBlur>
     </filter>
-    <filter id="mineradio-search-box-glass-filter" color-interpolation-filters="sRGB" x="-24%" y="-34%" width="158%" height="168%">
+    <filter id="lanote-search-box-glass-filter" color-interpolation-filters="sRGB" x="-24%" y="-34%" width="158%" height="168%">
       <feImage id="search-box-glass-map" x="-10%" y="-4%" width="120%" height="108%" preserveAspectRatio="none" result="map"></feImage>
       <feDisplacementMap in="SourceGraphic" in2="map" scale="180" xChannelSelector="R" yChannelSelector="B" result="dispRed"></feDisplacementMap>
       <feOffset in="dispRed" dx="-90" dy="0" result="dispRedShifted"></feOffset>
@@ -2375,7 +2374,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
       <feBlend in="rg" in2="blue" mode="screen" result="output"></feBlend>
       <feGaussianBlur in="output" stdDeviation="0.5"></feGaussianBlur>
     </filter>
-    <filter id="mineradio-search-pill-glass-filter" color-interpolation-filters="sRGB" x="-48%" y="-68%" width="210%" height="236%">
+    <filter id="lanote-search-pill-glass-filter" color-interpolation-filters="sRGB" x="-48%" y="-68%" width="210%" height="236%">
       <feImage id="search-pill-glass-map" x="-24%" y="-14%" width="148%" height="128%" preserveAspectRatio="none" result="map"></feImage>
       <feDisplacementMap in="SourceGraphic" in2="map" scale="118" xChannelSelector="R" yChannelSelector="B" result="dispRed"></feDisplacementMap>
       <feOffset in="dispRed" dx="-34" dy="0" result="dispRedShifted"></feOffset>
@@ -2448,6 +2447,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
     </div>
     <button id="controls-hide-btn" class="ctrl-btn active" onclick="toggleControlsAutoHide()" title="控制条自动隐藏"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 8h14"/><path d="M8 12h8"/><path d="M10 16h4"/></svg></button>
     <button id="immersive-btn" class="ctrl-btn" onclick="toggleImmersiveMode()" title="全沉浸式" aria-label="全沉浸式" aria-pressed="false"><svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M4 9V5a1 1 0 0 1 1-1h4"/><path d="M15 4h4a1 1 0 0 1 1 1v4"/><path d="M20 15v4a1 1 0 0 1-1 1h-4"/><path d="M9 20H5a1 1 0 0 1-1-1v-4"/><circle cx="12" cy="12" r="2.2"/></svg></button>
+    <button id="comment-toggle-btn" class="ctrl-btn" onclick="toggleCommentBubbles()" title="弹幕开关" aria-label="弹幕开关"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8"/><path d="M8 13h5"/></svg></button>
     <button class="ctrl-btn fullscreen-toggle-btn" onclick="toggleFullscreen()" title="全屏 (F)"><svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 7V3h4"/><path d="M21 7V3h-4"/><path d="M3 17v4h4"/><path d="M21 17v4h-4"/></svg></button>
     <div id="time-display">0:00 / 0:00</div>
     </div>
@@ -2470,7 +2470,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
       <button id="login-provider-qq" class="qq" type="button" onclick="setLoginProvider('qq')">QQ 音乐</button>
     </div>
     <div class="login-intro">
-      <div class="login-intro-kicker">Mineradio</div>
+      <div class="login-intro-kicker">Lanote</div>
       <div class="login-intro-title">音乐播放器，也是一座视觉舞台</div>
       <div class="login-intro-body">搜索或导入一首歌即可播放；登录后会同步歌单、红心和播客，让封面、歌词和粒子跟着音乐动起来。</div>
     </div>
@@ -2619,7 +2619,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
     <div class="update-panel-inner">
       <div class="update-panel-head">
         <div>
-          <div class="update-kicker">MINERADIO</div>
+          <div class="update-kicker">LANOTE</div>
           <div id="update-modal-title" class="update-title">New release</div>
           <div id="update-modal-version" class="update-version">v1.0.10</div>
         </div>
@@ -2711,23 +2711,23 @@ var AUDIO_FADE_IN_MS = 460;
 var AUDIO_FADE_OUT_MS = 420;
 var AUDIO_SILENCE_GAIN = 0.0001;
 var userPlaylists = [], qqPlaylists = [], myPodcastCollections = [], myPodcastItems = {}, playlistCoverCache = {};
-var CUSTOM_COVER_STORE_KEY = 'mineradio-custom-covers';
-var CUSTOM_LYRIC_STORE_KEY = 'mineradio-custom-lyrics-v1';
-var CUSTOM_LYRIC_PREF_STORE_KEY = 'mineradio-custom-lyric-prefs-v1';
-var LYRIC_LAYOUT_STORE_KEY = 'mineradio-lyric-layout-v1';
+var CUSTOM_COVER_STORE_KEY = 'lanote-custom-covers';
+var CUSTOM_LYRIC_STORE_KEY = 'lanote-custom-lyrics-v1';
+var CUSTOM_LYRIC_PREF_STORE_KEY = 'lanote-custom-lyric-prefs-v1';
+var LYRIC_LAYOUT_STORE_KEY = 'lanote-lyric-layout-v1';
 var VISUAL_PRESET_SCHEMA = 'skull-preset-v2';
-var PLAYBACK_QUALITY_STORE_KEY = 'mineradio-playback-quality-v1';
-var UPLOAD_TIP_STORE_KEY = 'mineradio-upload-tip-seen';
-var DIY_MODE_STORE_KEY = 'mineradio-diy-player-mode-v1';
-var PLAYLIST_PANEL_PIN_STORE_KEY = 'mineradio-playlist-panel-pinned-v1';
-var USER_CAPSULE_AUTO_HIDE_STORE_KEY = 'mineradio-user-capsule-auto-hide-v1';
-var FX_FAB_AUTO_HIDE_STORE_KEY = 'mineradio-fx-fab-auto-hide-v1';
-var CONTROLS_AUTO_HIDE_STORE_KEY = 'mineradio-controls-auto-hide-v1';
-var FREE_CAMERA_STORE_KEY = 'mineradio-free-camera-v1';
-var HOTKEY_SETTINGS_STORE_KEY = 'mineradio-hotkey-settings-v1';
-var VISUAL_GUIDE_SEEN_STORE_KEY = 'mineradio-visual-guide-seen-v2';
-var LOCAL_BEATMAP_STORE_KEY = 'mineradio-local-beatmaps-v1';
-var LOCAL_BEAT_PREF_STORE_KEY = 'mineradio-local-beatmap-prefs-v1';
+var PLAYBACK_QUALITY_STORE_KEY = 'lanote-playback-quality-v1';
+var UPLOAD_TIP_STORE_KEY = 'lanote-upload-tip-seen';
+var DIY_MODE_STORE_KEY = 'lanote-diy-player-mode-v1';
+var PLAYLIST_PANEL_PIN_STORE_KEY = 'lanote-playlist-panel-pinned-v1';
+var USER_CAPSULE_AUTO_HIDE_STORE_KEY = 'lanote-user-capsule-auto-hide-v1';
+var FX_FAB_AUTO_HIDE_STORE_KEY = 'lanote-fx-fab-auto-hide-v1';
+var CONTROLS_AUTO_HIDE_STORE_KEY = 'lanote-controls-auto-hide-v1';
+var FREE_CAMERA_STORE_KEY = 'lanote-free-camera-v1';
+var HOTKEY_SETTINGS_STORE_KEY = 'lanote-hotkey-settings-v1';
+var VISUAL_GUIDE_SEEN_STORE_KEY = 'lanote-visual-guide-seen-v2';
+var LOCAL_BEATMAP_STORE_KEY = 'lanote-local-beatmaps-v1';
+var LOCAL_BEAT_PREF_STORE_KEY = 'lanote-local-beatmap-prefs-v1';
 var LOCAL_BEAT_COMBOS = ['', 'downbeat', 'push', 'drop', 'rebound', 'accent'];
 var HOTKEY_ACTIONS = [
   { key:'togglePlay', label:'播放 / 暂停', category:'播放', local:'Space', global:'Ctrl+Alt+Space' },
@@ -2765,8 +2765,8 @@ var homeDiscoverState = { loading: false, loaded: false, loggedIn: false, mode: 
 var homeDiscoverToken = 0;
 var homeVisualPresetActive = false;
 var homeVisualPrevPreset = 0;
-var HOME_LISTEN_STATS_KEY = 'mineradio-listen-stats-v1';
-var HOME_WEATHER_CITY_KEY = 'mineradio-weather-city';
+var HOME_LISTEN_STATS_KEY = 'lanote-listen-stats-v1';
+var HOME_WEATHER_CITY_KEY = 'lanote-weather-city';
 var homeWeatherRadioState = { loading: false, loaded: false, city: localStorage.getItem(HOME_WEATHER_CITY_KEY) || '上海', weather: null, radio: null, error: '', updatedAt: 0 };
 var homeWeatherToken = 0;
 var homeWeatherLoadTimer = null;
@@ -2780,8 +2780,8 @@ function markAppPerf(name) {
   try {
     var value = performance.now();
     appPerfMarks.push({ name: name, value: Math.round(value) });
-    if (performance && performance.mark) performance.mark('mineradio:' + name);
-    if (appPerfMarks.length <= 16) console.debug('[MineradioPerf]', name, Math.round(value) + 'ms');
+    if (performance && performance.mark) performance.mark('lanote:' + name);
+    if (appPerfMarks.length <= 16) console.debug('[LanotePerf]', name, Math.round(value) + 'ms');
   } catch (e) {}
 }
 markAppPerf('script-start');
@@ -2791,7 +2791,7 @@ function installStartupLongTaskObserver() {
     var observer = new PerformanceObserver(function(list){
       list.getEntries().forEach(function(entry){
         if (entry.startTime > 15000) return;
-        console.debug('[MineradioPerf] longtask', Math.round(entry.startTime) + 'ms', Math.round(entry.duration) + 'ms');
+        console.debug('[LanotePerf] longtask', Math.round(entry.startTime) + 'ms', Math.round(entry.duration) + 'ms');
       });
     });
     observer.observe({ entryTypes: ['longtask'] });
@@ -3615,7 +3615,7 @@ function collectRuntimePerfSnapshot(now) {
     deepSleep: isDeepBackgroundMode()
   };
 }
-window.__mineradioPerfSnapshot = collectRuntimePerfSnapshot;
+window.__lanotePerfSnapshot = collectRuntimePerfSnapshot;
 function trimRuntimeCaches(reason, aggressive) {
   var protectedCovers = collectProtectedCoverUrls();
   var protectedBeats = collectProtectedBeatMapKeys();
@@ -7990,7 +7990,7 @@ function customBackgroundMediaLabel(media) {
   if (!media) return '未设置';
   return media.type === 'video' ? '视频已设置' : '图片已设置';
 }
-var CUSTOM_BG_DB_NAME = 'mineradio-custom-background-v1';
+var CUSTOM_BG_DB_NAME = 'lanote-custom-background-v1';
 var CUSTOM_BG_STORE = 'media';
 var customBgObjectUrl = '';
 var customBgApplyToken = 0;
@@ -9802,7 +9802,7 @@ function forceLoadingSettled(reason) {
   }
   uniforms.uLoading.value = 0;
   loadingShownAt = 0;
-  if (reason && window.__mineradioDebugLoading) console.log('[LoadingSettled]', reason);
+  if (reason && window.__lanoteDebugLoading) console.log('[LoadingSettled]', reason);
 }
 function recoverVisualsAfterBackground(reason) {
   applyRendererPowerMode();
@@ -12235,7 +12235,7 @@ function updateLocalBeatModal() {
   var desc = document.getElementById('local-beat-desc');
   if (desc) desc.textContent = mode === 'dj'
     ? '适合 DJ、长混音或鼓点密集的本地音频，会使用更稳定的低频锁拍并进入 DJ 视觉驱动。'
-    : '适合普通歌曲和日常播放，会沿用 Mineradio 电影视角的综合节奏分析。';
+    : '适合普通歌曲和日常播放，会沿用 Lanote 电影视角的综合节奏分析。';
   var start = document.getElementById('local-beat-start-btn');
   var cancel = document.getElementById('local-beat-cancel-btn');
   var later = document.getElementById('local-beat-later-btn');
@@ -15564,7 +15564,7 @@ function renderHomeDiscover() {
   var weatherKicker = document.getElementById('home-weather-kicker');
   var weatherMeta = document.getElementById('home-weather-meta');
   if (weatherTitle) weatherTitle.textContent = '我的音乐库';
-  if (weatherKicker) weatherKicker.textContent = 'Mineradio · Your Library';
+  if (weatherKicker) weatherKicker.textContent = 'Lanote · Your Library';
   if (sub) {
     if (loggedOutHome) sub.textContent = '登录后会把你的歌单、常听歌手和最近播放放在这里；也可以直接搜索或导入本地音乐。';
     else sub.textContent = '从你的歌单、最近播放和常听歌手开始，天气电台放在需要氛围的时候再开。';
@@ -15604,8 +15604,8 @@ function renderHomeDiscover() {
   if (weatherCardSub) {
     weatherCardSub.textContent = playlistItem ? (((playlistItem.trackCount || 0) ? playlistItem.trackCount + ' 首 · ' : '') + (playlistItem.creator || '打开左侧歌单库')) : '打开左侧歌单库';
   }
-  if (continueTitle) continueTitle.textContent = summary.recent ? summary.recent.name : '继续听';
-  if (continueSub) continueSub.textContent = summary.recent ? (summary.recent.artist || summary.recent.source || '最近播放') : '最近播放会出现在这里';
+  if (continueTitle) continueTitle.textContent = '继续听';
+  if (continueSub) continueSub.textContent = summary.recent ? (summary.recent.name + ' · ' + (summary.recent.artist || '')) : '最近播放会出现在这里';
   if (profileTitle) profileTitle.textContent = summary.topArtist ? summary.topArtist.name : (summary.topSong ? summary.topSong.name : '听歌画像');
   if (profileSub) profileSub.textContent = summary.topArtist ? ('常听歌手 · ' + summary.topArtist.plays + ' 次') : (summary.totalPlays ? summary.totalPlays + ' 次有效播放' : '播放几首后生成偏好');
   if (loggedOutHome) {
@@ -15622,10 +15622,10 @@ function renderHomeDiscover() {
     setHomeArt('home-profile-art', summary.topSong && summary.topSong.cover || summary.recent && summary.recent.cover, 280);
     setHomeArt('home-library-art', '', 280);
   } else {
-    if (dailyTitle) dailyTitle.textContent = daily ? daily.name : '每日推荐';
-    if (dailySub) dailySub.textContent = daily ? ((daily.artist || songSourceLabel(daily) || '今日歌曲') + ' · 点击播放今日队列') : '同步你的今日歌曲';
-    if (privateTitle) privateTitle.textContent = cardSongB ? cardSongB.name : '私人雷达';
-    if (privateSub) privateSub.textContent = cardSongB ? (cardSongB.artist || songSourceLabel(cardSongB) || '推荐歌曲') : (homeDiscoverState.songs.length + ' 首 · 根据今日推荐与常听偏好');
+    if (dailyTitle) dailyTitle.textContent = '每日推荐';
+    if (dailySub) dailySub.textContent = daily ? ('今日歌曲 · ' + (daily.artist || '') + ' · ' + (daily.name || '')) : '同步你的今日歌曲';
+    if (privateTitle) privateTitle.textContent = '私人电台';
+    if (privateSub) privateSub.textContent = cardSongB ? ('推荐: ' + cardSongB.name + ' · ' + (cardSongB.artist || '')) : (homeDiscoverState.songs.length + ' 首 · 根据今日推荐与常听偏好');
     if (libTitle) libTitle.textContent = cardSongC ? cardSongC.name : (summary.topArtist ? summary.topArtist.name : '更多歌曲');
     if (libSub) libSub.textContent = cardSongC ? (cardSongC.artist || songSourceLabel(cardSongC) || '推荐歌曲') : (summary.topArtist ? ('歌手偏好 · ' + summary.topArtist.plays + ' 次') : '播放几首后生成你的偏好');
     setHomeArt('home-weather-art', (userPlaylists[0] && userPlaylists[0].cover) || (playlistItem && playlistItem.cover) || daily && daily.cover, 280);
@@ -15763,6 +15763,7 @@ async function startWeatherRadio(opts) {
   playQueue = radio.songs.map(function(song){
     var cloned = cloneSong(song);
     cloned.radioContext = activeRadioContext;
+    cloned._homeCard = 'weather-radio';
     return cloned;
   });
   currentIdx = 0;
@@ -15838,13 +15839,41 @@ function locateWeatherRadio() {
   useIpFallback();
 }
 function changeWeatherCity() {
-  var city = window.prompt('输入城市名', homeWeatherRadioState.city || '上海');
-  city = String(city || '').trim();
+  var oldCity = homeWeatherRadioState.city || '上海';
+  var pop = document.getElementById('weather-city-pop');
+  if (!pop) {
+    var p = document.createElement('div');
+    p.id = 'weather-city-pop';
+    p.style.cssText = 'position:fixed;z-index:9999;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(14,16,20,.96);backdrop-filter:blur(28px);border-radius:16px;padding:24px;border:1px solid rgba(0,245,212,.12);box-shadow:0 24px 64px rgba(0,0,0,.6);display:none;flex-direction:column;gap:12px;min-width:280px';
+    p.innerHTML = '<div style="font-size:14px;font-weight:700;color:#e8ecef">切换城市</div>' +
+      '<input id="weather-city-input" type="text" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:10px 14px;color:#fff;font-family:inherit;font-size:14px;outline:none">' +
+      '<div style="display:flex;gap:8px;justify-content:flex-end">' +
+      '<button onclick="document.getElementById(\'weather-city-pop\').style.display=\'none\'" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);color:#aaa;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:12px">取消</button>' +
+      '<button onclick="applyWeatherCity()" style="background:rgba(0,245,212,.12);border:1px solid rgba(0,245,212,.22);color:#00f5d4;padding:8px 16px;border-radius:8px;cursor:pointer;font-family:inherit;font-size:12px;font-weight:600">确认</button>' +
+      '</div>';
+    document.body.appendChild(p);
+    pop = p;
+    pop.addEventListener('click', function(e){ if (e.target === pop) pop.style.display = 'none'; });
+  }
+  var input = document.getElementById('weather-city-input');
+  pop.style.display = 'flex';
+  input.value = oldCity;
+  setTimeout(function(){ input.focus(); input.select(); }, 80);
+}
+function applyWeatherCity() {
+  var input = document.getElementById('weather-city-input');
+  var city = String(input && input.value || '').trim();
   if (!city) return;
+  var pop = document.getElementById('weather-city-pop');
+  if (pop) pop.style.display = 'none';
   homeWeatherRadioState.city = city;
   localStorage.setItem(HOME_WEATHER_CITY_KEY, city);
   homeWeatherRadioState.loaded = false;
+  homeWeatherRadioState.radio = null;
+  var cl=document.getElementById('city-switch-label');if(cl)cl.textContent=city;
+  renderHomeDiscover();
   loadHomeWeatherRadio(true, { city: city });
+  showToast('已切换到 ' + city);
 }
 function shouldShowEmptyHomeCore(ignoreSplash) {
   if (!ignoreSplash && document.body.classList.contains('splash-active')) return false;
@@ -16031,6 +16060,12 @@ async function playHomeDaily() {
   homeForcedOpen = false;
   homeSuppressed = false;
   setHomeControlsLocked(false);
+  // 如果已经在播放每日推荐队列，直接继续，不重置
+  if (playing && playQueue.length && currentIdx >= 0 && playQueue[currentIdx] && playQueue[currentIdx]._homeCard === 'daily') {
+    forcePlaybackControlsInteractive();
+    updateEmptyHomeVisibility();
+    return;
+  }
   if (!hasAnyPlatformLogin() && !homeDiscoverState.loggedIn) {
     showLoginModal({ source: 'home-daily' });
     return;
@@ -16043,7 +16078,7 @@ async function playHomeDaily() {
     runHomeSearch('每日推荐');
     return;
   }
-  playQueue = homeDiscoverState.songs.map(cloneSong);
+  playQueue = homeDiscoverState.songs.map(function(s){ s._homeCard = 'home-song-0'; return cloneSong(s); });
   currentIdx = 0;
   safeRenderQueuePanel('home-daily');
   safeShelfRebuild('home-daily', true);
@@ -16082,13 +16117,20 @@ function playHomeSong(index) {
   homeForcedOpen = false;
   homeSuppressed = false;
   setHomeControlsLocked(false);
+  // 如果已经在播放同一个卡片的队列，继续放，不重置
+  var cardTag = 'home-song-' + index;
+  if (playing && playQueue.length && currentIdx >= 0 && playQueue[currentIdx] && playQueue[currentIdx]._homeCard === cardTag) {
+    forcePlaybackControlsInteractive();
+    updateEmptyHomeVisibility();
+    return;
+  }
   var song = homeDiscoverState.songs[index];
   if (!song) {
     if (index > 0) playHomePrivateRadio();
     else playHomeDaily();
     return;
   }
-  playQueue = homeDiscoverState.songs.map(cloneSong);
+  playQueue = homeDiscoverState.songs.map(function(s){ s._homeCard = cardTag; return cloneSong(s); });
   currentIdx = Math.max(0, Math.min(playQueue.length - 1, index));
   safeRenderQueuePanel('home-song-card');
   safeShelfRebuild('home-song-card', true);
@@ -16149,7 +16191,8 @@ function goHome() {
   }
   homeSuppressed = false;
   homeForcedOpen = true;
-  setHomeControlsLocked(true);
+  // 如果正在播放，不锁定播放栏
+  if (!playing) setHomeControlsLocked(true);
   if (shelfManager && shelfManager.hasOpenContent && shelfManager.hasOpenContent()) safeShelfCloseContent('open-empty-home');
   if (typeof setShelfPinnedOpen === 'function') setShelfPinnedOpen(false, true);
   togglePlaylistPanel(false);
@@ -17184,7 +17227,7 @@ function avatarSrc(url) {
 var searchTimer = null;
 var searchRequestSeq = 0;
 var searchLastResultQuery = '';
-var SEARCH_HISTORY_STORE_KEY = 'mineradio-search-history';
+var SEARCH_HISTORY_STORE_KEY = 'lanote-search-history';
 var $input = document.getElementById('search-input');
 var $results = document.getElementById('search-results');
 var $loading = document.getElementById('loading-overlay');
@@ -18809,7 +18852,7 @@ function normalizeControlGlassChromaticOffset(value) {
 function applyControlGlassChromaticOffset() {
   if (!fx) return;
   fx.controlGlassChromaticOffset = normalizeControlGlassChromaticOffset(fx.controlGlassChromaticOffset);
-  var filter = document.getElementById('mineradio-control-glass-filter');
+  var filter = document.getElementById('lanote-control-glass-filter');
   if (!filter) return;
   var dx = String(-Math.round(fx.controlGlassChromaticOffset));
   filter.querySelectorAll('feOffset').forEach(function(node){
@@ -18822,7 +18865,7 @@ function supportsControlGlassSvgFilter() {
     var ua = navigator.userAgent || '';
     if ((/Safari/.test(ua) && !/Chrome/.test(ua)) || /Firefox/.test(ua)) return false;
     var div = document.createElement('div');
-    div.style.backdropFilter = 'url(#mineradio-control-glass-filter)';
+    div.style.backdropFilter = 'url(#lanote-control-glass-filter)';
     return div.style.backdropFilter !== '';
   } catch (e) {
     return false;
@@ -19917,8 +19960,8 @@ function updatePlaybackProgressUi() {
   if (timeDisplay) timeDisplay.textContent = formatProgramTime(currentSec) + ' / ' + (durationSec > 0 ? formatProgramTime(durationSec) : '0:00');
 }
 function bindPlaybackProgressEvents(audioEl) {
-  if (!audioEl || audioEl._mineradioProgressBound) return;
-  audioEl._mineradioProgressBound = true;
+  if (!audioEl || audioEl._lanoteProgressBound) return;
+  audioEl._lanoteProgressBound = true;
   ['loadedmetadata', 'durationchange', 'timeupdate', 'seeked', 'play', 'pause', 'emptied'].forEach(function(name){
     audioEl.addEventListener(name, updatePlaybackProgressUi);
   });
@@ -20120,8 +20163,8 @@ var lyricColorPresets = [
   { name:'酒红', color:'#6d1f35' },
   { name:'墨黑', color:'#111318' },
 ];
-var USER_FX_ARCHIVE_STORE_KEY = 'mineradio-user-fx-archives-v1';
-var USER_FX_ARCHIVE_EXPORT_TYPE = 'mineradio-user-fx-archive';
+var USER_FX_ARCHIVE_STORE_KEY = 'lanote-user-fx-archives-v1';
+var USER_FX_ARCHIVE_EXPORT_TYPE = 'lanote-user-fx-archive';
 var USER_FX_ARCHIVE_SCHEMA = 1;
 function defaultUserFxArchiveName(index) {
   return '存档 ' + (index + 1);
@@ -20539,7 +20582,7 @@ function userFxArchiveExportPayload(slot) {
   };
 }
 function safeArchiveFileName(name) {
-  return String(name || 'Mineradio 用户存档').replace(/[\\/:*?"<>|]+/g, '-').slice(0, 48) + '.json';
+  return String(name || 'Lanote 用户存档').replace(/[\\/:*?"<>|]+/g, '-').slice(0, 48) + '.json';
 }
 function exportUserFxArchive(index) {
   var slot = userFxArchiveAt(index);
@@ -21958,7 +22001,7 @@ function ensureHotkeyModal() {
   modal.innerHTML =
     '<div class="hotkey-dialog" role="dialog" aria-modal="true" aria-label="热键设置">' +
       '<div class="hotkey-head">' +
-        '<div><div class="hotkey-title">热键设置</div><div class="hotkey-sub">局内热键只在 Mineradio 窗口内生效；全局热键会向系统注册，并检测是否被占用。</div></div>' +
+        '<div><div class="hotkey-title">热键设置</div><div class="hotkey-sub">局内热键只在 Lanote 窗口内生效；全局热键会向系统注册，并检测是否被占用。</div></div>' +
         '<button class="hotkey-close" type="button" data-hotkey-close aria-label="关闭">×</button>' +
       '</div>' +
       '<div class="hotkey-toolbar">' +
@@ -21983,7 +22026,7 @@ function ensureHotkeyModal() {
 }
 function hotkeyStatusMarkup(scope, actionKey, binding, duplicate) {
   if (!binding) return '<span class="hotkey-status">未设置</span>';
-  if (duplicate && duplicate[binding] > 1) return '<span class="hotkey-status conflict"><span class="source-icon">!</span>Mineradio 内部重复</span>';
+  if (duplicate && duplicate[binding] > 1) return '<span class="hotkey-status conflict"><span class="source-icon">!</span>Lanote 内部重复</span>';
   if (scope === 'local') return '<span class="hotkey-status ok">可用</span>';
   var status = hotkeyGlobalStatus[actionKey];
   if (!status) return '<span class="hotkey-status">待检测</span>';
@@ -22804,7 +22847,7 @@ function syncUpdatePreviewStateClass() {
   if (foot) {
     if (isDownloading) foot.textContent = (updatePreviewState.message || (isPatch ? '正在下载快速补丁' : '正在下载完整安装包')) + (updateProgressDetailText() ? ' · ' + updateProgressDetailText() : '');
     else if (isError) foot.textContent = '下载失败：' + (updatePreviewState.errorReason || updatePreviewState.errorDetail || updatePreviewState.message || '请稍后重试') + (updatePreviewState.failedAttempts && updatePreviewState.failedAttempts.length ? ' · 已尝试 ' + updatePreviewState.failedAttempts.length + ' 条线路' : '');
-    else if (isReady && isPatch) foot.textContent = updatePreviewState.restartRequired ? '快速补丁已应用，重启 Mineradio 后生效。' : '快速补丁已应用。';
+    else if (isReady && isPatch) foot.textContent = updatePreviewState.restartRequired ? '快速补丁已应用，重启 Lanote 后生效。' : '快速补丁已应用。';
     else if (isReady) foot.textContent = updatePreviewState.cached ? '已复用上次校验通过的安装包，不会重复下载。' : '安装包已准备好，点击按钮后再打开安装。';
     else if (updatePreviewState.patchAvailable) foot.textContent = '优先使用轻量补丁，只更新缺失或变更的资源文件；不适用时可下载完整安装包。';
     else foot.textContent = updatePreviewState.updateAvailable ? '没有可用快速补丁时会下载完整安装包。' : '当前版本已是最新。';
@@ -23062,7 +23105,7 @@ async function restartForAppliedPatch() {
       return;
     }
   } catch (e) {}
-  showToast('请手动重启 Mineradio 让补丁生效');
+  showToast('请手动重启 Lanote 让补丁生效');
 }
 
 async function openDownloadedUpdateInstaller(filePath) {
@@ -24444,7 +24487,7 @@ var visualGuideSteps = [
   {
     target: 'stage',
     kicker: '01 / Welcome',
-    title: 'Mineradio 是用来听歌的视觉播放器',
+    title: 'Lanote 是用来听歌的视觉播放器',
     body: '它不是单纯歌单页：搜索或导入一首歌后，封面、歌词、粒子和镜头会跟着音乐一起动。'
   },
   {
@@ -25544,7 +25587,7 @@ function splashEaseOutCubic(t) {
   return 1 - Math.pow(1 - t, 3);
 }
 
-function initMineradioSplashWebgl(canvas) {
+function initLanoteSplashWebgl(canvas) {
   var gl = null;
   try {
     gl = canvas.getContext('webgl', {
@@ -25716,7 +25759,7 @@ function initMineradioSplashWebgl(canvas) {
   return true;
 }
 
-function drawMineradioSplashWebgl(elapsed) {
+function drawLanoteSplashWebgl(elapsed) {
   var gl = splashGl;
   if (!gl || !splashGlProgram || !splashGlUniforms) return;
   gl.viewport(0, 0, splashCanvas.width, splashCanvas.height);
@@ -25729,10 +25772,10 @@ function drawMineradioSplashWebgl(elapsed) {
   gl.drawArrays(gl.TRIANGLES, 0, 3);
 }
 
-(function initMineradioSplashCanvas() {
+(function initLanoteSplashCanvas() {
   splashCanvas = document.getElementById('splash-canvas');
   if (!splashCanvas) return;
-  if (!reduceSplashMotion && initMineradioSplashWebgl(splashCanvas)) {
+  if (!reduceSplashMotion && initLanoteSplashWebgl(splashCanvas)) {
     splashCtx = null;
   } else {
     splashCtx = splashCanvas.getContext('2d');
@@ -25797,15 +25840,15 @@ function drawMineradioSplashWebgl(elapsed) {
   }
   resize();
   window.addEventListener('resize', resize);
-  drawMineradioSplash();
+  drawLanoteSplash();
 })();
 
-function drawMineradioSplash() {
+function drawLanoteSplash() {
   if (!splashAnimating || (!splashCtx && !splashGl)) return;
-  requestAnimationFrame(drawMineradioSplash);
+  requestAnimationFrame(drawLanoteSplash);
   var elapsed = (performance.now() - splashStartedAt) / 1000;
   if (splashGl && splashGlProgram) {
-    drawMineradioSplashWebgl(elapsed);
+    drawLanoteSplashWebgl(elapsed);
     return;
   }
   splashCtx.clearRect(0, 0, splashW, splashH);
@@ -25961,7 +26004,7 @@ function drawMineradioSplash() {
   splashCtx.restore();
 }
 
-function playMineradioIntroSound() {
+function playLanoteIntroSound() {
   if (splashSoundPlayed) return;
   try {
     var AudioContextCtor = window.AudioContext || window.webkitAudioContext;
@@ -25970,7 +26013,7 @@ function playMineradioIntroSound() {
     splashAudioCtx = ctx;
     if (ctx.state === 'suspended' && ctx.resume) {
       ctx.resume().then(function(){
-        if (!splashSoundPlayed) playMineradioIntroSound();
+        if (!splashSoundPlayed) playLanoteIntroSound();
       }).catch(function(){});
       if (ctx.state === 'suspended') return;
     }
@@ -26043,7 +26086,7 @@ function armSplashSoundFallback() {
   if (splashSoundFallbackArmed) return;
   splashSoundFallbackArmed = true;
   function unlock() {
-    if (!splashSoundPlayed) playMineradioIntroSound();
+    if (!splashSoundPlayed) playLanoteIntroSound();
     document.removeEventListener('pointerdown', unlock, true);
     document.removeEventListener('keydown', unlock, true);
   }
@@ -26107,7 +26150,7 @@ function markSplashReadyToEnter() {
   s.classList.add('ready');
   s.setAttribute('role', 'button');
   s.setAttribute('tabindex', '0');
-  s.setAttribute('aria-label', '点击进入 Mineradio');
+  s.setAttribute('aria-label', '点击进入 Lanote');
 }
 
 document.addEventListener('DOMContentLoaded', function(){
@@ -26117,7 +26160,7 @@ document.addEventListener('DOMContentLoaded', function(){
   armSplashSoundFallback();
   prewarmHomeWallpaperPreview();
   function requestSplashEnter() {
-    playMineradioIntroSound();
+    playLanoteIntroSound();
     if (splashReadyToEnter) dismissSplash();
   }
   s.addEventListener('click', requestSplashEnter);
@@ -26133,7 +26176,7 @@ document.addEventListener('DOMContentLoaded', function(){
     splashTimer = setTimeout(markSplashReadyToEnter, 900);
     return;
   }
-  playMineradioIntroSound();
+  playLanoteIntroSound();
   splashTimer = setTimeout(markSplashReadyToEnter, 5000);
 });
 
@@ -26151,7 +26194,7 @@ function currentDesktopSongMeta() {
   var song = playQueue && currentIdx >= 0 ? playQueue[currentIdx] : null;
   song = song || currentLyricSong && currentLyricSong() || {};
   return {
-    title: song.name || song.title || 'Mineradio',
+    title: song.name || song.title || 'Lanote',
     artist: song.artist || song.ar || song.author || '',
     cover: (typeof songCoverSrc === 'function' && song) ? (songCoverSrc(song, 360) || song.cover || '') : (song.cover || '')
   };
@@ -26197,7 +26240,7 @@ function currentDesktopLyricSnapshot() {
       progressSpan: 4.8
     };
   }
-  return { text: normalizeDesktopLyricText(currentDesktopSongMeta().title || 'Mineradio'), progress: 0, progressSpan: 4.8 };
+  return { text: normalizeDesktopLyricText(currentDesktopSongMeta().title || 'Lanote'), progress: 0, progressSpan: 4.8 };
 }
 function desktopOverlayColorValue(value, fallback) {
   var raw = String(value || '').trim();
@@ -26574,7 +26617,7 @@ var renderPerfState = {
   lastRenderAt: 0,
   lastSampleAt: performance.now()
 };
-window.__mineradioPerf = renderPerfState;
+window.__lanotePerf = renderPerfState;
 var splashWarmRenderLast = 0;
 function isMainSceneCoveredBySplash() {
   return document.body.classList.contains('splash-active') && !document.body.classList.contains('splash-revealing');
@@ -26875,5 +26918,274 @@ function animate() {
 }
 animate();
 </script>
+<!-- 设置面板 -->
+<div id="settings-modal" class="modal-mask" style="display:none">
+<div class="modal" style="max-width:400px;padding:28px;text-align:left">
+<h2 style="text-align:center;margin-bottom:18px">设置</h2>
+<div style="display:flex;flex-direction:column;gap:12px">
+  <div><div style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:6px">天气城市</div>
+  <div style="display:flex;gap:8px"><input id="settings-city-input" type="text" value="上海" style="flex:1;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:8px 12px;color:#fff;font-family:inherit;font-size:13px;outline:none"><button class="modal-btn" onclick="applySettingsCity()">确认</button></div></div>
+  <button class="modal-btn primary" onclick="startWeatherRadio({preserveHomeState:true});var m=document.getElementById('settings-modal');if(m)m.classList.remove('show')">生成天气电台播放列表</button>
+  <hr style="border-color:rgba(255,255,255,.06)">
+  <button class="modal-btn" onclick="window.open('https://js1lan.github.io/jianshiyulan/','_blank');var m=document.getElementById('settings-modal');if(m)m.classList.remove('show')">作者博客</button>
+  <button class="modal-btn" onclick="var a=document.getElementById('settings-modal');if(a)a.classList.remove('show');var b=document.getElementById('support-modal');if(b)b.classList.add('show');loadSupportQRCodes()">支持作者</button>
+</div>
+<div style="margin-top:16px;text-align:center"><button class="modal-btn" onclick="document.getElementById('settings-modal').style.display='none'">关闭</button></div>
+</div></div>
+<!-- 支持作者弹窗 -->
+<div id="support-modal" class="modal-mask" style="display:none">
+<div class="modal" style="max-width:360px;text-align:center">
+<h2>支持作者</h2><div class="desc" style="margin-bottom:14px">感谢你的支持</div>
+<div style="display:flex;gap:12px;justify-content:center">
+<div style="text-align:center"><div id="support-wx-qr" style="width:130px;height:130px;background:rgba(255,255,255,.04);border-radius:12px;margin:0 auto 8px"></div><span style="font-size:11px;color:rgba(255,255,255,.4)">微信</span></div>
+<div style="text-align:center"><div id="support-zfb-qr" style="width:130px;height:130px;background:rgba(255,255,255,.04);border-radius:12px;margin:0 auto 8px"></div><span style="font-size:11px;color:rgba(255,255,255,.4)">支付宝</span></div>
+</div>
+<div style="margin-top:14px"><button class="modal-btn" onclick="document.getElementById('support-modal').style.display='none'">关闭</button></div>
+</div></div>
+<script>
+(function(){
+  var btn=document.getElementById('settings-btn');
+  if(btn)btn.addEventListener('click',function(){
+    var m=document.getElementById('settings-modal');
+    if(!m)return;
+    var inp=document.getElementById('settings-city-input');
+    if(inp)inp.value=(typeof homeWeatherRadioState!=='undefined'&&homeWeatherRadioState.city)||'上海';
+    if(m.classList.contains('show')){m.classList.remove('show')}else{m.classList.add('show')}
+  });
+  var m1=document.getElementById('settings-modal');
+  if(m1)m1.addEventListener('click',function(e){if(e.target===this){this.classList.remove('show')}});
+  var m2=document.getElementById('support-modal');
+  if(m2)m2.addEventListener('click',function(e){if(e.target===this){this.classList.remove('show')}});
+})();
+function applySettingsCity(){var inp=document.getElementById('settings-city-input');var city=String(inp&&inp.value||'').trim();if(!city)return;homeWeatherRadioState.city=city;localStorage.setItem('lanote-weather-city',city);homeWeatherRadioState.loaded=false;homeWeatherRadioState.radio=null;renderHomeDiscover();loadHomeWeatherRadio(true,{city:city});showToast('已切换到 '+city);var m=document.getElementById('settings-modal');if(m)m.classList.remove('show')}
+// 初始化城市标签
+(function(){var cl=document.getElementById('city-switch-label');if(cl)cl.textContent=(typeof homeWeatherRadioState!=='undefined'&&homeWeatherRadioState.city)||localStorage.getItem('lanote-weather-city')||'上海'})();
+// 天气动态文案
+setInterval(function(){
+  if(typeof homeWeatherRadioState==='undefined'||!homeWeatherRadioState.weather)return;
+  var w=homeWeatherRadioState.weather,h=new Date().getHours(),code=Number(w.weatherCode),isNight=h>=20||h<5;
+  var greeting=h<8?'早安':h<12?'上午好':h<14?'午安':h<18?'下午好':h<22?'傍晚好':'夜深了';
+  var title='欢迎使用 Lanote';
+  if(code>=51&&code<=67||code>=80&&code<=82)title=isNight?'雨夜的声音':'雨后听首歌吧';
+  else if(code>=71&&code<=77)title='雪落下的声音';
+  else if(isNight)title='夜色正好';
+  else if(code<=3)title='晴朗的一天';
+  else if(h<10)title='清晨的节奏';
+  else if(h<14)title='午间充电';
+  else if(h<18)title='午后时光';
+  else title='黄昏旋律';
+  var k=document.getElementById('home-weather-kicker');if(k&&k.textContent!==greeting)k.textContent=greeting;
+  var t=document.getElementById('home-weather-title');if(t&&t.textContent!==title)t.textContent=title;
+  // 更新右上角城市标签（始终用用户设置的城市名）
+  var cl=document.getElementById('city-switch-label');
+  if(cl){var userCity=homeWeatherRadioState.city||'上海';if(cl.textContent!==userCity)cl.textContent=userCity}
+  // 天气短文案（随天气/时段变化，不轮播）
+  var sub=document.getElementById('home-subtitle');
+  if(sub){
+    var msg='';
+    var tmp=Math.round(w.temperature||0);
+    if(code>=51&&code<=67)msg='雨声是最好的白噪音，适合安静地听一会歌';
+    else if(code>=71&&code<=77)msg='下雪天适合窝在温暖的角落，让音乐陪你';
+    else if(code>=80&&code<=82)msg='阵雨过后，空气里有青草的味道，放首歌吧';
+    else if(code===95||code===96||code===99)msg='外面打雷了，戴上耳机就是另一个世界';
+    else if(isNight&&tmp<10)msg='夜深天冷，裹紧被子听首歌吧';
+    else if(isNight&&tmp>=10&&tmp<22)msg='夜色正好，把音量放低，让旋律伴你入睡';
+    else if(isNight)msg='今晚有点热，来首清凉的歌降降温';
+    else if(h<10&&tmp<10)msg='清晨微凉，来一首轻快的歌暖暖身子';
+    else if(h<10)msg='早安，今天的第一首歌，从好心情开始';
+    else if(h<14)msg='午间来首歌，充充电';
+    else if(h<18&&tmp>30)msg='下午有点热，来点清凉的音乐';
+    else if(h<18)msg='午后时光正好，适合开点音乐';
+    else msg='黄昏时刻，落日配上音乐，完美';
+    if(sub.textContent!==msg)sub.textContent=msg;
+  }
+  // also set city input in settings if open
+  var ci=document.getElementById('settings-city-input');if(!ci||ci===document.activeElement){}else{ci.value=(w.location&&w.location.name)||homeWeatherRadioState.city||'上海'}
+},2000);
+// 评论气泡
+var commentBubblesEnabled=true,commentBubbleSongs={},commentBubbleLastId='',commentBubbleSeq=0;
+function spawnCommentBubble(comment){
+  if(!commentBubblesEnabled)return;
+  var container=document.getElementById('comment-bubbles');
+  if(!container)return;
+  // 清理过多气泡：保持同时最多5个
+  var bubbles=container.querySelectorAll('.comment-bubble');
+  if(bubbles.length>=5)return;
+  var el=document.createElement('div');
+  el.className='comment-bubble';
+  el.style.left=(8+Math.random()*55)+'%';
+  el.style.animationDuration=(24+Math.random()*10)+'s';
+  var text=comment.content||'';
+  var preview=escHtml(text.length>60?text.slice(0,60)+'...':text);
+  var full=escHtml(text);
+  el.innerHTML='<div class="c-preview">'+preview+'</div><div class="c-full">'+full+'</div><div class="c-user">—— '+(comment.user&&comment.user.nickname||'匿名')+'</div>';
+  container.appendChild(el);
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},32000);
+}
+async function loadCommentsForSong(song){
+  if(!song||!song.id||!commentBubblesEnabled)return;
+  var key=song.provider+'|'+song.id;
+  if(commentBubbleLastId===key)return;
+  commentBubbleLastId=key;commentBubbleSeq=0;
+  if(commentBubbleSongs[key]){
+    scheduleCommentBubbles(commentBubbleSongs[key],song.duration||audio&&audio.duration||240);
+    return;
+  }
+  var container=document.getElementById('comment-bubbles');if(container)container.innerHTML='';
+  try{
+    var provider=song.provider||'netease';
+    var endpoint=provider==='qq'?'/api/qq/song/comments?id='+encodeURIComponent(song.id):'/api/song/comments?id='+encodeURIComponent(song.id);
+    var data=await apiJson(endpoint,{timeoutMs:8000});
+    var comments=(data&&(data.hotComments||data.comments||[])).slice(0,25);
+    if(comments.length){
+      commentBubbleSongs[key]=comments;
+      scheduleCommentBubbles(comments,song.duration||audio&&audio.duration||240);
+    }
+  }catch(e){}
+}
+function scheduleCommentBubbles(comments,songDurationSec){
+  var total=comments.length;
+  var interval=Math.max(8,Math.min(20,(songDurationSec-10)/total));
+  comments.forEach(function(c,i){
+    setTimeout(function(){spawnCommentBubble(c);commentBubbleSeq++},i*interval*1000);
+  });
+}
+// 切歌检测
+setInterval(function(){
+  if(!playing||!playQueue||currentIdx<0||!commentBubblesEnabled)return;
+  var song=playQueue[currentIdx];
+  if(song&&song.id)loadCommentsForSong(song);
+},3000);
+function toggleCommentBubbles(){
+  commentBubblesEnabled=!commentBubblesEnabled;
+  var container=document.getElementById('comment-bubbles');
+  if(!commentBubblesEnabled&&container)container.innerHTML='';
+  showToast(commentBubblesEnabled?'弹幕已开启':'弹幕已关闭');
+}
+// 经典歌词轮播
+(function(){
+var quotes=[
+  ['要拥有必先懂失去怎接受','富士山下','陈奕迅'],
+  ['曾付出几多心跳 来换取一堆堆的发票','陀飞轮','陈奕迅'],
+  ['谁能凭爱意要富士山私有','富士山下','陈奕迅'],
+  ['越过山丘 才发现无人等候','山丘','李宗盛'],
+  ['往事不要再提 人生已多风雨','当爱已成往事','张国荣'],
+  ['也许全世界我也可以忘记 只是不愿意失去你的消息','至少还有你','林忆莲'],
+  ['后来 我总算学会了如何去爱','后来','刘若英'],
+  ['天青色等烟雨 而我在等你','青花瓷','周杰伦'],
+  ['雨下整夜 我的爱溢出就像雨水','七里香','周杰伦'],
+  ['我遇见谁会有怎样的对白','遇见','孙燕姿'],
+  ['成千上万个门口 总有一个人要先走','十年','陈奕迅'],
+  ['得不到的永远在骚动 被偏爱的都有恃无恐','红玫瑰','陈奕迅'],
+  ['如果再见不能红着眼 是否还能红着脸','匆匆那年','王菲'],
+  ['只是因为在人群中多看了你一眼','传奇','王菲'],
+  ['像我这样优秀的人 本该灿烂过一生','消愁','毛不易'],
+  ['你是我这一生等了半世未拆的礼物','钟无艳','谢安琪'],
+  ['原来你是我最想留住的幸运','小幸运','田馥甄'],
+  ['你是千堆雪 我是长街','邮差','王菲'],
+  ['岁月长 衣裳薄','再见二丁目','杨千嬅'],
+  ['有生之年 狭路相逢 终不能幸免','流年','王菲'],
+  ['风继续吹 不忍远离','风继续吹','张国荣'],
+  ['我曾经跨过山和大海 也穿过人山人海','平凡之路','朴树'],
+  ['一杯敬朝阳 一杯敬月光','消愁','毛不易'],
+  ['时间是让人猝不及防的东西','岁月神偷','金玟岐'],
+  ['这世界有那么多人 多幸运我有个我们','这世界那么多人','莫文蔚'],
+  ['剪影的你轮廓太好看 凝住眼泪才敢细看','约定','王菲'],
+  ['还未跟你饮过冰 零度天气看风景','偿还','王菲'],
+  ['谁能告诉我 要有多坚强 才敢念念不忘','当时的月亮','王菲'],
+  ['直到所有的梦已破碎 才看见你的眼泪和后悔','用心良苦','张宇'],
+  ['早知道伤心总是难免的 你又何苦一往情深','梦醒时分','陈淑桦'],
+  ['可惜不是你 陪我到最后','可惜不是你','梁静茹'],
+  ['爱真的需要勇气 来面对流言蜚语','勇气','梁静茹'],
+  ['你是我的眼 带我领略四季的变换','你是我的眼','萧煌奇'],
+  ['因为爱着你的爱 因为梦着你的梦','牵手','苏芮'],
+  ['让青春吹动了你的长发 让它牵引你的梦','追梦人','凤飞飞'],
+  ['从前现在过去了再不来','一生所爱','卢冠廷'],
+  ['苦海 翻起爱恨 在世间 难逃避命运','一生所爱','卢冠廷'],
+  ['忘不掉你是我最大的失败','忘不了','童安格'],
+  ['我多想回到家乡 再回到她的身旁','在他乡','水木年华'],
+  ['多少人曾爱慕你年轻时的容颜','一生有你','水木年华'],
+  ['如果那两个字没有颤抖 我不会发现我难受','十年','陈奕迅'],
+  ['离别没说再见 你是否心酸','不再见','陈学冬'],
+  ['时间都去哪儿了 还没好好感受年轻就老了','时间都去哪儿了','王铮亮'],
+  ['我有点疼 但是我还能忍','不将就','李荣浩'],
+  ['我爱的人 不是我的爱人','我爱的人','陈小春'],
+  ['突然好想你 你会在哪里','突然好想你','五月天'],
+  ['你不是真正的快乐 你的笑只是你穿的保护色','你不是真正的快乐','五月天'],
+  ['青春是手牵手坐上了 永不回头的火车','笑忘歌','五月天'],
+  ['最美的不是下雨天 是曾与你躲过雨的屋檐','不能说的秘密','周杰伦'],
+  ['我会学着放弃你 是因为我太爱你','安静','周杰伦'],
+];
+var qi=0,qel=document.getElementById('home-lyric-quote');
+function nextQuote(){
+  if(!qel)return;
+  var q=quotes[qi%quotes.length];qi++;
+  qel.style.opacity='0';
+  setTimeout(function(){
+    qel.innerHTML='「'+q[0]+'」<br><span style=\"font-size:13px;color:rgba(255,255,255,.3);font-style:normal;letter-spacing:.04em\">——《'+q[1]+'》'+q[2]+'</span>';
+    qel.style.opacity='1';
+  },500);
+}
+nextQuote();
+setInterval(nextQuote,60000);
+})();
+var _supportQrLoaded=false;
+function loadSupportQRCodes(){if(_supportQrLoaded)return;_supportQrLoaded=true;var w=document.getElementById('support-wx-qr');var z=document.getElementById('support-zfb-qr');if(w)w.innerHTML='<img src="https://js1lan.github.io/jianshiyulan/WX.png" style="width:120px;height:120px;object-fit:contain" alt="微信收款码">';if(z)z.innerHTML='<img src="https://js1lan.github.io/jianshiyulan/photos/zs.jpg" style="width:120px;height:120px;object-fit:contain" alt="支付宝收款码">'}
+</script>
+<style>
+/* 播放界面缩小：歌词+专辑+歌单 */
+body.desktop-shell #playlist-panel{width:min(300px,30vw)!important;right:4px!important}
+body.desktop-shell #playlist-panel .queue-head{padding:8px 12px!important}
+body.desktop-shell #playlist-panel .queue-body{font-size:11px!important}
+body.desktop-shell #playlist-panel .fx-title{font-size:13px!important}
+/* 更新按钮隐藏 */
+#update-entry{display:none!important}
+/* 评论漂浮气泡 */
+#comment-bubbles{position:fixed;z-index:6;left:0;right:0;bottom:120px;top:45%;pointer-events:none;overflow:hidden}
+.comment-bubble{position:absolute;bottom:0;max-width:300px;padding:10px 16px;border-radius:16px;background:rgba(14,16,20,.82);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:rgba(255,255,255,.7);font-size:12px;line-height:1.5;animation:float-up 18s ease-in forwards;box-shadow:0 4px 20px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04);pointer-events:none;transition:background .2s,transform .2s}
+.comment-bubble:hover{animation-play-state:paused!important;background:rgba(20,24,30,.95)!important;pointer-events:auto!important;transform:scale(1.04)!important;z-index:10!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;max-height:none!important;cursor:pointer}
+.comment-bubble:hover .c-full{display:block!important}
+.comment-bubble .c-preview{overflow:hidden;max-height:36px}
+.comment-bubble .c-full{display:none}
+.comment-bubble .c-user{font-size:10px;color:rgba(0,245,212,.5);margin-top:6px;text-align:right}
+@keyframes float-up{0%{opacity:0;transform:translateY(30px) scale(.9)}5%{opacity:.8;transform:translateY(0) scale(1)}70%{opacity:.5}100%{opacity:0;transform:translateY(-200px) scale(1.03)}}
+/* 沉浸模式：隐藏所有右侧面板 */
+body.immersive-mode #playlist-panel,
+body.immersive-mode #playlist-panel *,
+body.immersive-mode #shelf,
+body.immersive-mode #fx-panel,
+body.immersive-mode #fx-fab,
+body.immersive-mode #fx-fab-hide-btn,
+body.immersive-mode #thumbnail,
+body.immersive-mode #thumb-wrap,
+body.immersive-mode .queue-head,
+body.immersive-mode .queue-body,
+body.immersive-mode .fx-head,
+body.immersive-mode .fx-section-label,
+body.immersive-mode .preset-grid,
+body.immersive-mode #empty-home .home-grid,
+body.immersive-mode .home-card{display:none!important;visibility:hidden!important;pointer-events:none!important;opacity:0!important}
+/* 播放栏缩小：降内部元素尺寸 */
+body.desktop-shell #bottom-bar .ctrl-btn{width:28px!important;height:28px!important}
+body.desktop-shell #bottom-bar #play-btn{width:34px!important;height:34px!important}
+body.desktop-shell #bottom-bar .control-cluster{height:56px!important;gap:8px!important}
+body.desktop-shell #bottom-bar #time-display{font-size:10px!important}
+body.desktop-shell #bottom-bar #progress-bar{height:3px!important}
+body.desktop-shell #bottom-bar .control-cluster.actions,.control-cluster.extra{display:none!important}
+body.desktop-shell #bottom-bar #thumb-wrap{display:none!important}
+/* 搜索栏缩小 */
+body.desktop-shell #search-stack{width:min(360px,44vw)!important}
+body.desktop-shell #search-box{height:44px!important;border-radius:16px!important}
+body.desktop-shell #search-input{font-size:12px!important}
+body.desktop-shell #search-icon{width:14px!important;height:14px!important}
+/* DIY 视觉控制台 - 右侧+缩小 */
+body.desktop-shell #fx-panel{width:min(340px,38vw)!important;max-height:calc(100vh - 80px)!important;font-size:10px!important;right:8px!important;left:auto!important}
+body.desktop-shell #fx-panel .fx-head{padding:8px 12px!important}
+body.desktop-shell #fx-panel .fx-title{font-size:12px!important}
+body.desktop-shell #fx-panel .preset-grid{gap:4px!important;grid-template-columns:repeat(4,1fr)!important}
+body.desktop-shell #fx-panel .preset-btn{width:56px!important;height:56px!important;font-size:9px!important}
+body.desktop-shell #fx-fab{right:8px!important}
+body.desktop-shell #fx-fab-hide-btn{right:8px!important}
+</style>
 </body>
 </html>

@@ -12,33 +12,33 @@ contextBridge.exposeInMainWorld('desktopWindow', {
   clearNeteaseMusicLogin: () => ipcRenderer.invoke('netease-music-clear-login'),
   openQQMusicLogin: () => ipcRenderer.invoke('qq-music-open-login'),
   clearQQMusicLogin: () => ipcRenderer.invoke('qq-music-clear-login'),
-  openUpdateInstaller: (filePath) => ipcRenderer.invoke('mineradio-open-update-installer', filePath),
-  restartApp: () => ipcRenderer.invoke('mineradio-restart-app'),
-  configureGlobalHotkeys: (bindings) => ipcRenderer.invoke('mineradio-hotkeys-configure-global', bindings || []),
-  exportJsonFile: (payload) => ipcRenderer.invoke('mineradio-export-json-file', payload || {}),
-  importJsonFile: () => ipcRenderer.invoke('mineradio-import-json-file'),
+  openUpdateInstaller: (filePath) => ipcRenderer.invoke('lanote-open-update-installer', filePath),
+  restartApp: () => ipcRenderer.invoke('lanote-restart-app'),
+  configureGlobalHotkeys: (bindings) => ipcRenderer.invoke('lanote-hotkeys-configure-global', bindings || []),
+  exportJsonFile: (payload) => ipcRenderer.invoke('lanote-export-json-file', payload || {}),
+  importJsonFile: () => ipcRenderer.invoke('lanote-import-json-file'),
   onGlobalHotkey: (callback) => {
     if (typeof callback !== 'function') return () => {};
     const listener = (_event, payload) => callback(payload || {});
-    ipcRenderer.on('mineradio-global-hotkey', listener);
-    return () => ipcRenderer.removeListener('mineradio-global-hotkey', listener);
+    ipcRenderer.on('lanote-global-hotkey', listener);
+    return () => ipcRenderer.removeListener('lanote-global-hotkey', listener);
   },
-  setDesktopLyricsEnabled: (enabled, payload) => ipcRenderer.invoke('mineradio-desktop-lyrics-set-enabled', !!enabled, payload || {}),
-  updateDesktopLyrics: (payload) => ipcRenderer.invoke('mineradio-desktop-lyrics-update', payload || {}),
+  setDesktopLyricsEnabled: (enabled, payload) => ipcRenderer.invoke('lanote-desktop-lyrics-set-enabled', !!enabled, payload || {}),
+  updateDesktopLyrics: (payload) => ipcRenderer.invoke('lanote-desktop-lyrics-update', payload || {}),
   onDesktopLyricsLockState: (callback) => {
     if (typeof callback !== 'function') return () => {};
     const listener = (_event, payload) => callback(payload || {});
-    ipcRenderer.on('mineradio-desktop-lyrics-lock-state', listener);
-    return () => ipcRenderer.removeListener('mineradio-desktop-lyrics-lock-state', listener);
+    ipcRenderer.on('lanote-desktop-lyrics-lock-state', listener);
+    return () => ipcRenderer.removeListener('lanote-desktop-lyrics-lock-state', listener);
   },
   onDesktopLyricsEnabledState: (callback) => {
     if (typeof callback !== 'function') return () => {};
     const listener = (_event, payload) => callback(payload || {});
-    ipcRenderer.on('mineradio-desktop-lyrics-enabled-state', listener);
-    return () => ipcRenderer.removeListener('mineradio-desktop-lyrics-enabled-state', listener);
+    ipcRenderer.on('lanote-desktop-lyrics-enabled-state', listener);
+    return () => ipcRenderer.removeListener('lanote-desktop-lyrics-enabled-state', listener);
   },
-  setWallpaperMode: (enabled, payload) => ipcRenderer.invoke('mineradio-wallpaper-set-enabled', !!enabled, payload || {}),
-  updateWallpaperMode: (payload) => ipcRenderer.invoke('mineradio-wallpaper-update', payload || {}),
+  setWallpaperMode: (enabled, payload) => ipcRenderer.invoke('lanote-wallpaper-set-enabled', !!enabled, payload || {}),
+  updateWallpaperMode: (payload) => ipcRenderer.invoke('lanote-wallpaper-update', payload || {}),
   onStateChange: (callback) => {
     const listener = (_event, state) => callback(state);
     ipcRenderer.on('desktop-window-state', listener);
