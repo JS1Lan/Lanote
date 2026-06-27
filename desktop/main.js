@@ -29,8 +29,8 @@ const WINDOWED_SCALE = 1 / 2;
 const WINDOWED_MARGIN = 48;
 const MIN_WINDOWED_WIDTH = 820;
 const MIN_WINDOWED_HEIGHT = 520;
-const APP_NAME = 'Lanote';
-const APP_USER_MODEL_ID = 'com.lanote.desktop';
+const APP_NAME = 'Mineradio';
+const APP_USER_MODEL_ID = 'com.mineradio.desktop';
 const APP_ICON_ICO = path.join(__dirname, '..', 'build', 'icon.ico');
 const NETEASE_LOGIN_PARTITION = 'persist:lanote-netease-login';
 const NETEASE_LOGIN_URL = 'https://music.163.com/#/login';
@@ -287,7 +287,7 @@ function ensureDesktopShortcut() {
       target,
       cwd: path.dirname(target),
       args: '',
-      description: 'Lanote desktop music player',
+      description: 'Mineradio desktop music player',
       icon: fs.existsSync(APP_ICON_ICO) ? APP_ICON_ICO : target,
       iconIndex: 0,
       appUserModelId: APP_USER_MODEL_ID,

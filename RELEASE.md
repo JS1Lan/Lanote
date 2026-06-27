@@ -12,7 +12,7 @@
 ## 发布前检查
 
 - 确认 `package.json` 和 `package-lock.json` 版本号正确。
-- 确认 `lanote.update.owner/repo` 指向正式仓库。
+- 确认 `mineradio.update.owner/repo` 指向正式仓库。
 - 确认 `.cookie`、`.qq-cookie`、`updates/`、`node_modules/`、旧 `dist/` 没有进入 git。
 - 确认 README/SECURITY/CHANGELOG/Release 正文包含 `v1.0.10` 旧安装包隔离说明。
 - 运行语法检查：`git diff --check`、`node --check server.js`、前端内联脚本解析。
@@ -32,14 +32,14 @@ v1.1.0
 Release 标题：
 
 ```text
-Lanote v1.1.0 纯净安装版
+Mineradio v1.1.0 纯净安装版
 ```
 
 建议上传资产：
 
-- `dist/Lanote-1.1.0-Setup.exe`
-- `dist/Lanote-1.1.0-Setup.exe.blockmap`（可选；本次不作为旧版软件内更新使用）
-- `dist/Lanote-1.1.0-SHA256SUMS.txt`
+- `dist/Mineradio-1.1.0-Setup.exe`
+- `dist/Mineradio-1.1.0-Setup.exe.blockmap`（可选；本次不作为旧版软件内更新使用）
+- `dist/Mineradio-1.1.0-SHA256SUMS.txt`
 
 本次不要上传：
 
@@ -56,8 +56,8 @@ Lanote v1.1.0 纯净安装版
 {
   "latestVersion": "1.1.0-test",
   "release": {
-    "name": "Lanote v1.1.0-test",
-    "downloadUrl": "http://127.0.0.1:3144/Lanote-1.1.0-Setup.exe",
+    "name": "Mineradio v1.1.0-test",
+    "downloadUrl": "http://127.0.0.1:3144/Mineradio-1.1.0-Setup.exe",
     "notes": ["本地在线更新链路测试"]
   }
 }

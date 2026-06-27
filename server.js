@@ -223,7 +223,7 @@ function parseGitHubRepository(input) {
   return null;
 }
 function readUpdateConfig(pkg) {
-  const local = (pkg && pkg.lanote && pkg.lanote.update) || {};
+  const local = (pkg && pkg.mineradio && pkg.mineradio.update) || {};
   const repoHint = process.env.LANOTE_UPDATE_REPOSITORY
     || process.env.GITHUB_REPOSITORY
     || local.repository

@@ -260,11 +260,11 @@ Function LanoteUseFirstAvailableInstallDir
   IfFileExists "X:\*.*" driveX 0
   IfFileExists "Y:\*.*" driveY 0
   IfFileExists "Z:\*.*" driveZ 0
-  StrCpy $INSTDIR "C:\Lanote"
+  StrCpy $INSTDIR "C:\Mineradio"
   Return
 
   driveD:
-    StrCpy $INSTDIR "D:\Lanote"
+    StrCpy $INSTDIR "D:\Mineradio"
     Return
   driveE:
     StrCpy $INSTDIR "E:\Lanote"
@@ -375,23 +375,22 @@ Function LanoteNormalizeInstallDir
   ${If} $1 == 2
     StrCpy $2 "$0" 1 1
     ${If} $2 == ":"
-      StrCpy $0 "$0\Lanote"
+      StrCpy $0 "$0\Mineradio"
     ${EndIf}
   ${ElseIf} $1 == 3
     StrCpy $2 "$0" 1 1
     StrCpy $3 "$0" 1 2
     ${If} $2 == ":"
     ${AndIf} $3 == "\"
-      StrCpy $0 "$0Lanote"
+      StrCpy $0 "$0Mineradio"
     ${EndIf}
   ${EndIf}
 
   StrLen $1 "$0"
   StrCpy $2 "$0" 10 -10
-  ${If} $1 < 10
-  ${OrIf} $2 != "\Lanote"
-  ${AndIf} $2 != "\lanote"
-    StrCpy $0 "$0\Lanote"
+  ${If} $2 != "\Mineradio"
+  ${AndIf} $2 != "\mineradio"
+    StrCpy $0 "$0\Mineradio"
   ${EndIf}
   Exch $0
 FunctionEnd
@@ -742,7 +741,7 @@ Function LanoteValidateInstallDir
       ${If} $2 == "1"
       ${AndIf} $3 != "1"
       ${AndIf} $4 != "1"
-        MessageBox MB_ICONSTOP|MB_OK "检测到这台电脑还有 D-Z 盘，Lanote 不安装到 C 盘。请改选 D 盘或其它非 C 盘的 Lanote 文件夹。$\r$\n$\r$\n如果电脑只有 C 盘，安装器会自动放行 C:\Lanote。"
+        MessageBox MB_ICONSTOP|MB_OK "检测到这台电脑还有 D-Z 盘，Mineradio 不安装到 C 盘。请改选 D 盘或其它非 C 盘的 Mineradio 文件夹。$\r$\n$\r$\n如果电脑只有 C 盘，安装器会自动放行 C:\Mineradio。"
         Abort
       ${EndIf}
     ${EndIf}
@@ -750,10 +749,9 @@ Function LanoteValidateInstallDir
 
   StrLen $0 "$INSTDIR"
   StrCpy $1 "$INSTDIR" 10 -10
-  ${If} $0 < 10
-  ${OrIf} $1 != "\Lanote"
-  ${AndIf} $1 != "\lanote"
-    MessageBox MB_ICONSTOP|MB_OK "安装目录必须是独立的 Lanote 文件夹。请选择一个上级目录，安装器会自动创建 Lanote 子文件夹。"
+  ${If} $1 != "\Mineradio"
+  ${AndIf} $1 != "\mineradio"
+    MessageBox MB_ICONSTOP|MB_OK "安装目录必须是独立的 Mineradio 文件夹。请选择一个上级目录，安装器会自动创建 Mineradio 子文件夹。"
     Abort
   ${EndIf}
 
@@ -781,7 +779,7 @@ Function LanoteValidateInstallDir
     Goto valid
   ${EndIf}
 
-  MessageBox MB_ICONSTOP|MB_OK "为避免卸载时误删其它文件，Lanote 不能安装到已有文件的非专属目录。请新建或选择一个空的 Lanote 文件夹。$\r$\n$\r$\n当前路径：$INSTDIR"
+  MessageBox MB_ICONSTOP|MB_OK "为避免卸载时误删其它文件，Mineradio 不能安装到已有文件的非专属目录。请新建或选择一个空的 Lanote 文件夹。$\r$\n$\r$\n当前路径：$INSTDIR"
   Abort
 
   valid:
@@ -806,7 +804,7 @@ Function LanoteWelcomeShow
   SendMessage $0 ${WM_SETFONT} $LanoteSmallFont 1
   SetCtlColors $0 "3257F7" "FFFFFF"
 
-  ${NSD_CreateLabel} 22u 42u 226u 30u "Lanote 安装"
+  ${NSD_CreateLabel} 22u 42u 226u 30u "Mineradio 安装"
   Pop $0
   SendMessage $0 ${WM_SETFONT} $LanoteHeroFont 1
   SetCtlColors $0 "111217" "FFFFFF"
@@ -815,7 +813,7 @@ Function LanoteWelcomeShow
   Pop $0
   SetCtlColors $0 "" "3257F7"
 
-  ${NSD_CreateLabel} 22u 96u 238u 24u "为这台电脑安装 Lanote。默认安装到 D:\Lanote，下一步可以自由选择其它位置。"
+  ${NSD_CreateLabel} 22u 96u 238u 24u "为这台电脑安装 Mineradio。默认安装到 D:\Mineradio，下一步可以自由选择其它位置。"
   Pop $0
   SendMessage $0 ${WM_SETFONT} $LanoteBodyFont 1
   SetCtlColors $0 "4B5263" "FFFFFF"
@@ -829,7 +827,7 @@ Function LanoteWelcomeShow
 FunctionEnd
 
 Function LanoteDirectoryBrowse
-  nsDialogs::SelectFolderDialog "选择 Lanote 安装文件夹" "$INSTDIR"
+  nsDialogs::SelectFolderDialog "选择 Mineradio 安装文件夹" "$INSTDIR"
   Pop $0
   ${If} $0 != error
   ${AndIf} $0 != ""
@@ -880,7 +878,7 @@ Function LanoteDirectoryShow
   SendMessage $0 ${WM_SETFONT} $LanoteSmallFont 1
   ${NSD_OnClick} $0 LanoteDirectoryBrowse
 
-  ${NSD_CreateLabel} 22u 122u 238u 12u "默认推荐：D:\Lanote；选盘符会自动建文件夹。"
+  ${NSD_CreateLabel} 22u 122u 238u 12u "默认推荐：D:\Mineradio；选盘符会自动建文件夹。"
   Pop $0
   SendMessage $0 ${WM_SETFONT} $LanoteSmallFont 1
   SetCtlColors $0 "6B7280" "FFFFFF"
@@ -928,23 +926,22 @@ Function un.LanoteNormalizeInstallDir
   ${If} $1 == 2
     StrCpy $2 "$0" 1 1
     ${If} $2 == ":"
-      StrCpy $0 "$0\Lanote"
+      StrCpy $0 "$0\Mineradio"
     ${EndIf}
   ${ElseIf} $1 == 3
     StrCpy $2 "$0" 1 1
     StrCpy $3 "$0" 1 2
     ${If} $2 == ":"
     ${AndIf} $3 == "\"
-      StrCpy $0 "$0Lanote"
+      StrCpy $0 "$0Mineradio"
     ${EndIf}
   ${EndIf}
 
   StrLen $1 "$0"
   StrCpy $2 "$0" 10 -10
-  ${If} $1 < 10
-  ${OrIf} $2 != "\Lanote"
-  ${AndIf} $2 != "\lanote"
-    StrCpy $0 "$0\Lanote"
+  ${If} $2 != "\Mineradio"
+  ${AndIf} $2 != "\mineradio"
+    StrCpy $0 "$0\Mineradio"
   ${EndIf}
   Exch $0
 FunctionEnd
@@ -973,7 +970,7 @@ Function un.LanoteValidateUninstallDir
   Call un.LanoteNormalizeInstallDir
   Pop $1
   ${If} $0 != $1
-    MessageBox MB_OK|MB_ICONSTOP "当前卸载路径不是 Lanote 专属目录，已阻止卸载以避免误删其它文件。$\r$\n$\r$\n当前路径：$INSTDIR$\r$\n安全路径应为：$0"
+    MessageBox MB_OK|MB_ICONSTOP "当前卸载路径不是 Mineradio 专属目录，已阻止卸载以避免误删其它文件。$\r$\n$\r$\n当前路径：$INSTDIR$\r$\n安全路径应为：$0"
     SetErrorLevel 2
     Quit
   ${EndIf}
@@ -983,7 +980,7 @@ Function un.LanoteValidateUninstallDir
   Call un.LanoteInstallDirLooksOwned
   Pop $0
   ${If} $0 != "1"
-    MessageBox MB_OK|MB_ICONSTOP "无法确认当前目录属于 Lanote，已阻止卸载以避免误删其它文件。$\r$\n$\r$\n当前路径：$INSTDIR"
+    MessageBox MB_OK|MB_ICONSTOP "无法确认当前目录属于 Mineradio，已阻止卸载以避免误删其它文件。$\r$\n$\r$\n当前路径：$INSTDIR"
     SetErrorLevel 2
     Quit
   ${EndIf}
