@@ -59,12 +59,12 @@ const HOST = process.env.HOST || '0.0.0.0';
 const UA = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36';
 const COOKIE_FILE = process.env.COOKIE_FILE || path.join(__dirname, '.cookie');
 const QQ_COOKIE_FILE = process.env.QQ_COOKIE_FILE || path.join(__dirname, '.qq-cookie');
-const UPDATE_WORK_DIR = process.env.LANOTE_UPDATE_DIR || path.join(__dirname, 'updates');
-const UPDATE_DOWNLOAD_DIR = process.env.LANOTE_UPDATE_DOWNLOAD_DIR || path.join(UPDATE_WORK_DIR, 'downloads');
-const UPDATE_PATCH_BACKUP_DIR = process.env.LANOTE_PATCH_BACKUP_DIR || path.join(UPDATE_WORK_DIR, 'backups', 'patches');
-const BEATMAP_CACHE_DIR = process.env.LANOTE_BEAT_CACHE_DIR || 'D:\\LanoteCache\\beatmaps';
+const UPDATE_WORK_DIR = process.env.MINERADIO_UPDATE_DIR || path.join(__dirname, 'updates');
+const UPDATE_DOWNLOAD_DIR = process.env.MINERADIO_UPDATE_DOWNLOAD_DIR || path.join(UPDATE_WORK_DIR, 'downloads');
+const UPDATE_PATCH_BACKUP_DIR = process.env.MINERADIO_PATCH_BACKUP_DIR || path.join(UPDATE_WORK_DIR, 'backups', 'patches');
+const BEATMAP_CACHE_DIR = process.env.MINERADIO_BEAT_CACHE_DIR || 'D:\\MineradioCache\\beatmaps';
 const APP_PACKAGE = readPackageInfo();
-const APP_VERSION = process.env.LANOTE_VERSION || APP_PACKAGE.version || '0.9.11';
+const APP_VERSION = process.env.MINERADIO_VERSION || APP_PACKAGE.version || '0.9.11';
 const UPDATE_CONFIG = readUpdateConfig(APP_PACKAGE);
 const PATCH_MAX_BYTES = 12 * 1024 * 1024;
 const PATCH_ALLOWED_ROOTS = new Set(['public', 'desktop', 'build']);
@@ -224,15 +224,15 @@ function parseGitHubRepository(input) {
 }
 function readUpdateConfig(pkg) {
   const local = (pkg && pkg.mineradio && pkg.mineradio.update) || {};
-  const repoHint = process.env.LANOTE_UPDATE_REPOSITORY
+  const repoHint = process.env.MINERADIO_UPDATE_REPOSITORY
     || process.env.GITHUB_REPOSITORY
     || local.repository
     || local.github
     || (pkg && pkg.repository && (pkg.repository.url || pkg.repository))
     || '';
   const parsed = parseGitHubRepository(repoHint) || {};
-  const owner = process.env.LANOTE_UPDATE_OWNER || local.owner || parsed.owner || '';
-  const repo = process.env.LANOTE_UPDATE_REPO || local.repo || parsed.repo || '';
+  const owner = process.env.MINERADIO_UPDATE_OWNER || local.owner || parsed.owner || '';
+  const repo = process.env.MINERADIO_UPDATE_REPO || local.repo || parsed.repo || '';
   return {
     provider: local.provider || 'github',
     owner,
@@ -241,9 +241,9 @@ function readUpdateConfig(pkg) {
     preview: local.preview !== false,
     preferMirrors: local.preferMirrors !== false,
     mirrors: readUpdateMirrors(local),
-    manifest: process.env.LANOTE_UPDATE_MANIFEST
-      || process.env.LANOTE_UPDATE_MANIFEST_URL
-      || process.env.LANOTE_UPDATE_MANIFEST_FILE
+    manifest: process.env.MINERADIO_UPDATE_MANIFEST
+      || process.env.MINERADIO_UPDATE_MANIFEST_URL
+      || process.env.MINERADIO_UPDATE_MANIFEST_FILE
       || '',
   };
 }
@@ -252,7 +252,7 @@ function parseUpdateMirrorList(value) {
   return String(value || '').split(/[\n,;]/);
 }
 function readUpdateMirrors(local) {
-  const envMirrors = process.env.LANOTE_UPDATE_MIRRORS || process.env.LANOTE_UPDATE_MIRROR || '';
+  const envMirrors = process.env.MINERADIO_UPDATE_MIRRORS || process.env.MINERADIO_UPDATE_MIRROR || '';
   const raw = envMirrors
     ? parseUpdateMirrorList(envMirrors)
     : parseUpdateMirrorList(local.mirrors || local.downloadMirrors || []);
@@ -439,7 +439,7 @@ function normalizeManifestUpdateInfo(data) {
   const assetUrls = [downloadUrl].concat(Array.isArray(asset.downloadUrls) ? asset.downloadUrls : []);
   const patchUrls = patch ? [patch.downloadUrl].concat(Array.isArray(patch.downloadUrls) ? patch.downloadUrls : []) : [];
   const patchInfo = patch && patch.downloadUrl ? {
-    name: patch.name || updateAssetNameFromUrl(patch.downloadUrl) || `Lanote-${APP_VERSION}→${latestVersion}.patch.json`,
+    name: patch.name || updateAssetNameFromUrl(patch.downloadUrl) || `Mineradio-${APP_VERSION}→${latestVersion}.patch.json`,
     size: Number(patch.size || 0) || 0,
     contentType: patch.contentType || patch.content_type || 'application/json',
     downloadUrl: patch.downloadUrl,
@@ -453,7 +453,7 @@ function normalizeManifestUpdateInfo(data) {
     ? release.notes.slice(0, 4).map(cleanReleaseLine).filter(Boolean)
     : (extractReleaseNotes(release.body || data.body).length ? extractReleaseNotes(release.body || data.body) : UPDATE_FALLBACK_NOTES);
   const assetInfo = downloadUrl ? {
-    name: asset.name || updateAssetNameFromUrl(downloadUrl) || `Lanote-${latestVersion}-Setup.exe`,
+    name: asset.name || updateAssetNameFromUrl(downloadUrl) || `Mineradio-${latestVersion}-Setup.exe`,
     size: Number(asset.size || 0) || 0,
     contentType: asset.contentType || asset.content_type || '',
     downloadUrl,
@@ -469,7 +469,7 @@ function normalizeManifestUpdateInfo(data) {
     latestVersion,
     release: {
       tagName: release.tagName || release.tag_name || data.tagName || ('v' + latestVersion),
-      name: release.name || data.name || ('Lanote v' + latestVersion),
+      name: release.name || data.name || ('Mineradio v' + latestVersion),
       version: latestVersion,
       publishedAt: release.publishedAt || release.published_at || data.publishedAt || '',
       htmlUrl: release.htmlUrl || release.html_url || data.htmlUrl || '',
@@ -488,7 +488,7 @@ async function readUpdateManifest(ref) {
   if (!value) throw new Error('UPDATE_MANIFEST_MISSING');
   if (/^https?:\/\//i.test(value)) {
     const resp = await fetch(value, {
-      headers: { 'User-Agent': `Lanote/${APP_VERSION}` },
+      headers: { 'User-Agent': `Mineradio/${APP_VERSION}` },
     });
     if (!resp.ok) throw new Error('Update manifest ' + resp.status);
     return resp.json();
@@ -580,7 +580,7 @@ function localUpdateFallback(reason, opts) {
     latestVersion: APP_VERSION,
     release: {
       tagName: 'v' + APP_VERSION,
-      name: 'Lanote v' + APP_VERSION,
+      name: 'Mineradio v' + APP_VERSION,
       version: APP_VERSION,
       htmlUrl: '',
       downloadUrl: '',
@@ -641,7 +641,7 @@ async function fetchTextFromCandidates(candidates, timeoutMs) {
     const candidate = list[i];
     try {
       const resp = await fetchWithTimeout(candidate.url, {
-        headers: { 'User-Agent': `Lanote/${APP_VERSION}` },
+        headers: { 'User-Agent': `Mineradio/${APP_VERSION}` },
       }, timeoutMs || 6500);
       if (!resp.ok) throw updateError('HTTP_' + resp.status, 'HTTP ' + resp.status);
       return { text: await resp.text(), candidate };
@@ -667,7 +667,7 @@ function githubReleaseDownloadUrl(version, fileName) {
 }
 function parseLatestYmlUpdateInfo(text, reason) {
   const latestVersion = normalizeVersion(yamlScalar(text, 'version') || APP_VERSION) || APP_VERSION;
-  const assetPath = yamlScalar(text, 'path') || yamlScalar(text, 'url') || `Lanote-${latestVersion}-Setup.exe`;
+  const assetPath = yamlScalar(text, 'path') || yamlScalar(text, 'url') || `Mineradio-${latestVersion}-Setup.exe`;
   const sha512 = normalizeDigest(yamlScalar(text, 'sha512'), 'sha512');
   const size = Number(yamlScalar(text, 'size') || 0) || 0;
   const releaseDate = yamlScalar(text, 'releaseDate');
@@ -690,7 +690,7 @@ function parseLatestYmlUpdateInfo(text, reason) {
     latestVersion,
     release: {
       tagName: 'v' + latestVersion,
-      name: 'Lanote v' + latestVersion,
+      name: 'Mineradio v' + latestVersion,
       version: latestVersion,
       publishedAt: releaseDate,
       htmlUrl: `https://github.com/${UPDATE_CONFIG.owner}/${UPDATE_CONFIG.repo}/releases/tag/v${latestVersion}`,
@@ -722,7 +722,7 @@ async function fetchLatestUpdateInfo() {
     const resp = await fetch(apiUrl, {
       signal: controller.signal,
       headers: {
-        'User-Agent': `Lanote/${APP_VERSION}`,
+        'User-Agent': `Mineradio/${APP_VERSION}`,
         'Accept': 'application/vnd.github+json',
       },
     });
@@ -743,7 +743,7 @@ async function fetchLatestUpdateInfo() {
       latestVersion,
       release: {
         tagName: data.tag_name || ('v' + latestVersion),
-        name: data.name || ('Lanote v' + latestVersion),
+        name: data.name || ('Mineradio v' + latestVersion),
         version: latestVersion,
         publishedAt: data.published_at || '',
         htmlUrl: data.html_url || '',
@@ -764,13 +764,13 @@ async function fetchLatestUpdateInfo() {
   }
 }
 function safeUpdateFileName(name, version) {
-  const raw = String(name || '').trim() || `Lanote-${version || APP_VERSION}.exe`;
+  const raw = String(name || '').trim() || `Mineradio-${version || APP_VERSION}.exe`;
   const cleaned = raw
     .replace(/[<>:"/\\|?*\x00-\x1F]/g, '-')
     .replace(/\s+/g, ' ')
     .trim()
     .slice(0, 160);
-  return cleaned || `Lanote-${version || APP_VERSION}.exe`;
+  return cleaned || `Mineradio-${version || APP_VERSION}.exe`;
 }
 function publicUpdateJob(job) {
   if (!job) return { ok: false, error: 'UPDATE_JOB_NOT_FOUND' };
@@ -819,7 +819,7 @@ async function downloadUpdateAsset(job) {
 
     const resp = await fetch(job.downloadUrl, {
       headers: {
-        'User-Agent': `Lanote/${APP_VERSION}`,
+        'User-Agent': `Mineradio/${APP_VERSION}`,
       },
     });
     if (!resp.ok) throw new Error('Download failed ' + resp.status);
@@ -1005,7 +1005,7 @@ async function downloadUpdateAssetWithMirrors(job) {
       job.message = job.total ? '正在下载完整安装包' : '正在下载完整安装包，等待服务器返回大小';
 
       const resp = await fetchWithTimeout(candidate.url, {
-        headers: { 'User-Agent': `Lanote/${APP_VERSION}` },
+        headers: { 'User-Agent': `Mineradio/${APP_VERSION}` },
       }, 14000);
       if (!resp.ok) throw updateError('HTTP_' + resp.status, 'HTTP ' + resp.status);
 
@@ -1203,7 +1203,7 @@ async function downloadAndApplyPatch(job) {
     job.updatedAt = Date.now();
 
     const resp = await fetch(job.downloadUrl, {
-      headers: { 'User-Agent': `Lanote/${APP_VERSION}` },
+      headers: { 'User-Agent': `Mineradio/${APP_VERSION}` },
     });
     if (!resp.ok) throw new Error('Patch download failed ' + resp.status);
 
@@ -1255,7 +1255,7 @@ async function downloadPatchBufferFromCandidate(job, candidate, index, total) {
   job.updatedAt = Date.now();
 
   const resp = await fetchWithTimeout(candidate.url, {
-    headers: { 'User-Agent': `Lanote/${APP_VERSION}` },
+    headers: { 'User-Agent': `Mineradio/${APP_VERSION}` },
   }, 12000);
   if (!resp.ok) throw updateError('HTTP_' + resp.status, 'HTTP ' + resp.status);
 
@@ -3330,7 +3330,7 @@ const server = http.createServer(async (req, res) => {
   if (pn === '/api/app/version') {
     sendJSON(res, {
       name: APP_PACKAGE.name || 'lanote',
-      productName: APP_PACKAGE.productName || 'Lanote',
+      productName: APP_PACKAGE.productName || 'Mineradio',
       version: APP_VERSION,
       update: {
         provider: UPDATE_CONFIG.provider,

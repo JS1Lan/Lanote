@@ -652,7 +652,7 @@ Function LanoteDisableUnsafeOldUninstallers
   Call LanoteOldInstallPathNeedsQuarantine
   Pop $1
   ${If} $1 == "1"
-    DetailPrint "Skip unsafe legacy Lanote uninstaller: $0"
+    DetailPrint "Skip unsafe legacy Mineradio uninstaller: $0"
     StrCpy $2 "1"
   ${EndIf}
 
@@ -663,7 +663,7 @@ Function LanoteDisableUnsafeOldUninstallers
   Call LanoteOldInstallPathNeedsQuarantine
   Pop $1
   ${If} $1 == "1"
-    DetailPrint "Skip unsafe legacy Lanote uninstaller: $0"
+    DetailPrint "Skip unsafe legacy Mineradio uninstaller: $0"
     StrCpy $2 "1"
   ${EndIf}
 
@@ -681,7 +681,7 @@ Function LanoteDisableUnsafeOldUninstallers
   Call LanoteOldInstallPathNeedsQuarantine
   Pop $1
   ${If} $1 == "1"
-    DetailPrint "Skip unsafe legacy Lanote uninstaller: $0"
+    DetailPrint "Skip unsafe legacy Mineradio uninstaller: $0"
     StrCpy $2 "1"
   ${EndIf}
 
@@ -692,7 +692,7 @@ Function LanoteDisableUnsafeOldUninstallers
   Call LanoteOldInstallPathNeedsQuarantine
   Pop $1
   ${If} $1 == "1"
-    DetailPrint "Skip unsafe legacy Lanote uninstaller: $0"
+    DetailPrint "Skip unsafe legacy Mineradio uninstaller: $0"
     StrCpy $2 "1"
   ${EndIf}
 
@@ -710,7 +710,7 @@ Function LanoteDeleteLegacyUninstallerFileIfMissingMarker
     Pop $1
     ${If} $1 != ""
       IfFileExists "$1\${LANOTE_INSTALL_MARKER}" done 0
-      DetailPrint "Remove legacy Lanote uninstaller file: $1"
+      DetailPrint "Remove legacy Mineradio uninstaller file: $1"
       Delete "$1\Uninstall ${PRODUCT_FILENAME}.exe"
     ${EndIf}
   ${EndIf}
@@ -779,7 +779,7 @@ Function LanoteValidateInstallDir
     Goto valid
   ${EndIf}
 
-  MessageBox MB_ICONSTOP|MB_OK "为避免卸载时误删其它文件，Mineradio 不能安装到已有文件的非专属目录。请新建或选择一个空的 Lanote 文件夹。$\r$\n$\r$\n当前路径：$INSTDIR"
+  MessageBox MB_ICONSTOP|MB_OK "为避免卸载时误删其它文件，Mineradio 不能安装到已有文件的非专属目录。请新建或选择一个空的 Mineradio 文件夹。$\r$\n$\r$\n当前路径：$INSTDIR"
   Abort
 
   valid:
@@ -799,7 +799,7 @@ Function LanoteWelcomeShow
   CreateFont $LanoteBodyFont "Microsoft YaHei UI" 9 400
   CreateFont $LanoteSmallFont "Microsoft YaHei UI" 8 400
 
-  ${NSD_CreateLabel} 22u 20u 82u 10u "LANOTE"
+  ${NSD_CreateLabel} 22u 20u 82u 10u "MINERADIO"
   Pop $0
   SendMessage $0 ${WM_SETFONT} $LanoteSmallFont 1
   SetCtlColors $0 "3257F7" "FFFFFF"
