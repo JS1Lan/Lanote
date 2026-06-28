@@ -249,7 +249,16 @@ body.home-wallpaper-preview #canvas-container{filter:none}
 .home-hero{position:relative;grid-row:1 / span 2;min-height:438px;padding:28px;border-radius:28px;border:1px solid color-mix(in srgb,var(--home-accent) 22%,rgba(255,255,255,.085));background:linear-gradient(145deg,rgba(33,29,34,.64),rgba(9,10,14,.76) 48%,rgba(17,20,25,.70));box-shadow:0 28px 90px rgba(0,0,0,.34),0 0 0 1px color-mix(in srgb,var(--home-accent) 7%,transparent),inset 0 1px 0 rgba(255,255,255,.065);backdrop-filter:blur(30px) saturate(1.16);-webkit-backdrop-filter:blur(30px) saturate(1.16);overflow:hidden}
 .home-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(118deg,rgba(255,255,255,.060),transparent 24%,rgba(255,83,103,.070) 54%,rgba(122,215,194,.055) 82%,transparent 100%),linear-gradient(90deg,rgba(255,255,255,.032) 0 1px,transparent 1px 48px),linear-gradient(0deg,rgba(255,255,255,.024) 0 1px,transparent 1px 44px);opacity:.72;pointer-events:none}
 .home-hero::after{content:'';position:absolute;left:28px;right:28px;bottom:22px;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--home-accent) 0%,transparent),color-mix(in srgb,var(--home-accent) 52%,transparent),rgba(36,66,255,.24),rgba(248,244,238,.18),color-mix(in srgb,var(--home-accent) 0%,transparent));opacity:.82;pointer-events:none}
-.home-hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:minmax(0,1.16fr) minmax(150px,.64fr);grid-template-rows:auto auto auto auto minmax(150px,1fr);column-gap:18px}
+.home-hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-start;gap:10px;padding:28px 32px}
+.hero-clock-row{display:flex;align-items:baseline;gap:16px}
+.hero-clock-time{font-size:48px;font-weight:200;color:rgba(255,255,255,.78);font-variant-numeric:tabular-nums;letter-spacing:.05em;line-height:1}
+.hero-clock-div{width:1px;height:28px;background:rgba(255,255,255,.1);align-self:center}
+.hero-clock-date{font-size:12px;color:rgba(255,255,255,.28);letter-spacing:.06em}
+.hero-greet-phrase{font-size:20px;font-weight:360;color:rgba(255,255,255,.55);letter-spacing:.02em}
+.hero-greet-phrase em{font-style:normal;color:rgba(244,210,138,.65)}
+.hero-quip{font-size:12px;color:rgba(255,255,255,.28);letter-spacing:.04em;margin-top:2px}
+.hero-quote{font-size:18px;line-height:1.8;color:rgba(255,255,255,.34);font-style:italic;max-width:460px;letter-spacing:.03em;transition:opacity .6s;margin-top:auto;padding-bottom:6px}
+.hero-quote cite{display:block;font-size:12px;color:rgba(255,255,255,.18);font-style:normal;letter-spacing:.04em;margin-top:6px}
 .home-hero-inner.home-construction-inner{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:18px;padding:4px 2px;min-height:100%}
 .home-kicker{grid-column:1;font-size:10px;font-weight:780;letter-spacing:.18em;color:color-mix(in srgb,var(--home-accent) 62%,rgba(255,255,255,.36));text-transform:uppercase;margin-bottom:14px}
 .home-title{grid-column:1;font-size:clamp(34px,4.6vw,58px);line-height:.98;font-weight:760;letter-spacing:0;color:rgba(255,255,255,.98);max-width:380px;text-shadow:0 10px 36px rgba(0,0,0,.26)}
@@ -330,7 +339,7 @@ body.empty-home-active .home-visual{animation:home-visual-drift 8.8s ease-in-out
 @media (max-width:1120px){#empty-home{width:calc(100vw - 48px)}.empty-home-shell{grid-template-columns:minmax(300px,.88fr) minmax(440px,1.12fr);gap:12px}.home-hero{padding:24px}.home-hero-inner{grid-template-columns:minmax(0,1.16fr) minmax(128px,.52fr);column-gap:14px}.home-title{font-size:clamp(30px,4vw,48px);max-width:340px}.home-sub{font-size:12.5px;line-height:1.5;max-width:314px}.home-visual{height:198px;max-width:236px}.home-mosaic{height:142px;min-height:126px;margin-top:14px}.home-grid{gap:10px}.home-card{min-height:126px;padding:14px;border-radius:20px}.home-card-label{margin-bottom:6px}.home-card-title{font-size:16.5px;max-width:66%}.home-card-sub{margin-top:6px;font-size:10.8px;line-height:1.34;max-width:64%;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.home-card-art{right:11px;bottom:11px;width:80px;height:80px;border-radius:18px}.home-card-art:not(.has-cover)::before{inset:14px;box-shadow:inset 0 0 0 11px rgba(5,5,8,.44),0 10px 24px rgba(0,0,0,.24)}.home-card::after{right:88px;bottom:14px;width:30px;height:56px}.home-rail{gap:8px}.home-tile{min-height:128px}.home-tile-cover{height:66px}}
 @media (max-height:760px){#empty-home{top:132px;bottom:44px}.empty-home-shell{min-height:0}.home-hero{min-height:0;padding:22px}.home-hero-inner{grid-template-columns:minmax(0,1.22fr) minmax(136px,.54fr);column-gap:14px}.home-title{font-size:clamp(31px,3.75vw,48px);max-width:360px}.home-sub{font-size:12.5px;line-height:1.55;max-width:330px}.home-quick-row{margin-top:16px}.home-visual{height:206px;max-width:246px}.home-mosaic{height:132px;min-height:120px;margin-top:14px}.home-card{min-height:134px;padding:14px}.home-card-title{font-size:17px}.home-card-art{width:92px;height:92px;border-radius:21px}.home-tile{min-height:132px}.home-tile-cover{height:72px}}
 @media (max-height:700px){#empty-home{top:126px;bottom:34px}.home-hero{padding:20px}.home-title{font-size:clamp(28px,3.55vw,42px)}.home-sub{font-size:12px;line-height:1.42}.home-weather-meta{margin-top:12px}.home-quick-row{margin-top:12px}.home-visual{height:174px;max-width:216px}.home-mosaic{height:112px;min-height:104px}.home-card{min-height:112px;padding:12px}.home-card-title{font-size:15.5px}.home-card-sub{font-size:10.5px;line-height:1.28;-webkit-line-clamp:2}.home-card-art{width:70px;height:70px;border-radius:16px}.home-card::after{right:78px;height:48px}.home-tile{min-height:112px;padding:9px}.home-tile-cover{height:54px;margin-bottom:8px}.home-section-head{min-height:30px}}
-@media (max-width:840px){.empty-home-shell{grid-template-columns:minmax(250px,.86fr) minmax(360px,1.14fr)}.home-hero-inner{grid-template-columns:minmax(0,1fr)}.home-visual{display:none}.home-mosaic{height:124px;min-height:108px}.home-card{min-height:108px}.home-card-title{font-size:15px;max-width:68%}.home-card-sub{font-size:10.3px;max-width:62%}.home-card-art{width:66px;height:66px;border-radius:15px}.home-card::after{right:72px;width:24px;height:44px}.home-tile-title{font-size:11.5px}}
+@media (max-width:840px){.empty-home-shell{grid-template-columns:minmax(250px,.86fr) minmax(360px,1.14fr)}.home-visual{display:none}.home-mosaic{height:124px;min-height:108px}.home-card{min-height:108px}.home-card-title{font-size:15px;max-width:68%}.home-card-sub{font-size:10.3px;max-width:62%}.home-card-art{width:66px;height:66px;border-radius:15px}.home-card::after{right:72px;width:24px;height:44px}.home-tile-title{font-size:11.5px}}
 @media (max-width:760px){#empty-home{top:150px;bottom:56px;width:calc(100vw - 40px)}.empty-home-shell{grid-template-columns:1fr;grid-template-rows:auto auto 1fr;overflow:auto;padding-bottom:4px}.home-hero{grid-row:auto;min-height:344px}.home-mosaic{height:172px;min-height:150px}.home-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.home-tile-row{grid-template-columns:repeat(3,minmax(0,1fr))}}
 body.empty-home-active.controls-visible #empty-home{bottom:128px}
 @media (max-height:760px){body.empty-home-active.controls-visible #empty-home{bottom:112px}}
@@ -373,18 +382,39 @@ body.empty-home-active #home-btn{border-color:rgba(255,83,103,.36);background:rg
 body.desktop-shell #empty-home{top:132px;bottom:46px;width:calc(100vw - 44px)}
 body.desktop-shell .empty-home-shell{min-height:0}
 body.desktop-shell .home-hero{min-height:390px}
-body.desktop-shell .home-card{min-height:148px}
+body.desktop-shell .home-grid{grid-row:1 / span 2;grid-template-rows:repeat(3,1fr)}
+body.desktop-shell .home-card{min-height:0}
+body.desktop-shell .hero-clock-time{font-size:clamp(52px,5vw,72px)}
+body.desktop-shell .hero-greet-phrase{font-size:clamp(17px,1.5vw,22px)}
+body.desktop-shell .home-card-title{font-size:clamp(16px,1.3vw,20px)}
+body.desktop-shell .home-card-sub{font-size:clamp(10.5px,.85vw,12.5px)}
+body.desktop-shell .home-card-label{font-size:clamp(9px,.7vw,10.5px)}
+body.desktop-shell .home-weather-pill{font-size:clamp(10px,.75vw,12px)}
 body.desktop-shell .home-tile{min-height:154px}
 body.desktop-shell .home-tile-cover{height:84px}
-body.desktop-shell.desktop-fullscreen #empty-home,html:fullscreen body.desktop-shell #empty-home{top:96px;bottom:52px;width:min(1480px,calc(100vw - 96px))}
+body.desktop-shell.desktop-fullscreen #empty-home,html:fullscreen body.desktop-shell #empty-home{top:0;bottom:0;width:min(1480px,calc(100vw - 96px));max-width:1480px;max-height:860px;margin:auto;transform:translateX(-50%)}
 body.desktop-shell.desktop-fullscreen .empty-home-shell,html:fullscreen body.desktop-shell .empty-home-shell{max-width:1480px;margin:0 auto;grid-template-columns:minmax(380px,.92fr) minmax(560px,1.08fr)}
 body.desktop-shell.desktop-fullscreen .home-mosaic,html:fullscreen body.desktop-shell .home-mosaic{height:clamp(146px,16vh,208px)}
 body.desktop-shell.desktop-fullscreen .home-mosaic-cell.has-cover,html:fullscreen body.desktop-shell .home-mosaic-cell.has-cover{background-size:contain;background-repeat:no-repeat;background-color:rgba(8,10,14,.54)}
+body.desktop-shell.desktop-fullscreen .home-hero,html:fullscreen body.desktop-shell .home-hero{min-height:clamp(360px,40vh,520px)}
+body.desktop-shell.desktop-fullscreen .hero-clock-time,html:fullscreen body.desktop-shell .hero-clock-time{font-size:clamp(46px,5vw,64px)!important}
+body.desktop-shell.desktop-fullscreen .hero-clock-date,html:fullscreen body.desktop-shell .hero-clock-date{font-size:clamp(12px,1.1vw,15px)}
+body.desktop-shell.desktop-fullscreen .hero-clock-div,html:fullscreen body.desktop-shell .hero-clock-div{height:clamp(26px,3vh,38px)}
+body.desktop-shell.desktop-fullscreen .hero-greet-phrase,html:fullscreen body.desktop-shell .hero-greet-phrase{font-size:clamp(18px,1.6vw,26px)}
+body.desktop-shell.desktop-fullscreen .hero-quip,html:fullscreen body.desktop-shell .hero-quip{font-size:clamp(11px,1vw,14px)}
+body.desktop-shell.desktop-fullscreen .hero-quote,html:fullscreen body.desktop-shell .hero-quote{font-size:clamp(17px,1.5vw,24px);max-width:clamp(400px,40vw,560px)}
+body.desktop-shell.desktop-fullscreen .home-card-title,html:fullscreen body.desktop-shell .home-card-title{font-size:clamp(17px,1.4vw,22px)}
+body.desktop-shell.desktop-fullscreen .home-card-sub,html:fullscreen body.desktop-shell .home-card-sub{font-size:clamp(10.5px,.9vw,13px)}
+body.desktop-shell.desktop-fullscreen .home-card-label,html:fullscreen body.desktop-shell .home-card-label{font-size:clamp(9px,.7vw,11px)}
+body.desktop-shell.desktop-fullscreen .home-weather-pill,html:fullscreen body.desktop-shell .home-weather-pill{font-size:clamp(10px,.8vw,12px)}
+body.desktop-shell.desktop-fullscreen #home-clock span:first-child,html:fullscreen body.desktop-shell #home-clock span:first-child{font-size:clamp(26px,2.6vw,38px)!important}
+body.desktop-shell.desktop-fullscreen #home-clock span:last-child,html:fullscreen body.desktop-shell #home-clock span:last-child{font-size:clamp(12px,1.1vw,15px)!important}
+body.desktop-shell.desktop-fullscreen #comment-bubbles .comment-bubble,html:fullscreen body.desktop-shell #comment-bubbles .comment-bubble{font-size:clamp(12px,1.1vw,16px);max-width:clamp(280px,26vw,420px);padding:clamp(10px,.9vw,18px) clamp(16px,1.4vw,26px);border-radius:clamp(14px,1.6vw,22px)}
 @media (max-height:760px){
   body.desktop-shell #empty-home{top:118px;bottom:34px}
   body.desktop-shell .home-hero{min-height:330px;padding:22px}
   body.desktop-shell .home-visual{height:196px;max-width:260px}
-  body.desktop-shell .home-card{min-height:128px;padding:14px}
+  body.desktop-shell .home-card{min-height:0;padding:14px}
   body.desktop-shell .home-tile{min-height:130px}
   body.desktop-shell .home-tile-cover{height:70px}
   body.desktop-shell .home-mosaic{height:150px;min-height:126px}
@@ -393,13 +423,16 @@ body.desktop-shell.desktop-fullscreen .home-mosaic-cell.has-cover,html:fullscree
   body.desktop-shell #empty-home{width:calc(100vw - 44px)}
   body.desktop-shell .empty-home-shell{grid-template-columns:minmax(300px,.88fr) minmax(430px,1.12fr);gap:12px}
   body.desktop-shell .home-hero{padding:22px}
-  body.desktop-shell .home-hero-inner{grid-template-columns:minmax(0,1.16fr) minmax(126px,.52fr);column-gap:14px}
+  body.desktop-shell .home-hero-inner{padding:20px 18px;gap:16px}
+  body.desktop-shell .hero-clock-time{font-size:58px}
+  body.desktop-shell .hero-clock-divider{height:38px}
   body.desktop-shell .home-title{font-size:clamp(30px,4vw,48px);max-width:340px}
   body.desktop-shell .home-sub{font-size:12.5px;line-height:1.5;max-width:314px}
   body.desktop-shell .home-visual{height:190px;max-width:226px}
   body.desktop-shell .home-mosaic{height:132px;min-height:116px;margin-top:14px}
   body.desktop-shell .home-grid{gap:10px}
-  body.desktop-shell .home-card{min-height:122px;padding:14px}
+  body.desktop-shell .home-grid{gap:10px;grid-template-rows:repeat(3,1fr)}
+  body.desktop-shell .home-card{min-height:0;padding:14px}
   body.desktop-shell .home-card-label{margin-bottom:6px}
   body.desktop-shell .home-card-title{font-size:16px;max-width:66%}
   body.desktop-shell .home-card-sub{margin-top:6px;font-size:10.6px;line-height:1.32;max-width:64%;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -418,7 +451,7 @@ body.desktop-shell.desktop-fullscreen .home-mosaic-cell.has-cover,html:fullscree
   body.desktop-shell .home-quick-row{margin-top:12px}
   body.desktop-shell .home-visual{height:166px;max-width:206px}
   body.desktop-shell .home-mosaic{height:104px;min-height:98px}
-  body.desktop-shell .home-card{min-height:104px;padding:12px}
+  body.desktop-shell .home-card{min-height:0;padding:12px}
   body.desktop-shell .home-card-title{font-size:15px}
   body.desktop-shell .home-card-sub{font-size:10.2px;line-height:1.28}
   body.desktop-shell .home-card-art{width:66px;height:66px;border-radius:15px}
@@ -429,10 +462,13 @@ body.desktop-shell.desktop-fullscreen .home-mosaic-cell.has-cover,html:fullscree
 }
 @media (max-width:840px){
   body.desktop-shell .empty-home-shell{grid-template-columns:minmax(250px,.86fr) minmax(360px,1.14fr)}
-  body.desktop-shell .home-hero-inner{grid-template-columns:minmax(0,1fr)}
+  body.desktop-shell .home-hero-inner{padding:16px 12px;gap:12px}
+  body.desktop-shell .hero-clock-time{font-size:46px}
+  body.desktop-shell .hero-clock-divider{height:30px}
+  body.desktop-shell .hero-greet-phrase{font-size:16px}
   body.desktop-shell .home-visual{display:none}
   body.desktop-shell .home-mosaic{height:112px;min-height:100px}
-  body.desktop-shell .home-card{min-height:102px}
+  body.desktop-shell .home-card{min-height:0}
   body.desktop-shell .home-card-title{font-size:14.8px;max-width:68%}
   body.desktop-shell .home-card-sub{font-size:10px;max-width:62%}
   body.desktop-shell .home-card-art{width:62px;height:62px;border-radius:14px}
@@ -1934,12 +1970,16 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
 <section id="empty-home" aria-label="Mineradio home">
   <div class="empty-home-shell">
     <div class="home-hero">
-      <div class="home-hero-inner">
-        <div class="home-kicker" id="home-weather-kicker">Mineradio</div>
-        <div class="home-title" id="home-weather-title">我的音乐库</div>
-        <div class="home-sub" id="home-subtitle">从你的歌单和最近播放开始</div>
+      <div class="home-hero-inner" id="home-hero-inner">
+        <div class="hero-clock-row">
+          <span class="hero-clock-time" id="hero-clock-time">14:35</span>
+          <div class="hero-clock-div"></div>
+          <span class="hero-clock-date" id="hero-clock-date">6月28日 周六</span>
+        </div>
+        <div class="hero-greet-phrase" id="hero-greet-phrase">下午好，<em>晴朗的一天</em></div>
         <div class="home-weather-meta" id="home-weather-meta"></div>
-        <div id="home-lyric-quote" style="grid-column:1;margin-top:28px;font-size:18px;line-height:1.6;color:rgba(255,255,255,.5);max-width:440px;transition:opacity .6s;letter-spacing:.02em"></div>
+        <div class="hero-quip" id="hero-quip"></div>
+        <div class="hero-quote" id="hero-quote"></div>
       </div>
     </div>
 
@@ -15555,20 +15595,11 @@ function renderHomeTiles() {
   renderHomeMosaic(tiles);
 }
 function renderHomeDiscover() {
-  var sub = document.getElementById('home-subtitle');
   var loggedOutHome = !homeDiscoverState.loggedIn && !hasAnyPlatformLogin();
   var weather = homeWeatherRadioState.weather;
   var radio = homeWeatherRadioState.radio;
   var weatherLocation = weather && weather.location && weather.location.name || homeWeatherRadioState.city || '上海';
-  var weatherTitle = document.getElementById('home-weather-title');
-  var weatherKicker = document.getElementById('home-weather-kicker');
   var weatherMeta = document.getElementById('home-weather-meta');
-  if (weatherTitle) weatherTitle.textContent = '我的音乐库';
-  if (weatherKicker) weatherKicker.textContent = 'Mineradio · Your Library';
-  if (sub) {
-    if (loggedOutHome) sub.textContent = '登录后会把你的歌单、常听歌手和最近播放放在这里；也可以直接搜索或导入本地音乐。';
-    else sub.textContent = '从你的歌单、最近播放和常听歌手开始，天气电台放在需要氛围的时候再开。';
-  }
   if (weatherMeta) {
     var meta = [];
     if (weather) {
@@ -15797,6 +15828,13 @@ if (emptyHomeStartEl) {
 }
 function locateWeatherRadio() {
   var previousWeatherCity = homeWeatherRadioState.city || '上海';
+  var userSetCity = localStorage.getItem(HOME_WEATHER_CITY_KEY);
+  var hasUserCity = !!(userSetCity && userSetCity !== '上海');
+  if (hasUserCity) {
+    homeWeatherRadioState.city = userSetCity;
+    loadHomeWeatherRadio(true, { city: userSetCity });
+    return;
+  }
   homeWeatherToken++;
   homeWeatherRadioState.loading = true;
   homeWeatherRadioState.loaded = false;
@@ -24569,12 +24607,7 @@ function markVisualGuideSeen() {
   try { localStorage.setItem(VISUAL_GUIDE_SEEN_STORE_KEY, '1'); } catch (e) {}
 }
 function maybeRunStartupVisualGuide(source) {
-  if (visualGuideWasSeen() || visualGuideActive || immersiveMode || playing) return false;
-  if (source !== 'manual' && !hasAnyPlatformLogin()) return false;
-  setTimeout(function(){
-    if (!visualGuideWasSeen() || source === 'manual') startVisualGuide({ source: source || 'startup' });
-  }, source === 'splash' ? 3600 : 1400);
-  return true;
+  return false;
 }
 function startVisualGuide(opts) {
   opts = opts || {};
@@ -26959,12 +26992,13 @@ animate();
 })();
 function applySettingsCity(){var inp=document.getElementById('settings-city-input');var city=String(inp&&inp.value||'').trim();if(!city)return;homeWeatherRadioState.city=city;localStorage.setItem('lanote-weather-city',city);homeWeatherRadioState.loaded=false;homeWeatherRadioState.radio=null;renderHomeDiscover();loadHomeWeatherRadio(true,{city:city});showToast('已切换到 '+city);var m=document.getElementById('settings-modal');if(m)m.classList.remove('show')}
 // 初始化城市标签
-(function(){var cl=document.getElementById('city-switch-label');if(cl)cl.textContent=(typeof homeWeatherRadioState!=='undefined'&&homeWeatherRadioState.city)||localStorage.getItem('lanote-weather-city')||'上海'})();
+(function(){var cl=document.getElementById('city-switch-label');if(cl)cl.textContent=localStorage.getItem('lanote-weather-city')||(typeof homeWeatherRadioState!=='undefined'&&homeWeatherRadioState.city)||'上海'})();
 // 天气动态文案
 setInterval(function(){
-  if(typeof homeWeatherRadioState==='undefined'||!homeWeatherRadioState.weather)return;
-  var w=homeWeatherRadioState.weather,h=new Date().getHours(),code=Number(w.weatherCode),isNight=h>=20||h<5;
+  var h=new Date().getHours();
   var greeting=h<8?'早安':h<12?'上午好':h<14?'午安':h<18?'下午好':h<22?'傍晚好':'夜深了';
+  var w=(typeof homeWeatherRadioState!=='undefined'&&homeWeatherRadioState.weather)||null;
+  var code=w?Number(w.weatherCode):-1,isNight=h>=20||h<5;
   var title='欢迎使用 Mineradio';
   if(code>=51&&code<=67||code>=80&&code<=82)title=isNight?'雨夜的声音':'雨后听首歌吧';
   else if(code>=71&&code<=77)title='雪落下的声音';
@@ -26974,34 +27008,48 @@ setInterval(function(){
   else if(h<14)title='午间充电';
   else if(h<18)title='午后时光';
   else title='黄昏旋律';
-  var k=document.getElementById('home-weather-kicker');if(k&&k.textContent!==greeting)k.textContent=greeting;
-  var t=document.getElementById('home-weather-title');if(t&&t.textContent!==title)t.textContent=title;
-  // 更新右上角城市标签（始终用用户设置的城市名）
+  var gp=document.getElementById('hero-greet-phrase');
+  if(gp)gp.innerHTML=greeting+'，<em>'+title+'</em>';
+  if(!w)return;
   var cl=document.getElementById('city-switch-label');
   if(cl){var userCity=homeWeatherRadioState.city||'上海';if(cl.textContent!==userCity)cl.textContent=userCity}
-  // 天气短文案（随天气/时段变化，不轮播）
-  var sub=document.getElementById('home-subtitle');
-  if(sub){
-    var msg='';
+  var qp=document.getElementById('hero-quip');
+  if(qp){
+    var quip='';
     var tmp=Math.round(w.temperature||0);
-    if(code>=51&&code<=67)msg='雨声是最好的白噪音，适合安静地听一会歌';
-    else if(code>=71&&code<=77)msg='下雪天适合窝在温暖的角落，让音乐陪你';
-    else if(code>=80&&code<=82)msg='阵雨过后，空气里有青草的味道，放首歌吧';
-    else if(code===95||code===96||code===99)msg='外面打雷了，戴上耳机就是另一个世界';
-    else if(isNight&&tmp<10)msg='夜深天冷，裹紧被子听首歌吧';
-    else if(isNight&&tmp>=10&&tmp<22)msg='夜色正好，把音量放低，让旋律伴你入睡';
-    else if(isNight)msg='今晚有点热，来首清凉的歌降降温';
-    else if(h<10&&tmp<10)msg='清晨微凉，来一首轻快的歌暖暖身子';
-    else if(h<10)msg='早安，今天的第一首歌，从好心情开始';
-    else if(h<14)msg='午间来首歌，充充电';
-    else if(h<18&&tmp>30)msg='下午有点热，来点清凉的音乐';
-    else if(h<18)msg='午后时光正好，适合开点音乐';
-    else msg='黄昏时刻，落日配上音乐，完美';
-    if(sub.textContent!==msg)sub.textContent=msg;
+    if(code>=51&&code<=67)quip='雨声是最好的白噪音';
+    else if(code>=71&&code<=77)quip='下雪天适合窝在温暖的角落';
+    else if(code>=80&&code<=82)quip='阵雨过后，空气里有青草的味道';
+    else if(code>=95&&code<=99)quip='外面打雷了，戴上耳机就是另一个世界';
+    else if(isNight&&tmp<10)quip='夜深天冷，裹紧被子听首歌吧';
+    else if(isNight&&tmp>=10&&tmp<22)quip='夜色正好，来杯晚安牛奶';
+    else if(isNight&&tmp>=30)quip='夏夜微风，适合听一首清凉的歌';
+    else if(isNight)quip='晚风轻拂，旋律伴你入眠';
+    else if(h<10&&tmp<10)quip='清晨微凉，来杯热咖啡暖暖';
+    else if(h<10)quip='早安，今天的第一首歌从好心情开始';
+    else if(h<14&&tmp>30)quip='天气尚好，来杯冰饮吧';
+    else if(h<14)quip='午间来首歌，充充电';
+    else if(h<18&&tmp>30)quip='午后有点热，来点清凉的音乐';
+    else if(h<18)quip='午后时光正好，适合开点音乐';
+    else if(tmp>30)quip='傍晚依然闷热，来杯冷泡茶';
+    else quip='黄昏时分，落日配上音乐正好';
+    if(qp.textContent!==quip)qp.textContent=quip;
   }
-  // also set city input in settings if open
   var ci=document.getElementById('settings-city-input');if(!ci||ci===document.activeElement){}else{ci.value=(w.location&&w.location.name)||homeWeatherRadioState.city||'上海'}
 },2000);
+// 实时时钟
+(function updateHomeClock(){
+  var timeEl=document.getElementById('hero-clock-time');
+  var dateEl=document.getElementById('hero-clock-date');
+  if(!timeEl||!dateEl)return;
+  var now=new Date();
+  var days=['日','一','二','三','四','五','六'];
+  var h=String(now.getHours()).padStart(2,'0');
+  var m=String(now.getMinutes()).padStart(2,'0');
+  timeEl.textContent=h+':'+m;
+  dateEl.textContent=(now.getMonth()+1)+'月'+now.getDate()+'日 周'+days[now.getDay()];
+  setTimeout(updateHomeClock,1000);
+})();
 // 评论气泡
 var commentBubblesEnabled=true,commentBubbleSongs={},commentBubbleLastId='',commentBubbleSeq=0;
 function spawnCommentBubble(comment){
@@ -27024,17 +27072,20 @@ function spawnCommentBubble(comment){
 }
 async function loadCommentsForSong(song){
   if(!song||!song.id||!commentBubblesEnabled)return;
-  var key=song.provider+'|'+song.id;
+  var provider=song.provider||'netease';
+  var key=provider+'|'+song.id;
   if(commentBubbleLastId===key)return;
   commentBubbleLastId=key;commentBubbleSeq=0;
+  clearCommentBubbleTimers();
+  var container=document.getElementById('comment-bubbles');if(container)container.innerHTML='';
   if(commentBubbleSongs[key]){
     scheduleCommentBubbles(commentBubbleSongs[key],song.duration||audio&&audio.duration||240);
     return;
   }
-  var container=document.getElementById('comment-bubbles');if(container)container.innerHTML='';
   try{
-    var provider=song.provider||'netease';
-    var endpoint=provider==='qq'?'/api/qq/song/comments?id='+encodeURIComponent(song.id):'/api/song/comments?id='+encodeURIComponent(song.id);
+    var endpoint=provider==='qq'
+      ?'/api/qq/song/comments?id='+encodeURIComponent(song.id)+'&mid='+encodeURIComponent(song.mid||song.songmid||'')
+      :'/api/song/comments?id='+encodeURIComponent(song.id);
     var data=await apiJson(endpoint,{timeoutMs:8000});
     var comments=(data&&(data.hotComments||data.comments||[])).slice(0,25);
     if(comments.length){
@@ -27043,12 +27094,18 @@ async function loadCommentsForSong(song){
     }
   }catch(e){}
 }
+var commentBubbleTimers=[];
 function scheduleCommentBubbles(comments,songDurationSec){
+  clearCommentBubbleTimers();
   var total=comments.length;
   var interval=Math.max(8,Math.min(20,(songDurationSec-10)/total));
   comments.forEach(function(c,i){
-    setTimeout(function(){spawnCommentBubble(c);commentBubbleSeq++},i*interval*1000);
+    commentBubbleTimers.push(setTimeout(function(){spawnCommentBubble(c);commentBubbleSeq++},i*interval*1000));
   });
+}
+function clearCommentBubbleTimers(){
+  commentBubbleTimers.forEach(function(t){clearTimeout(t)});
+  commentBubbleTimers=[];
 }
 // 切歌检测
 setInterval(function(){
@@ -27115,19 +27172,71 @@ var quotes=[
   ['青春是手牵手坐上了 永不回头的火车','笑忘歌','五月天'],
   ['最美的不是下雨天 是曾与你躲过雨的屋檐','不能说的秘密','周杰伦'],
   ['我会学着放弃你 是因为我太爱你','安静','周杰伦'],
+  ['我想就这样牵着你的手不放开','简单爱','周杰伦'],
+  ['听妈妈的话 别让她受伤','听妈妈的话','周杰伦'],
+  ['印象中的爱情好像顶不住那时间','半岛铁盒','周杰伦'],
+  ['我们的开始 是很长的电影','最长的电影','周杰伦'],
+  ['也许时间是一种解药 也是我现在正服下的毒药','彩虹','周杰伦'],
+  ['我会发着呆 然后忘记你 接着紧紧闭上眼','轨迹','周杰伦'],
+  ['就是开不了口让她知道','开不了口','周杰伦'],
+  ['为你弹奏肖邦的夜曲 纪念我死去的爱情','夜曲','周杰伦'],
+  ['岁月在墙上剥落看见小时候','东风破','周杰伦'],
+  ['海鸟跟鱼相爱 只是一场意外','珊瑚海','周杰伦'],
+  ['转身离开 分手说不出来','珊瑚海','周杰伦'],
+  ['你发如雪 凄美了离别','发如雪','周杰伦'],
+  ['而我独缺 你一生的了解','兰亭序','周杰伦'],
+  ['无关风月 我题序等你回','兰亭序','周杰伦'],
+  ['明明就不习惯牵手 为何却主动把手勾','明明就','周杰伦'],
+  ['怎么了 你累了 说好的幸福呢','说好的幸福呢','周杰伦'],
+  ['如果邪恶是华丽残酷的乐章','夜的第七章','周杰伦'],
+  ['我用无悔 刻永世爱你的碑','止战之殇','周杰伦'],
+  ['爱是一道光 如此美妙','欧若拉','张韶涵'],
+  ['每一次 都在徘徊孤单中坚强','隐形的翅膀','张韶涵'],
+  ['终于看开 爱回不来 而你总是太晚明白','倒带','蔡依林'],
+  ['假装我们还在一块 我真的演不出来','假装','蔡依林'],
+  ['我想我会开始想念你 可是我刚刚才遇见了你','恶作剧','王蓝茵'],
+  ['想念是会呼吸的痛 它活在我身上所有角落','会呼吸的痛','梁静茹'],
+  ['如果我说 爱我没有如果','如果的事','范玮琪'],
+  ['最初的梦想 紧握在手上','最初的梦想','范玮琪'],
+  ['我没有说谎 我何必说谎','说谎','林宥嘉'],
+  ['你是我的眼 带我阅读浩瀚的书海','你是我的眼','林宥嘉'],
+  ['因为爱所以爱 感情不必拿来慷慨','因为爱所以爱','谢霆锋'],
+  ['如果要走 请你记得我','借口','周杰伦'],
+  ['我愿意为你 我愿意为你忘记我姓名','我愿意','王菲'],
+  ['还没好好的感受 雪花绽放的气候','红豆','王菲'],
+  ['有时候 有时候 我会相信一切有尽头','红豆','王菲'],
+  ['等到风景都看透 也许你会陪我看细水长流','红豆','王菲'],
+  ['思念是一种很玄的东西 如影随形','我愿意','王菲'],
+  ['我看透了他的心 还有别人逗留的背影','他不爱我','莫文蔚'],
+  ['当你老了 头发白了 睡意昏沉','当你老了','赵照'],
+  ['多少人曾爱你青春欢畅的时辰','当你老了','赵照'],
+  ['让我再尝一口 秋天的酒','安和桥','宋冬野'],
+  ['我知道 那些夏天就像你一样回不来','安和桥','宋冬野'],
+  ['爱上一匹野马 可我的家里没有草原','董小姐','宋冬野'],
+  ['南山南 北秋悲 南山有谷堆','南山南','马頔'],
+  ['如果天黑之前来得及 我要忘了你的眼睛','南山南','马頔'],
+  ['你在南方的艳阳里 大雪纷飞','南山南','马頔'],
+  ['该配合你演出的我演视而不见','演员','薛之谦'],
+  ['其实台下的观众就我一个','演员','薛之谦'],
+  ['我想摸你的头发 只是简单的试探啊','绅士','薛之谦'],
+  ['有一天晚上 梦一场 你白发苍苍 说带我流浪','你还要我怎样','薛之谦'],
+  ['我们的爱情 到这刚刚好','刚刚好','薛之谦'],
+  ['夜长梦还多 你就不要想起我','你就不要想起我','田馥甄'],
+  ['我没有梦想 也不想听你废话','差不多先生','MC HotDog'],
+  ['终于等到你 还好我没放弃','终于等到你','张靓颖'],
 ];
-var qi=0,qel=document.getElementById('home-lyric-quote');
+var qi=0,qel=document.getElementById('hero-quote');
 function nextQuote(){
   if(!qel)return;
   var q=quotes[qi%quotes.length];qi++;
   qel.style.opacity='0';
   setTimeout(function(){
-    qel.innerHTML='「'+q[0]+'」<br><span style=\"font-size:13px;color:rgba(255,255,255,.3);font-style:normal;letter-spacing:.04em\">——《'+q[1]+'》'+q[2]+'</span>';
+    qel.innerHTML='「'+q[0]+'」<cite>——《'+q[1]+'》 '+q[2]+'</cite>';
     qel.style.opacity='1';
-  },500);
+  },600);
 }
 nextQuote();
-setInterval(nextQuote,60000);
+setInterval(nextQuote,45000);
 })();
 var _supportQrLoaded=false;
 function loadSupportQRCodes(){if(_supportQrLoaded)return;_supportQrLoaded=true;var w=document.getElementById('support-wx-qr');var z=document.getElementById('support-zfb-qr');if(w)w.innerHTML='<img src="https://js1lan.github.io/jianshiyulan/WX.png" style="width:120px;height:120px;object-fit:contain" alt="微信收款码">';if(z)z.innerHTML='<img src="https://js1lan.github.io/jianshiyulan/photos/zs.jpg" style="width:120px;height:120px;object-fit:contain" alt="支付宝收款码">'}

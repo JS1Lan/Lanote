@@ -1958,7 +1958,18 @@ async function fetchOpenMeteoWeather(params) {
   u.searchParams.set('hourly', 'precipitation_probability,weather_code,temperature_2m');
   u.searchParams.set('forecast_days', '1');
   u.searchParams.set('timezone', location.timezone || 'auto');
-  const body = await requestJson(u.toString(), { headers: { 'User-Agent': UA } });
+  let body;
+  let lastErr;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    try {
+      body = await requestJson(u.toString(), { headers: { 'User-Agent': UA }, timeoutMs: 8000 + attempt * 2000 });
+      break;
+    } catch (e) {
+      lastErr = e;
+      if (attempt < 2) await new Promise(r => setTimeout(r, 600 * (attempt + 1)));
+    }
+  }
+  if (!body) throw lastErr || new Error('OPEN_METEO_FAILED');
   const cur = body && body.current || {};
   const weather = {
     provider: 'open-meteo',
@@ -2829,7 +2840,7 @@ function mapQQComment(raw) {
 
 async function handleQQSongComments(id, mid, limit, offset) {
   let topid = String(id || '').replace(/\D/g, '');
-  if (!topid && mid) {
+  if ((!topid || /\D/.test(String(id || ''))) && mid) {
     try {
       const detail = await qqSongDetail(mid, { mid });
       topid = String((detail && (detail.qqId || detail.id)) || '').replace(/\D/g, '');
