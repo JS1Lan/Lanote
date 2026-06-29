@@ -80,7 +80,7 @@ Mineradio 是一款 Windows 桌面沉浸式音乐播放器，由 [XxHuberrr](htt
 ## 下载安装
 
 - **GitHub**：[Releases](https://github.com/JS1Lan/Lanote/releases) 下载 `Mineradio-1.1.2-Setup.exe`
-- **夸克网盘**：[https://pan.quark.cn/s/27509f85c03d](https://pan.quark.cn/s/27509f85c03d)
+- **夸克网盘**：[https://pan.quark.cn/s/8d9e3509a63b](https://pan.quark.cn/s/8d9e3509a63b)
 
 v1.1.0 / v1.1.1 用户手动下载覆盖安装。v1.1.2 起支持软件内自动更新。
 
