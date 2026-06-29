@@ -38,15 +38,9 @@ Mineradio 是一款 Windows 桌面沉浸式音乐播放器，由 [XxHuberrr](htt
 
 ## 界面预览
 
-![首页](https://raw.githubusercontent.com/JS1Lan/Lanote/main/docs/assets/screenshots/home.png)
+![截图1](https://raw.githubusercontent.com/JS1Lan/Lanote/main/docs/assets/screenshots/home.png)
 
-![播放页](https://raw.githubusercontent.com/JS1Lan/Lanote/main/docs/assets/screenshots/play.png)
-
-![全屏模式](https://raw.githubusercontent.com/JS1Lan/Lanote/main/docs/assets/screenshots/fullscreen.png)
-
-![v1.1.2 新功能](https://raw.githubusercontent.com/JS1Lan/Lanote/main/docs/assets/screenshots/v1.1.2-1.png)
-
-![v1.1.2 新功能](https://raw.githubusercontent.com/JS1Lan/Lanote/main/docs/assets/screenshots/v1.1.2-2.png)
+![截图2](https://raw.githubusercontent.com/JS1Lan/Lanote/main/docs/assets/screenshots/play.png)
 
 ## 本仓库改动（v1.1.2）
 
