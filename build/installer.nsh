@@ -980,9 +980,11 @@ Function un.LanoteValidateUninstallDir
   Call un.LanoteInstallDirLooksOwned
   Pop $0
   ${If} $0 != "1"
+    IfFileExists "$INSTDIR\${PRODUCT_FILENAME}.exe" owned 0
     MessageBox MB_OK|MB_ICONSTOP "无法确认当前目录属于 Mineradio，已阻止卸载以避免误删其它文件。$\r$\n$\r$\n当前路径：$INSTDIR"
     SetErrorLevel 2
     Quit
+    owned:
   ${EndIf}
 FunctionEnd
 

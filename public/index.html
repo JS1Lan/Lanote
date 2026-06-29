@@ -55,7 +55,7 @@ body.desktop-shell #desktop-titlebar::after{content:none}
 .desktop-mode-btn.on::before{background:#ff5367;box-shadow:0 0 16px rgba(255,83,103,.56)}
 body.desktop-shell #desktop-titlebar #visual-guide-btn,
 body.desktop-shell #desktop-titlebar #settings-btn{width:30px;height:30px;border-radius:10px;box-shadow:none;background:rgba(4,8,10,.42);border-color:rgba(255,255,255,.08);color:rgba(224,250,255,.70);backdrop-filter:none;-webkit-backdrop-filter:none}
-body.desktop-shell #desktop-titlebar #update-entry{display:none!important}
+body.desktop-shell #desktop-titlebar #update-entry{display:flex}
 body.desktop-shell #desktop-titlebar #visual-guide-btn{font-size:14px}
 body.desktop-shell #desktop-titlebar #update-entry.available{display:flex}
 body.desktop-shell #desktop-titlebar #update-entry svg{width:18px;height:18px}
@@ -201,6 +201,7 @@ body.empty-home-active.diy-mode #search-area:not(.has-results) #search-mode-tabs
 .tag-source{display:inline-flex;align-items:center;height:16px;padding:0 6px;border-radius:999px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);font-size:8.5px;font-weight:800;letter-spacing:.55px;line-height:1;flex-shrink:0}
 .tag-source.netease{color:#ffd8dd;border-color:rgba(217,91,103,.30);background:rgba(217,91,103,.075)}
 .tag-source.qq{color:#f0ffc8;border-color:rgba(191,214,107,.30);background:rgba(191,214,107,.075)}
+.tag-source.kugou{color:#a0e7ff;border-color:rgba(0,191,255,.30);background:rgba(0,191,255,.075)}
 .search-result.qq-source:hover{background:rgba(191,214,107,.052)}
 .search-result.netease-source:hover{background:rgba(217,91,103,.045)}
 .podcast-result-head{display:flex;align-items:center;gap:10px;padding:11px 13px 9px;border-bottom:1px solid rgba(255,255,255,.04);background:rgba(255,255,255,.025)}
@@ -249,23 +250,27 @@ body.home-wallpaper-preview #canvas-container{filter:none}
 .home-hero{position:relative;grid-row:1 / span 2;min-height:438px;padding:28px;border-radius:28px;border:1px solid color-mix(in srgb,var(--home-accent) 22%,rgba(255,255,255,.085));background:linear-gradient(145deg,rgba(33,29,34,.64),rgba(9,10,14,.76) 48%,rgba(17,20,25,.70));box-shadow:0 28px 90px rgba(0,0,0,.34),0 0 0 1px color-mix(in srgb,var(--home-accent) 7%,transparent),inset 0 1px 0 rgba(255,255,255,.065);backdrop-filter:blur(30px) saturate(1.16);-webkit-backdrop-filter:blur(30px) saturate(1.16);overflow:hidden}
 .home-hero::before{content:'';position:absolute;inset:0;background:linear-gradient(118deg,rgba(255,255,255,.060),transparent 24%,rgba(255,83,103,.070) 54%,rgba(122,215,194,.055) 82%,transparent 100%),linear-gradient(90deg,rgba(255,255,255,.032) 0 1px,transparent 1px 48px),linear-gradient(0deg,rgba(255,255,255,.024) 0 1px,transparent 1px 44px);opacity:.72;pointer-events:none}
 .home-hero::after{content:'';position:absolute;left:28px;right:28px;bottom:22px;height:1px;background:linear-gradient(90deg,color-mix(in srgb,var(--home-accent) 0%,transparent),color-mix(in srgb,var(--home-accent) 52%,transparent),rgba(36,66,255,.24),rgba(248,244,238,.18),color-mix(in srgb,var(--home-accent) 0%,transparent));opacity:.82;pointer-events:none}
-.home-hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-start;gap:10px;padding:28px 32px}
+.home-hero-inner{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-start;gap:var(--hero-gap,10px);padding:28px 32px}
 .hero-clock-row{display:flex;align-items:baseline;gap:16px}
-.hero-clock-time{font-size:48px;font-weight:200;color:rgba(255,255,255,.78);font-variant-numeric:tabular-nums;letter-spacing:.05em;line-height:1}
+.hero-source-switch{display:flex;align-items:center;gap:2px;margin-left:auto;padding:2px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06)}
+.hero-source-btn{height:22px;padding:0 8px;border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.32);font-family:inherit;font-size:9.5px;font-weight:700;letter-spacing:.5px;cursor:pointer;transition:all .2s}
+.hero-source-btn:hover{color:rgba(255,255,255,.6)}
+.hero-source-btn.active{background:rgba(0,245,212,.14);color:rgba(0,245,212,.85);box-shadow:0 0 8px rgba(0,245,212,.08)}
+.hero-clock-time{font-size:var(--hero-clock-size,48px);font-weight:200;color:var(--hero-clock-color,rgba(255,255,255,.78));font-family:var(--hero-clock-font,inherit);font-variant-numeric:tabular-nums;letter-spacing:.05em;line-height:1}
 .hero-clock-div{width:1px;height:28px;background:rgba(255,255,255,.1);align-self:center}
-.hero-clock-date{font-size:12px;color:rgba(255,255,255,.28);letter-spacing:.06em}
-.hero-greet-phrase{font-size:20px;font-weight:360;color:rgba(255,255,255,.55);letter-spacing:.02em}
-.hero-greet-phrase em{font-style:normal;color:rgba(244,210,138,.65)}
-.hero-quip{font-size:12px;color:rgba(255,255,255,.28);letter-spacing:.04em;margin-top:2px}
-.hero-quote{font-size:18px;line-height:1.8;color:rgba(255,255,255,.34);font-style:italic;max-width:460px;letter-spacing:.03em;transition:opacity .6s;margin-top:auto;padding-bottom:6px}
-.hero-quote cite{display:block;font-size:12px;color:rgba(255,255,255,.18);font-style:normal;letter-spacing:.04em;margin-top:6px}
+.hero-clock-date{font-size:var(--hero-date-size,12px);color:var(--hero-date-color,rgba(255,255,255,.28));letter-spacing:.06em}
+.hero-greet-phrase{font-size:var(--hero-greet-size,20px);font-weight:360;color:var(--hero-greet-color,rgba(255,255,255,.55));font-family:var(--hero-greet-font,inherit);letter-spacing:.02em}
+.hero-greet-phrase em{font-style:normal;color:var(--hero-greet-em-color,rgba(244,210,138,.65))}
+.hero-quip{font-size:var(--hero-quip-size,12px);color:var(--hero-quip-color,rgba(255,255,255,.28));font-family:var(--hero-quip-font,inherit);letter-spacing:.04em;margin-top:2px}
+.hero-quote{font-size:var(--hero-quote-size,18px);line-height:1.8;color:var(--hero-quote-color,rgba(255,255,255,.34));font-family:var(--hero-quote-font,inherit);font-style:italic;max-width:460px;letter-spacing:.03em;transition:opacity .6s;margin-top:auto;padding-bottom:6px}
+.hero-quote cite{display:block;font-size:var(--hero-cite-size,12px);color:var(--hero-cite-color,rgba(255,255,255,.18));font-style:normal;letter-spacing:.04em;margin-top:6px}
 .home-hero-inner.home-construction-inner{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:18px;padding:4px 2px;min-height:100%}
 .home-kicker{grid-column:1;font-size:10px;font-weight:780;letter-spacing:.18em;color:color-mix(in srgb,var(--home-accent) 62%,rgba(255,255,255,.36));text-transform:uppercase;margin-bottom:14px}
 .home-title{grid-column:1;font-size:clamp(34px,4.6vw,58px);line-height:.98;font-weight:760;letter-spacing:0;color:rgba(255,255,255,.98);max-width:380px;text-shadow:0 10px 36px rgba(0,0,0,.26)}
 .home-title.home-construction-title{max-width:620px;font-size:clamp(32px,4.5vw,64px);line-height:1.08}
 .home-sub{grid-column:1;margin-top:14px;font-size:13px;line-height:1.62;color:rgba(255,255,255,.62);max-width:348px}
 .home-weather-meta{grid-column:1;display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.home-weather-pill{height:28px;padding:0 10px;border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.050);display:inline-flex;align-items:center;color:rgba(255,255,255,.70);font-size:11px;font-weight:680}
+.home-weather-pill{height:var(--hero-weather-pill-h,28px);padding:0 var(--hero-weather-pill-p,10px);border-radius:999px;border:1px solid rgba(255,255,255,.10);background:rgba(255,255,255,.050);display:inline-flex;align-items:center;color:rgba(255,255,255,.70);font-size:var(--hero-weather-size,11px);font-weight:680}
 .home-quick-row{grid-column:1;position:relative;z-index:3;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
 .home-chip{height:32px;padding:0 13px;border-radius:999px;border:1px solid rgba(255,255,255,.11);background:rgba(255,255,255,.060);color:rgba(255,255,255,.76);font-family:inherit;font-size:11.5px;font-weight:680;cursor:pointer;transition:background .18s,border-color .18s,color .18s,transform .18s,box-shadow .18s}
 .home-chip:hover{background:color-mix(in srgb,var(--home-accent) 10%,transparent);border-color:color-mix(in srgb,var(--home-accent) 38%,rgba(255,255,255,.10));color:#fff;box-shadow:0 10px 26px color-mix(in srgb,var(--home-accent) 8%,transparent);transform:translateY(-1px)}
@@ -384,12 +389,9 @@ body.desktop-shell .empty-home-shell{min-height:0}
 body.desktop-shell .home-hero{min-height:390px}
 body.desktop-shell .home-grid{grid-row:1 / span 2;grid-template-rows:repeat(3,1fr)}
 body.desktop-shell .home-card{min-height:0}
-body.desktop-shell .hero-clock-time{font-size:clamp(52px,5vw,72px)}
-body.desktop-shell .hero-greet-phrase{font-size:clamp(17px,1.5vw,22px)}
 body.desktop-shell .home-card-title{font-size:clamp(16px,1.3vw,20px)}
 body.desktop-shell .home-card-sub{font-size:clamp(10.5px,.85vw,12.5px)}
 body.desktop-shell .home-card-label{font-size:clamp(9px,.7vw,10.5px)}
-body.desktop-shell .home-weather-pill{font-size:clamp(10px,.75vw,12px)}
 body.desktop-shell .home-tile{min-height:154px}
 body.desktop-shell .home-tile-cover{height:84px}
 body.desktop-shell.desktop-fullscreen #empty-home,html:fullscreen body.desktop-shell #empty-home{top:0;bottom:0;width:min(1480px,calc(100vw - 96px));max-width:1480px;max-height:860px;margin:auto;transform:translateX(-50%)}
@@ -397,19 +399,14 @@ body.desktop-shell.desktop-fullscreen .empty-home-shell,html:fullscreen body.des
 body.desktop-shell.desktop-fullscreen .home-mosaic,html:fullscreen body.desktop-shell .home-mosaic{height:clamp(146px,16vh,208px)}
 body.desktop-shell.desktop-fullscreen .home-mosaic-cell.has-cover,html:fullscreen body.desktop-shell .home-mosaic-cell.has-cover{background-size:contain;background-repeat:no-repeat;background-color:rgba(8,10,14,.54)}
 body.desktop-shell.desktop-fullscreen .home-hero,html:fullscreen body.desktop-shell .home-hero{min-height:clamp(360px,40vh,520px)}
-body.desktop-shell.desktop-fullscreen .hero-clock-time,html:fullscreen body.desktop-shell .hero-clock-time{font-size:clamp(46px,5vw,64px)!important}
-body.desktop-shell.desktop-fullscreen .hero-clock-date,html:fullscreen body.desktop-shell .hero-clock-date{font-size:clamp(12px,1.1vw,15px)}
 body.desktop-shell.desktop-fullscreen .hero-clock-div,html:fullscreen body.desktop-shell .hero-clock-div{height:clamp(26px,3vh,38px)}
-body.desktop-shell.desktop-fullscreen .hero-greet-phrase,html:fullscreen body.desktop-shell .hero-greet-phrase{font-size:clamp(18px,1.6vw,26px)}
-body.desktop-shell.desktop-fullscreen .hero-quip,html:fullscreen body.desktop-shell .hero-quip{font-size:clamp(11px,1vw,14px)}
-body.desktop-shell.desktop-fullscreen .hero-quote,html:fullscreen body.desktop-shell .hero-quote{font-size:clamp(17px,1.5vw,24px);max-width:clamp(400px,40vw,560px)}
+body.desktop-shell.desktop-fullscreen .hero-quote,html:fullscreen body.desktop-shell .hero-quote{max-width:clamp(400px,40vw,560px)}
 body.desktop-shell.desktop-fullscreen .home-card-title,html:fullscreen body.desktop-shell .home-card-title{font-size:clamp(17px,1.4vw,22px)}
 body.desktop-shell.desktop-fullscreen .home-card-sub,html:fullscreen body.desktop-shell .home-card-sub{font-size:clamp(10.5px,.9vw,13px)}
 body.desktop-shell.desktop-fullscreen .home-card-label,html:fullscreen body.desktop-shell .home-card-label{font-size:clamp(9px,.7vw,11px)}
-body.desktop-shell.desktop-fullscreen .home-weather-pill,html:fullscreen body.desktop-shell .home-weather-pill{font-size:clamp(10px,.8vw,12px)}
 body.desktop-shell.desktop-fullscreen #home-clock span:first-child,html:fullscreen body.desktop-shell #home-clock span:first-child{font-size:clamp(26px,2.6vw,38px)!important}
 body.desktop-shell.desktop-fullscreen #home-clock span:last-child,html:fullscreen body.desktop-shell #home-clock span:last-child{font-size:clamp(12px,1.1vw,15px)!important}
-body.desktop-shell.desktop-fullscreen #comment-bubbles .comment-bubble,html:fullscreen body.desktop-shell #comment-bubbles .comment-bubble{font-size:clamp(12px,1.1vw,16px);max-width:clamp(280px,26vw,420px);padding:clamp(10px,.9vw,18px) clamp(16px,1.4vw,26px);border-radius:clamp(14px,1.6vw,22px)}
+body.desktop-shell.desktop-fullscreen #comment-bubbles .comment-bubble,html:fullscreen body.desktop-shell #comment-bubbles .comment-bubble{padding:clamp(10px,.9vw,18px) clamp(16px,1.4vw,26px);border-radius:clamp(14px,1.6vw,22px)}
 @media (max-height:760px){
   body.desktop-shell #empty-home{top:118px;bottom:34px}
   body.desktop-shell .home-hero{min-height:330px;padding:22px}
@@ -424,7 +421,6 @@ body.desktop-shell.desktop-fullscreen #comment-bubbles .comment-bubble,html:full
   body.desktop-shell .empty-home-shell{grid-template-columns:minmax(300px,.88fr) minmax(430px,1.12fr);gap:12px}
   body.desktop-shell .home-hero{padding:22px}
   body.desktop-shell .home-hero-inner{padding:20px 18px;gap:16px}
-  body.desktop-shell .hero-clock-time{font-size:58px}
   body.desktop-shell .hero-clock-divider{height:38px}
   body.desktop-shell .home-title{font-size:clamp(30px,4vw,48px);max-width:340px}
   body.desktop-shell .home-sub{font-size:12.5px;line-height:1.5;max-width:314px}
@@ -463,9 +459,7 @@ body.desktop-shell.desktop-fullscreen #comment-bubbles .comment-bubble,html:full
 @media (max-width:840px){
   body.desktop-shell .empty-home-shell{grid-template-columns:minmax(250px,.86fr) minmax(360px,1.14fr)}
   body.desktop-shell .home-hero-inner{padding:16px 12px;gap:12px}
-  body.desktop-shell .hero-clock-time{font-size:46px}
   body.desktop-shell .hero-clock-divider{height:30px}
-  body.desktop-shell .hero-greet-phrase{font-size:16px}
   body.desktop-shell .home-visual{display:none}
   body.desktop-shell .home-mosaic{height:112px;min-height:100px}
   body.desktop-shell .home-card{min-height:0}
@@ -504,6 +498,9 @@ body.desktop-shell.empty-home-active.controls-visible #empty-home{bottom:126px}
 .update-entry.available{display:flex}
 .update-entry:hover{color:#fff8df;border-color:rgba(244,210,138,.58);background:radial-gradient(circle at 50% 34%,rgba(244,210,138,.22),rgba(255,255,255,.045) 58%,rgba(157,184,207,.028));box-shadow:0 16px 44px rgba(0,0,0,.34),0 0 26px rgba(244,210,138,.18),0 0 18px rgba(157,184,207,.08),inset 0 1px 0 rgba(255,255,255,.13)}
 .update-entry svg{width:23px;height:23px;display:block;overflow:visible}
+.update-entry.available{display:flex}
+.update-entry.has-update::after{content:'';position:absolute;top:4px;right:4px;width:8px;height:8px;border-radius:50%;background:#ff5367;box-shadow:0 0 6px rgba(255,83,103,.6);animation:update-dot-pulse 2s ease-in-out infinite}
+@keyframes update-dot-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.5)}}
 .update-ring{stroke:rgba(255,226,162,.84);stroke-width:1.65;fill:none;stroke-linecap:round;stroke-dasharray:48 18;transform-origin:12px 12px;filter:drop-shadow(0 0 5px rgba(244,210,138,.18))}
 .update-arrow{stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}
 .update-entry::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(244,210,138,.15);opacity:.70;filter:blur(.2px);pointer-events:none}
@@ -838,11 +835,12 @@ body.login-guide-active #login-guide-canvas{opacity:1}
 .login-intro-title{font-size:18px;font-weight:760;line-height:1.18;color:rgba(255,255,255,.95);letter-spacing:0;margin-bottom:6px}
 .login-intro-body{font-size:12px;line-height:1.58;color:rgba(255,255,255,.56)}
 .login-platform-tabs,.user-platform-tabs{display:flex;gap:8px;margin:0 auto 18px;padding:4px;border-radius:999px;border:1px solid rgba(255,255,255,.075);background:rgba(255,255,255,.035)}
-.login-platform-tabs button,.user-platform-tabs button{flex:1;min-width:0;height:32px;border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.48);font-family:inherit;font-size:11.5px;font-weight:700;letter-spacing:.45px;cursor:pointer;transition:background .22s,color .22s,box-shadow .22s,transform .22s;white-space:nowrap}
+.login-platform-tabs button,.user-platform-tabs button{flex:1;min-width:56px;height:32px;border:0;border-radius:999px;background:transparent;color:rgba(255,255,255,.48);font-family:inherit;font-size:10.5px;font-weight:700;letter-spacing:.45px;cursor:pointer;transition:background .22s,color .22s,box-shadow .22s,transform .22s;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .login-platform-tabs button:hover,.user-platform-tabs button:hover{color:rgba(255,255,255,.82)}
 .login-platform-tabs button.active,.user-platform-tabs button.active{color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 10px 26px rgba(0,0,0,.20)}
 .login-platform-tabs button.netease.active,.user-platform-tabs button.netease.active{background:rgba(217,91,103,.16);color:#ffd7dc}
 .login-platform-tabs button.qq.active,.user-platform-tabs button.qq.active{background:rgba(191,214,107,.16);color:#f3ffd1}
+.login-platform-tabs button.kugou.active,.user-platform-tabs button.kugou.active{background:rgba(0,191,255,.14);color:#a0e7ff}
 .user-platform-tabs button.both.active{background:rgba(244,210,138,.14);color:#fff0bf}
 .qr-shell{position:relative;width:200px;height:200px;margin:0 auto 16px;border-radius:16px}
 #qr-img{width:200px;height:200px;background:#fff;border-radius:14px;margin:0 auto 16px;display:block;padding:10px;box-shadow:0 16px 42px rgba(0,0,0,.32),0 0 0 1px rgba(244,210,138,.18)}
@@ -855,6 +853,11 @@ body.login-guide-active #login-guide-canvas{opacity:1}
 .qq-login-mark:hover{transform:translateY(-1px);border-color:rgba(191,214,107,.54);background:linear-gradient(135deg,rgba(191,214,107,.16),rgba(157,184,207,.08));box-shadow:inset 0 1px 0 rgba(255,255,255,.10),0 16px 38px rgba(0,0,0,.22)}
 .qr-shell.netease-preview .qq-login-mark{border-color:rgba(217,91,103,.34);color:#ffd7dc;background:linear-gradient(135deg,rgba(217,91,103,.10),rgba(244,210,138,.05))}
 .qr-shell.netease-preview .qq-login-mark:hover{border-color:rgba(217,91,103,.58);background:linear-gradient(135deg,rgba(217,91,103,.16),rgba(244,210,138,.08))}
+.qr-shell.kugou-preview .kugou-login-mark{display:flex;border-color:rgba(0,191,255,.34);color:#a0e7ff;background:linear-gradient(135deg,rgba(0,191,255,.10),rgba(157,184,207,.05))}
+.qr-shell.kugou-preview .kugou-login-mark:hover{border-color:rgba(0,191,255,.58);background:linear-gradient(135deg,rgba(0,191,255,.16),rgba(157,184,207,.08))}
+.qr-shell.kugou-preview .qq-login-mark:not(.kugou-login-mark){display:none}
+.qr-shell.kugou-preview #qr-img{display:none}
+.qr-shell.qq-preview .kugou-login-mark,.qr-shell.netease-preview .kugou-login-mark{display:none}
 .qq-login-mark:disabled{opacity:.66;cursor:wait;transform:none}
 .qq-login-mark b{font-size:22px;letter-spacing:.08em}
 .qq-login-mark span{font-size:10.5px;color:rgba(255,255,255,.46);letter-spacing:.5px}
@@ -1368,7 +1371,9 @@ body.desktop-shell.diy-mode #bottom-bar.stage-mode{left:50%;width:min(1080px,cal
 .pl-detail-row:hover{background:rgba(255,255,255,.055)}
 .pl-detail-count{margin-left:auto;color:rgba(255,255,255,.38);font-size:10.5px;white-space:nowrap}
 .pl-detail-progress{height:28px;display:flex;align-items:center;justify-content:center;color:rgba(255,255,255,.34);font-size:10.5px}
-.pl-detail-load-more{width:100%;height:42px;margin:10px 0 14px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:760}
+.pl-detail-load-more,.queue-load-more{width:100%;height:42px;margin:10px 0 14px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:760}
+.queue-current-outside{padding:10px 14px;margin:0 0 8px;text-align:center;font-size:11.5px;color:rgba(0,245,212,.55);background:rgba(0,245,212,.06);border-radius:10px;cursor:pointer;transition:background .18s,color .18s}
+.queue-current-outside:hover{background:rgba(0,245,212,.12);color:rgba(0,245,212,.8)}
 .pl-detail-row img{width:34px;height:34px;border-radius:7px;object-fit:cover;background:rgba(255,255,255,.06);flex:0 0 auto}
 .pl-detail-row-title{font-size:11.5px;font-weight:650;color:rgba(255,255,255,.86);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .pl-detail-row-artist{display:inline-flex;max-width:100%;border:0;background:transparent;color:rgba(var(--fc-accent-rgb),.68);font:500 10.5px var(--font-sans);padding:0;margin-top:2px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -1949,6 +1954,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
       <button id="search-mode-song" class="active" type="button" onclick="setSearchMode('song')" aria-selected="true">All</button>
       <button id="search-mode-netease" type="button" onclick="setSearchMode('netease')" aria-selected="false">NE</button>
       <button id="search-mode-qq" type="button" onclick="setSearchMode('qq')" aria-selected="false">QQ</button>
+      <button id="search-mode-kugou" type="button" onclick="setSearchMode('kugou')" aria-selected="false">KG</button>
       <button id="search-mode-podcast" type="button" onclick="setSearchMode('podcast')" aria-selected="false">Podcast</button>
     </div>
     <div id="search-results"></div>
@@ -1975,6 +1981,11 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
           <span class="hero-clock-time" id="hero-clock-time">14:35</span>
           <div class="hero-clock-div"></div>
           <span class="hero-clock-date" id="hero-clock-date">6月28日 周六</span>
+          <div class="hero-source-switch" id="hero-source-switch">
+            <button class="hero-source-btn active" data-source="netease" onclick="switchHomeSource('netease')">NE</button>
+            <button class="hero-source-btn" data-source="qq" onclick="switchHomeSource('qq')">QQ</button>
+            <button class="hero-source-btn" data-source="kugou" onclick="switchHomeSource('kugou')">KG</button>
+          </div>
         </div>
         <div class="hero-greet-phrase" id="hero-greet-phrase">下午好，<em>晴朗的一天</em></div>
         <div class="home-weather-meta" id="home-weather-meta"></div>
@@ -1987,7 +1998,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
       <button class="home-card" data-home-tone="library" type="button" onclick="openHomeLibrary()">
         <div class="home-card-label">Library</div>
         <div class="home-card-title" id="home-weather-card-title">我的歌单</div>
-        <div class="home-card-sub" id="home-weather-card-sub">打开左侧歌单库</div>
+        <div class="home-card-sub" id="home-weather-card-sub">网易云/QQ/酷狗 v1.1.2-dev</div>
         <div class="home-card-art" id="home-weather-art"></div>
       </button>
       <button class="home-card" data-home-tone="mix" type="button" onclick="playHomeSong(0)">
@@ -2002,21 +2013,23 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
         <div class="home-card-sub" id="home-private-sub">从推荐和歌单随机开播</div>
         <div class="home-card-art" id="home-private-art"></div>
       </button>
-      <button class="home-card" data-home-tone="mix" type="button" onclick="playHomeRecent()">
+      <button class="home-card" data-home-tone="mix" type="button" onclick="if(homeSource==='kugou')searchAndPlayKugou('飙升 排行 热门');else if(homeSource==='qq'){var qqPl=homeDiscoverState.qqPlaylists&&homeDiscoverState.qqPlaylists[1];if(qqPl)loadQQPlaylistToQueue(qqPl.id,qqPl.name);else loadQQToplistToQueue(4,'流行指数榜')}else playHomeRecent()">
         <div class="home-card-label">Continue</div>
         <div class="home-card-title" id="home-continue-title">继续听</div>
         <div class="home-card-sub" id="home-continue-sub">最近播放会出现在这里</div>
         <div class="home-card-art" id="home-continue-art"></div>
       </button>
-      <button class="home-card" data-home-tone="mix" type="button" onclick="runHomeSearch('华语新歌')">
+      <button class="home-card" data-home-tone="mix" type="button" onclick="if(homeSource==='kugou')searchAndPlayKugou('华语 经典 老歌');else if(homeSource==='qq')loadQQToplistToQueue(62,'飙升榜');else startHomeNewSongs()">
         <div class="home-card-label">Discover</div>
-        <div class="home-card-title">新歌速递</div>
-        <div class="home-card-sub">发现最新华语新歌</div>
+        <div class="home-card-title" id="home-library-title">新歌速递</div>
+        <div class="home-card-sub" id="home-library-sub">发现最新华语新歌</div>
+        <div class="home-card-art" id="home-library-art"></div>
       </button>
       <button class="home-card" data-home-tone="playlist" type="button" onclick="startWeatherRadio({preserveHomeState:true})">
         <div class="home-card-label">Weather</div>
-        <div class="home-card-title">天气电台</div>
-        <div class="home-card-sub">根据天气推荐歌单</div>
+        <div class="home-card-title" id="home-weather-radio-title">天气电台</div>
+        <div class="home-card-sub" id="home-weather-radio-sub">根据天气推荐歌单</div>
+        <div class="home-card-art" id="home-weather-radio-art"></div>
       </button>
     </div>
   </div>
@@ -2028,8 +2041,8 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
   <button id="home-btn" class="icon-btn" onclick="goHome()" title="回到 Home" aria-label="回到 Home">
     <svg width="19" height="19" fill="none" stroke="currentColor" stroke-width="1.9" viewBox="0 0 24 24"><path d="M3 10.8 12 3l9 7.8"/><path d="M5 10v10h14V10"/><path d="M9.5 20v-5h5v5"/></svg>
   </button>
-  <span id="city-switch-btn" onclick="changeWeatherCity()" title="切换城市" style="display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:999px;border:1px solid rgba(0,245,212,.2);background:rgba(0,245,212,.06);color:rgba(0,245,212,.75);font-size:11px;cursor:pointer;white-space:nowrap;font-weight:600">📍 <span id="city-switch-label">上海</span> ▾</span>
-  <button id="user-btn" class="icon-btn logged-out" onclick="onUserBtnClick()" title="登录账号">
+  <span id="city-switch-btn" onclick="changeWeatherCity()" title="切换城市" style="display:inline-flex;align-items:center;gap:4px;padding:6px 12px;border-radius:999px;border:1px solid rgba(0,245,212,.2);background:rgba(0,245,212,.06);color:rgba(0,245,212,.75);font-size:11px;cursor:pointer;white-space:nowrap;font-weight:600"><span id="city-switch-label">上海</span> ▾</span>
+  <button id="user-btn" class="icon-btn logged-out" onclick="onUserBtnClick()" title="登录网易云/QQ/酷狗">
     <span class="login-word">登录</span>
   </button>
 </div>
@@ -2213,6 +2226,73 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
     </div>
   </div>
 
+  <div class="fx-fold" id="fx-bubble-fold">
+    <div class="fx-fold-head" onclick="document.getElementById('fx-bubble-fold').classList.toggle('open')">
+      <span class="fx-fold-title"><strong>弹幕</strong><small>大小 / 颜色 / 样式</small></span><span class="arrow">▶</span>
+    </div>
+    <div class="fx-fold-body">
+      <div class="fx-section-label">外观</div>
+      <div class="fx-slider"><label>气泡大小</label><input id="fx-bubblesize" type="range" min="0.6" max="2.5" step="0.01"><output></output></div>
+      <div class="fx-slider"><label>气泡透明度</label><input id="fx-bubbleopacity" type="range" min="0.2" max="1" step="0.01"><output></output></div>
+      <div class="fx-slider"><label>气泡圆角</label><input id="fx-bubbleradius" type="range" min="4" max="60" step="1"><output></output></div>
+      <div class="fx-slider"><label>最大宽度</label><input id="fx-bubblemaxwidth" type="range" min="200" max="600" step="10"><output></output></div>
+      <div class="fx-slider"><label>停留时长</label><input id="fx-bubbleduration" type="range" min="12" max="30" step="1"><output></output></div>
+      <div class="fx-slider"><label>弹幕数量</label><input id="fx-bubblecount" type="range" min="10" max="50" step="5"><output></output></div>
+      <div class="fx-slider"><label>同时显示</label><input id="fx-bubbleconcurrent" type="range" min="1" max="10" step="1"><output></output></div>
+      <div class="fx-section-label">水平位置</div>
+      <div class="fx-seg" id="bubble-halign-seg">
+        <button type="button" data-halign="free" onclick="setBubbleHAlign('free')">自由飘散</button>
+        <button type="button" data-halign="left" onclick="setBubbleHAlign('left')">偏左</button>
+        <button type="button" data-halign="center" onclick="setBubbleHAlign('center')">居中</button>
+        <button type="button" data-halign="right" onclick="setBubbleHAlign('right')">偏右</button>
+      </div>
+      <div class="fx-section-label">垂直方向</div>
+      <div class="fx-seg" id="bubble-valign-seg">
+        <button type="button" data-valign="bottom-up" onclick="setBubbleVAlign('bottom-up')">底部直上</button>
+        <button type="button" data-valign="top-down" onclick="setBubbleVAlign('top-down')">顶部直下</button>
+        <button type="button" data-valign="middle-up" onclick="setBubbleVAlign('middle-up')">中部直上</button>
+        <button type="button" data-valign="middle-down" onclick="setBubbleVAlign('middle-down')">中部直下</button>
+      </div>
+      <div class="fx-section-label">行程范围</div>
+      <div class="fx-seg" id="bubble-travel-seg">
+        <button type="button" data-travel="full" onclick="setBubbleTravel('full')">全屏穿越</button>
+        <button type="button" data-travel="half" onclick="setBubbleTravel('half')">半程淡出</button>
+      </div>
+      <div class="fx-section-label">气泡背景色</div>
+      <div class="lyric-color-row">
+        <input type="color" id="bubble-bg-picker" class="lyric-color-picker" value="#0e1014" title="气泡背景取色">
+        <div class="lyric-color-value" id="bubble-bg-value">rgba(14,16,20,0.82)</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="resetBubbleBgColor()" title="恢复默认">默认</button>
+      </div>
+      <div class="fx-section-label">发言人颜色</div>
+      <div class="lyric-color-row">
+        <input type="color" id="bubble-user-picker" class="lyric-color-picker" value="#00f5d4" title="发言人取色">
+        <div class="lyric-color-value" id="bubble-user-value">rgba(0,245,212,0.5)</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="resetBubbleUserColor()" title="恢复默认">默认</button>
+      </div>
+      <div class="fx-section-label">弹幕文字色</div>
+      <div class="lyric-color-row">
+        <input type="color" id="bubble-text-picker" class="lyric-color-picker" value="#ffffff" title="文字取色">
+        <div class="lyric-color-value" id="bubble-text-value">rgba(255,255,255,0.7)</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="resetBubbleTextColor()" title="恢复默认">默认</button>
+      </div>
+      <div class="fx-section-label">字体</div>
+      <div class="fx-seg" id="bubble-font-seg">
+        <button type="button" data-font="sans" onclick="setBubbleFont('sans')">默认</button>
+        <button type="button" data-font="hei" onclick="setBubbleFont('hei')">黑体</button>
+        <button type="button" data-font="song" onclick="setBubbleFont('song')">宋体</button>
+        <button type="button" data-font="bold-song" onclick="setBubbleFont('bold-song')">粗宋</button>
+        <button type="button" data-font="stone-song" onclick="setBubbleFont('stone-song')">石印宋</button>
+        <button type="button" data-font="kai-song" onclick="setBubbleFont('kai-song')">楷宋</button>
+        <button type="button" data-font="serif-en" onclick="setBubbleFont('serif-en')">Serif</button>
+        <button type="button" data-font="gothic" onclick="setBubbleFont('gothic')">Gothic</button>
+        <button type="button" data-font="editorial" onclick="setBubbleFont('editorial')">Editorial</button>
+        <button type="button" data-font="humanist" onclick="setBubbleFont('humanist')">Humanist</button>
+      </div>
+      <button type="button" class="fx-mini-btn ghost" onclick="resetBubbleSettings()" style="width:100%;margin-top:12px;height:38px;font-size:11.5px">恢复弹幕默认</button>
+    </div>
+  </div>
+
   <div class="fx-fold" id="fx-stage-fold">
     <div class="fx-fold-head" onclick="document.getElementById('fx-stage-fold').classList.toggle('open')">
       <span class="fx-fold-title"><strong>3D / 手势</strong><small>歌单架 / 摄像头交互</small></span><span class="arrow">▶</span>
@@ -2259,6 +2339,104 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
         <button data-cam="off" class="active">关闭</button>
         <button data-cam="gesture">手势触碰</button>
       </div>
+    </div>
+  </div>
+
+  <div class="fx-fold" id="fx-hero-fold">
+    <div class="fx-fold-head" onclick="document.getElementById('fx-hero-fold').classList.toggle('open')">
+      <span class="fx-fold-title"><strong>首页</strong><small>时钟 / 问候 / 天气 / 歌词</small></span><span class="arrow">▶</span>
+    </div>
+    <div class="fx-fold-body">
+      <div class="fx-section-label">时钟 · 时间</div>
+      <div class="fx-slider"><label>时间字号</label><input id="fx-heroclocksize" type="range" min="28" max="72" step="1"><output></output></div>
+      <div class="lyric-color-row">
+        <input type="color" id="hero-clock-picker" class="lyric-color-picker" value="#c8d0d8">
+        <div class="lyric-color-value">时间颜色</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="fx.heroClockColor=fxDefaults.heroClockColor;applyHeroSettings()">默认</button>
+      </div>
+      <div class="fx-section-label">时钟 · 日期</div>
+      <div class="fx-slider"><label>日期字号</label><input id="fx-herodatesize" type="range" min="9" max="20" step="1"><output></output></div>
+      <div class="lyric-color-row">
+        <input type="color" id="hero-date-picker" class="lyric-color-picker" value="#787f87">
+        <div class="lyric-color-value">日期颜色</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="fx.heroDateColor=fxDefaults.heroDateColor;applyHeroSettings()">默认</button>
+      </div>
+      <div class="fx-section-label">时钟字体</div>
+      <div class="fx-seg" id="hero-clock-font-seg">
+        <button type="button" data-font="sans" onclick="setHeroFont('heroClockFont','sans')">默认</button>
+        <button type="button" data-font="hei" onclick="setHeroFont('heroClockFont','hei')">黑体</button>
+        <button type="button" data-font="song" onclick="setHeroFont('heroClockFont','song')">宋体</button>
+        <button type="button" data-font="kai-song" onclick="setHeroFont('heroClockFont','kai-song')">楷宋</button>
+        <button type="button" data-font="serif-en" onclick="setHeroFont('heroClockFont','serif-en')">Serif</button>
+        <button type="button" data-font="editorial" onclick="setHeroFont('heroClockFont','editorial')">Editorial</button>
+      </div>
+      <div class="fx-section-label">问候语</div>
+      <div class="fx-slider"><label>问候字号</label><input id="fx-herogreetsize" type="range" min="14" max="28" step="1"><output></output></div>
+      <div class="lyric-color-row">
+        <input type="color" id="hero-greet-picker" class="lyric-color-picker" value="#8c949c">
+        <div class="lyric-color-value">问候颜色</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="fx.heroGreetColor=fxDefaults.heroGreetColor;applyHeroSettings()">默认</button>
+      </div>
+      <div class="lyric-color-row">
+        <input type="color" id="hero-greet-em-picker" class="lyric-color-picker" value="#f4d28a">
+        <div class="lyric-color-value">高亮颜色</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="fx.heroGreetEmColor=fxDefaults.heroGreetEmColor;applyHeroSettings()">默认</button>
+      </div>
+      <div class="fx-section-label">问候字体</div>
+      <div class="fx-seg" id="hero-greet-font-seg">
+        <button type="button" data-font="sans" onclick="setHeroFont('heroGreetFont','sans')">默认</button>
+        <button type="button" data-font="hei" onclick="setHeroFont('heroGreetFont','hei')">黑体</button>
+        <button type="button" data-font="song" onclick="setHeroFont('heroGreetFont','song')">宋体</button>
+        <button type="button" data-font="kai-song" onclick="setHeroFont('heroGreetFont','kai-song')">楷宋</button>
+        <button type="button" data-font="serif-en" onclick="setHeroFont('heroGreetFont','serif-en')">Serif</button>
+      </div>
+      <div class="fx-section-label">天气信息</div>
+      <div class="fx-slider"><label>天气字号</label><input id="fx-heroweathersize" type="range" min="9" max="18" step="1"><output></output></div>
+      <div class="lyric-color-row">
+        <input type="color" id="hero-weather-picker" class="lyric-color-picker" value="#646c74">
+        <div class="lyric-color-value">天气颜色</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="fx.heroWeatherColor=fxDefaults.heroWeatherColor;applyHeroSettings()">默认</button>
+      </div>
+      <div class="fx-section-label">俏皮话</div>
+      <div class="fx-slider"><label>俏皮话字号</label><input id="fx-heroquipsize" type="range" min="9" max="18" step="1"><output></output></div>
+      <div class="lyric-color-row">
+        <input type="color" id="hero-quip-picker" class="lyric-color-picker" value="#484e56">
+        <div class="lyric-color-value">俏皮话颜色</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="fx.heroQuipColor=fxDefaults.heroQuipColor;applyHeroSettings()">默认</button>
+      </div>
+      <div class="fx-section-label">天气/俏皮话字体</div>
+      <div class="fx-seg" id="hero-info-font-seg">
+        <button type="button" data-font="sans" onclick="setHeroFont('heroInfoFont','sans')">默认</button>
+        <button type="button" data-font="hei" onclick="setHeroFont('heroInfoFont','hei')">黑体</button>
+        <button type="button" data-font="song" onclick="setHeroFont('heroInfoFont','song')">宋体</button>
+        <button type="button" data-font="kai-song" onclick="setHeroFont('heroInfoFont','kai-song')">楷宋</button>
+        <button type="button" data-font="serif-en" onclick="setHeroFont('heroInfoFont','serif-en')">Serif</button>
+      </div>
+      <div class="fx-section-label">歌词文案</div>
+      <div class="fx-slider"><label>歌词字号</label><input id="fx-heroquotesize" type="range" min="14" max="26" step="1"><output></output></div>
+      <div class="lyric-color-row">
+        <input type="color" id="hero-quote-picker" class="lyric-color-picker" value="#565e66">
+        <div class="lyric-color-value">歌词颜色</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="fx.heroQuoteColor=fxDefaults.heroQuoteColor;applyHeroSettings()">默认</button>
+      </div>
+      <div class="fx-slider"><label>出处字号</label><input id="fx-herocitesize" type="range" min="9" max="18" step="1"><output></output></div>
+      <div class="lyric-color-row">
+        <input type="color" id="hero-cite-picker" class="lyric-color-picker" value="#3a4046">
+        <div class="lyric-color-value">出处颜色</div>
+        <button class="fx-mini-btn ghost" type="button" onclick="fx.heroCiteColor=fxDefaults.heroCiteColor;applyHeroSettings()">默认</button>
+      </div>
+      <div class="fx-section-label">歌词字体</div>
+      <div class="fx-seg" id="hero-quote-font-seg">
+        <button type="button" data-font="sans" onclick="setHeroFont('heroQuoteFont','sans')">默认</button>
+        <button type="button" data-font="hei" onclick="setHeroFont('heroQuoteFont','hei')">黑体</button>
+        <button type="button" data-font="song" onclick="setHeroFont('heroQuoteFont','song')">宋体</button>
+        <button type="button" data-font="kai-song" onclick="setHeroFont('heroQuoteFont','kai-song')">楷宋</button>
+        <button type="button" data-font="serif-en" onclick="setHeroFont('heroQuoteFont','serif-en')">Serif</button>
+        <button type="button" data-font="editorial" onclick="setHeroFont('heroQuoteFont','editorial')">Editorial</button>
+      </div>
+      <div class="fx-section-label">布局</div>
+      <div class="fx-slider"><label>元素间距</label><input id="fx-herogap" type="range" min="4" max="24" step="1"><output></output></div>
+      <button type="button" class="fx-mini-btn ghost" onclick="resetHeroSettings()" style="width:100%;margin-top:12px;height:38px;font-size:11.5px">恢复首页默认</button>
     </div>
   </div>
 
@@ -2508,6 +2686,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
     <div class="login-platform-tabs" id="login-platform-tabs">
       <button id="login-provider-netease" class="netease active" type="button" onclick="setLoginProvider('netease')">网易云</button>
       <button id="login-provider-qq" class="qq" type="button" onclick="setLoginProvider('qq')">QQ 音乐</button>
+      <button id="login-provider-kugou" class="kugou" type="button" onclick="setLoginProvider('kugou')">酷狗音乐</button>
     </div>
     <div class="login-intro">
       <div class="login-intro-kicker">Mineradio</div>
@@ -2519,6 +2698,7 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
     <div id="qr-shell" class="qr-shell">
       <img id="qr-img" src="" alt="">
       <button id="qq-web-login-card" class="qq-login-mark" type="button" onclick="openProviderWebLogin()"><b>QQ</b><span>打开官方扫码窗口</span></button>
+      <button id="kugou-web-login-card" class="qq-login-mark kugou-login-mark" type="button" onclick="openKugouLogin()"><b>KG</b><span>打开官方登录窗口</span></button>
     </div>
     <div id="qr-status">正在生成二维码…</div>
     <div id="qq-cookie-panel" class="qq-cookie-panel">
@@ -2531,7 +2711,6 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
     <div class="btn-row">
       <button class="modal-btn" onclick="closeLoginModal()">取消</button>
       <button class="modal-btn" onclick="skipLoginAndFocusSearch()">先搜索一首歌</button>
-      <button id="login-both-btn" class="modal-btn" onclick="requestDualLoginMode()">我两个都要</button>
       <button id="qq-cookie-toggle-btn" class="modal-btn" type="button" onclick="toggleQQCookiePanel()">手动导入</button>
       <button id="refresh-qr-btn" class="modal-btn primary" onclick="refreshQr()">刷新二维码</button>
     </div>
@@ -2549,11 +2728,12 @@ html.control-glass-svg-ok #visual-guide-btn:hover{
     <div class="user-platform-tabs" id="user-platform-tabs">
       <button id="user-provider-netease" class="netease active" type="button" onclick="setActiveAccountProvider('netease')">网易云</button>
       <button id="user-provider-qq" class="qq" type="button" onclick="setActiveAccountProvider('qq')">QQ 音乐</button>
-      <button id="user-provider-both" class="both" type="button" onclick="enableDualAccountView()">我两个都要</button>
+      <button id="user-provider-kugou" class="kugou" type="button" onclick="setActiveAccountProvider('kugou')">酷狗</button>
     </div>
     <div class="account-modal-actions">
       <button id="account-add-netease" class="modal-btn" onclick="openProviderLogin('netease')">补登网易云</button>
       <button id="account-add-qq" class="modal-btn" onclick="openProviderLogin('qq')">补登 QQ 音乐</button>
+      <button id="account-add-kugou" class="modal-btn" onclick="openProviderLogin('kugou')">补登酷狗</button>
     </div>
     <div id="account-hint" class="account-hint">QQ 音乐真实登录暂未接入，当前先预览双平台账号交互。</div>
     <div class="btn-row">
@@ -2841,10 +3021,12 @@ function installStartupLongTaskObserver() {
 installStartupLongTaskObserver();
 var queueViewTab = 'queue', playMode = 'loop', miniQueueOpen = false;
 var miniQueueRenderSeq = 0, queueRenderSeq = 0, playlistRenderSeq = 0;
-var queuePanelDirty = false;
+var queuePanelDirty = false, lastPlayQueueRef = null;
 var PLAYLIST_PANEL_BATCH_SIZE = 28;
 var playlistPanelRenderLimit = PLAYLIST_PANEL_BATCH_SIZE;
 var playlistPanelLazyBound = false;
+var QUEUE_PANEL_BATCH_SIZE = 50;
+var queueRenderLimit = QUEUE_PANEL_BATCH_SIZE;
 var PLAYLIST_DETAIL_INITIAL_RENDER = 64;
 var PLAYLIST_DETAIL_BATCH_SIZE = 48;
 var smoothWheelScrollBound = false;
@@ -3305,6 +3487,33 @@ var fxDefaults = {
   performanceQuality: 'high',
   liveBackgroundKeep: false,
   cam: 'off',
+  // 弹幕 DIY
+  bubbleSize: 1.0,
+  bubbleBgColor: '#0e1014',
+  bubbleBgAlpha: 0.82,
+  bubbleOpacity: 1.0,
+  bubbleRadius: 16,
+  bubbleUserColor: '#00f5d4',
+  bubbleUserAlpha: 0.5,
+  bubbleTextColor: '#ffffff',
+  bubbleTextAlpha: 0.7,
+  bubbleFont: 'hei',
+  bubbleMaxWidth: 300,
+  bubbleDuration: 18,
+  bubbleCount: 30,
+  bubbleConcurrent: 3,
+  bubbleHAlign: 'free',
+  bubbleVAlign: 'bottom-up',
+  bubbleTravel: 'full',
+  heroClockSize: 48, heroClockColor: '#c8d0d8', heroClockFont: 'sans',
+  heroDateSize: 12, heroDateColor: '#5a6066',
+  heroGreetSize: 20, heroGreetColor: '#8c949c', heroGreetEmColor: 'rgba(244,210,138,.65)', heroGreetFont: 'sans',
+  heroWeatherSize: 11, heroWeatherColor: '#646c74',
+  heroQuipSize: 12, heroQuipColor: '#484e56',
+  heroInfoFont: 'sans',
+  heroQuoteSize: 18, heroQuoteColor: '#565e66', heroQuoteFont: 'hei',
+  heroCiteSize: 12, heroCiteColor: '#3a4046',
+  heroGap: 10,
 };
 var PACKAGED_DEFAULT_USER_FX_ARCHIVE_NAME = '默认测试';
 var PACKAGED_DEFAULT_USER_FX_ARCHIVE_EXPORTED_AT = 1782276031784;
@@ -3387,7 +3596,23 @@ var PACKAGED_DEFAULT_FX_SNAPSHOT = Object.freeze({
   shelfOpacity: 1,
   shelfBgOpacity: 0.9,
   shelfAccentColor: '#ffffff',
-  cam: 'off'
+  cam: 'off',
+  bubbleSize: 1.0,
+  bubbleBgColor: '#0e1014',
+  bubbleBgAlpha: 0.82,
+  bubbleOpacity: 1.0,
+  bubbleRadius: 16,
+  bubbleUserColor: '#00f5d4',
+  bubbleUserAlpha: 0.5,
+  bubbleTextColor: '#ffffff',
+  bubbleTextAlpha: 0.7,
+  bubbleFont: 'hei',
+  bubbleMaxWidth: 300,
+  bubbleDuration: 18,
+  bubbleCount: 30,
+  bubbleConcurrent: 3,
+  bubbleHAlign: 'free',
+  bubbleVAlign: 'bottom-up'
 });
 function clonePackagedDefaultFxSnapshot() {
   return Object.assign({}, PACKAGED_DEFAULT_FX_SNAPSHOT);
@@ -7665,7 +7890,44 @@ function readSavedLyricLayout() {
       shelfOpacity: clampRange(raw.shelfOpacity == null ? fxDefaults.shelfOpacity : Number(raw.shelfOpacity), 0.25, 1),
       shelfBgOpacity: clampRange(raw.shelfBgOpacity == null ? fxDefaults.shelfBgOpacity : Number(raw.shelfBgOpacity), 0.25, 0.98),
       shelfAccentColor: normalizeHexColor(raw.shelfAccentColor || fxDefaults.shelfAccentColor, fxDefaults.shelfAccentColor),
-      cam: /^(off|gesture)$/.test(String(raw.cam || '')) ? raw.cam : fxDefaults.cam
+      cam: /^(off|gesture)$/.test(String(raw.cam || '')) ? raw.cam : fxDefaults.cam,
+      bubbleSize: clampRange(Number(raw.bubbleSize) || fxDefaults.bubbleSize, 0.6, 1.8),
+      bubbleBgColor: normalizeHexColor(raw.bubbleBgColor || fxDefaults.bubbleBgColor, fxDefaults.bubbleBgColor),
+      bubbleBgAlpha: clampRange(raw.bubbleBgAlpha == null ? fxDefaults.bubbleBgAlpha : Number(raw.bubbleBgAlpha), 0.08, 1),
+      bubbleOpacity: clampRange(raw.bubbleOpacity == null ? fxDefaults.bubbleOpacity : Number(raw.bubbleOpacity), 0.2, 1),
+      bubbleRadius: clampRange(raw.bubbleRadius == null ? fxDefaults.bubbleRadius : Number(raw.bubbleRadius), 4, 60),
+      bubbleUserColor: normalizeHexColor(raw.bubbleUserColor || fxDefaults.bubbleUserColor, fxDefaults.bubbleUserColor),
+      bubbleUserAlpha: clampRange(raw.bubbleUserAlpha == null ? fxDefaults.bubbleUserAlpha : Number(raw.bubbleUserAlpha), 0.08, 1),
+      bubbleTextColor: normalizeHexColor(raw.bubbleTextColor || fxDefaults.bubbleTextColor, fxDefaults.bubbleTextColor),
+      bubbleTextAlpha: clampRange(raw.bubbleTextAlpha == null ? fxDefaults.bubbleTextAlpha : Number(raw.bubbleTextAlpha), 0.08, 1),
+      bubbleFont: normalizeLyricFontKey(raw.bubbleFont || fxDefaults.bubbleFont),
+      bubbleMaxWidth: clampRange(raw.bubbleMaxWidth == null ? fxDefaults.bubbleMaxWidth : Number(raw.bubbleMaxWidth), 200, 600),
+      bubbleDuration: clampRange(raw.bubbleDuration == null ? fxDefaults.bubbleDuration : Number(raw.bubbleDuration), 12, 30),
+      bubbleCount: clampRange(raw.bubbleCount == null ? fxDefaults.bubbleCount : Number(raw.bubbleCount), 10, 50),
+      bubbleConcurrent: clampRange(raw.bubbleConcurrent == null ? fxDefaults.bubbleConcurrent : Number(raw.bubbleConcurrent), 1, 10),
+      bubbleHAlign: /^(free|left|center|right)$/.test(String(raw.bubbleHAlign || '')) ? raw.bubbleHAlign : fxDefaults.bubbleHAlign,
+      bubbleVAlign: /^(bottom-up|top-down|middle-up|middle-down)$/.test(String(raw.bubbleVAlign || '')) ? raw.bubbleVAlign : fxDefaults.bubbleVAlign,
+      bubbleTravel: raw.bubbleTravel === 'half' ? 'half' : 'full',
+      heroClockSize: clampRange(raw.heroClockSize == null ? fxDefaults.heroClockSize : Number(raw.heroClockSize), 28, 72),
+      heroClockColor: normalizeHexColor(raw.heroClockColor || fxDefaults.heroClockColor, fxDefaults.heroClockColor),
+      heroClockFont: normalizeLyricFontKey(raw.heroClockFont || fxDefaults.heroClockFont),
+      heroDateSize: clampRange(raw.heroDateSize == null ? fxDefaults.heroDateSize : Number(raw.heroDateSize), 9, 20),
+      heroDateColor: normalizeHexColor(raw.heroDateColor || fxDefaults.heroDateColor, fxDefaults.heroDateColor),
+      heroGreetSize: clampRange(raw.heroGreetSize == null ? fxDefaults.heroGreetSize : Number(raw.heroGreetSize), 14, 28),
+      heroGreetColor: normalizeHexColor(raw.heroGreetColor || fxDefaults.heroGreetColor, fxDefaults.heroGreetColor),
+      heroGreetEmColor: String(raw.heroGreetEmColor || fxDefaults.heroGreetEmColor),
+      heroGreetFont: normalizeLyricFontKey(raw.heroGreetFont || fxDefaults.heroGreetFont),
+      heroWeatherSize: clampRange(raw.heroWeatherSize == null ? fxDefaults.heroWeatherSize : Number(raw.heroWeatherSize), 9, 18),
+      heroWeatherColor: normalizeHexColor(raw.heroWeatherColor || fxDefaults.heroWeatherColor, fxDefaults.heroWeatherColor),
+      heroQuipSize: clampRange(raw.heroQuipSize == null ? fxDefaults.heroQuipSize : Number(raw.heroQuipSize), 9, 18),
+      heroQuipColor: normalizeHexColor(raw.heroQuipColor || fxDefaults.heroQuipColor, fxDefaults.heroQuipColor),
+      heroInfoFont: normalizeLyricFontKey(raw.heroInfoFont || fxDefaults.heroInfoFont),
+      heroQuoteSize: clampRange(raw.heroQuoteSize == null ? fxDefaults.heroQuoteSize : Number(raw.heroQuoteSize), 14, 26),
+      heroQuoteColor: normalizeHexColor(raw.heroQuoteColor || fxDefaults.heroQuoteColor, fxDefaults.heroQuoteColor),
+      heroQuoteFont: normalizeLyricFontKey(raw.heroQuoteFont || fxDefaults.heroQuoteFont),
+      heroCiteSize: clampRange(raw.heroCiteSize == null ? fxDefaults.heroCiteSize : Number(raw.heroCiteSize), 9, 18),
+      heroCiteColor: normalizeHexColor(raw.heroCiteColor || fxDefaults.heroCiteColor, fxDefaults.heroCiteColor),
+      heroGap: clampRange(raw.heroGap == null ? fxDefaults.heroGap : Number(raw.heroGap), 4, 24)
     };
   } catch (e) {
     return {};
@@ -7755,7 +8017,44 @@ function saveLyricLayout() {
       shelfOpacity: clampRange(fx.shelfOpacity == null ? fxDefaults.shelfOpacity : Number(fx.shelfOpacity), 0.25, 1),
       shelfBgOpacity: clampRange(fx.shelfBgOpacity == null ? fxDefaults.shelfBgOpacity : Number(fx.shelfBgOpacity), 0.25, 0.98),
       shelfAccentColor: normalizeHexColor(fx.shelfAccentColor || fxDefaults.shelfAccentColor, fxDefaults.shelfAccentColor),
-      cam: /^(off|gesture)$/.test(String(fx.cam || '')) ? fx.cam : fxDefaults.cam
+      cam: /^(off|gesture)$/.test(String(fx.cam || '')) ? fx.cam : fxDefaults.cam,
+      bubbleSize: clampRange(Number(fx.bubbleSize) || fxDefaults.bubbleSize, 0.6, 2.5),
+      bubbleBgColor: normalizeHexColor(fx.bubbleBgColor || fxDefaults.bubbleBgColor, fxDefaults.bubbleBgColor),
+      bubbleBgAlpha: clampRange(fx.bubbleBgAlpha == null ? fxDefaults.bubbleBgAlpha : Number(fx.bubbleBgAlpha), 0.08, 1),
+      bubbleOpacity: clampRange(fx.bubbleOpacity == null ? fxDefaults.bubbleOpacity : Number(fx.bubbleOpacity), 0.2, 1),
+      bubbleRadius: clampRange(fx.bubbleRadius == null ? fxDefaults.bubbleRadius : Number(fx.bubbleRadius), 4, 60),
+      bubbleUserColor: normalizeHexColor(fx.bubbleUserColor || fxDefaults.bubbleUserColor, fxDefaults.bubbleUserColor),
+      bubbleUserAlpha: clampRange(fx.bubbleUserAlpha == null ? fxDefaults.bubbleUserAlpha : Number(fx.bubbleUserAlpha), 0.08, 1),
+      bubbleTextColor: normalizeHexColor(fx.bubbleTextColor || fxDefaults.bubbleTextColor, fxDefaults.bubbleTextColor),
+      bubbleTextAlpha: clampRange(fx.bubbleTextAlpha == null ? fxDefaults.bubbleTextAlpha : Number(fx.bubbleTextAlpha), 0.08, 1),
+      bubbleFont: normalizeLyricFontKey(fx.bubbleFont || fxDefaults.bubbleFont),
+      bubbleMaxWidth: clampRange(fx.bubbleMaxWidth == null ? fxDefaults.bubbleMaxWidth : Number(fx.bubbleMaxWidth), 200, 600),
+      bubbleDuration: clampRange(fx.bubbleDuration == null ? fxDefaults.bubbleDuration : Number(fx.bubbleDuration), 12, 30),
+      bubbleCount: clampRange(fx.bubbleCount == null ? fxDefaults.bubbleCount : Number(fx.bubbleCount), 10, 50),
+      bubbleConcurrent: clampRange(fx.bubbleConcurrent == null ? fxDefaults.bubbleConcurrent : Number(fx.bubbleConcurrent), 1, 10),
+      bubbleHAlign: /^(free|left|center|right)$/.test(String(fx.bubbleHAlign || '')) ? fx.bubbleHAlign : fxDefaults.bubbleHAlign,
+      bubbleVAlign: /^(bottom-up|top-down|middle-up|middle-down)$/.test(String(fx.bubbleVAlign || '')) ? fx.bubbleVAlign : fxDefaults.bubbleVAlign,
+      bubbleTravel: fx.bubbleTravel === 'half' ? 'half' : 'full',
+      heroClockSize: clampRange(fx.heroClockSize == null ? fxDefaults.heroClockSize : Number(fx.heroClockSize), 28, 72),
+      heroClockColor: normalizeHexColor(fx.heroClockColor || fxDefaults.heroClockColor, fxDefaults.heroClockColor),
+      heroClockFont: normalizeLyricFontKey(fx.heroClockFont || fxDefaults.heroClockFont),
+      heroDateSize: clampRange(fx.heroDateSize == null ? fxDefaults.heroDateSize : Number(fx.heroDateSize), 9, 20),
+      heroDateColor: normalizeHexColor(fx.heroDateColor || fxDefaults.heroDateColor, fxDefaults.heroDateColor),
+      heroGreetSize: clampRange(fx.heroGreetSize == null ? fxDefaults.heroGreetSize : Number(fx.heroGreetSize), 14, 28),
+      heroGreetColor: normalizeHexColor(fx.heroGreetColor || fxDefaults.heroGreetColor, fxDefaults.heroGreetColor),
+      heroGreetEmColor: String(fx.heroGreetEmColor || fxDefaults.heroGreetEmColor),
+      heroGreetFont: normalizeLyricFontKey(fx.heroGreetFont || fxDefaults.heroGreetFont),
+      heroWeatherSize: clampRange(fx.heroWeatherSize == null ? fxDefaults.heroWeatherSize : Number(fx.heroWeatherSize), 9, 18),
+      heroWeatherColor: normalizeHexColor(fx.heroWeatherColor || fxDefaults.heroWeatherColor, fxDefaults.heroWeatherColor),
+      heroQuipSize: clampRange(fx.heroQuipSize == null ? fxDefaults.heroQuipSize : Number(fx.heroQuipSize), 9, 18),
+      heroQuipColor: normalizeHexColor(fx.heroQuipColor || fxDefaults.heroQuipColor, fxDefaults.heroQuipColor),
+      heroInfoFont: normalizeLyricFontKey(fx.heroInfoFont || fxDefaults.heroInfoFont),
+      heroQuoteSize: clampRange(fx.heroQuoteSize == null ? fxDefaults.heroQuoteSize : Number(fx.heroQuoteSize), 14, 26),
+      heroQuoteColor: normalizeHexColor(fx.heroQuoteColor || fxDefaults.heroQuoteColor, fxDefaults.heroQuoteColor),
+      heroQuoteFont: normalizeLyricFontKey(fx.heroQuoteFont || fxDefaults.heroQuoteFont),
+      heroCiteSize: clampRange(fx.heroCiteSize == null ? fxDefaults.heroCiteSize : Number(fx.heroCiteSize), 9, 18),
+      heroCiteColor: normalizeHexColor(fx.heroCiteColor || fxDefaults.heroCiteColor, fxDefaults.heroCiteColor),
+      heroGap: clampRange(fx.heroGap == null ? fxDefaults.heroGap : Number(fx.heroGap), 4, 24)
     }));
   } catch (e) {}
 }
@@ -8115,6 +8414,17 @@ function applyColorLabValue(hex, silent) {
   else if (id === 'lyric-color-picker') setLyricColorCustom(hex, true);
   else if (id === 'lyric-highlight-picker') setLyricHighlightCustom(hex, true);
   else if (id === 'lyric-glow-picker') setLyricGlowCustom(hex, true);
+  else if (id === 'bubble-bg-picker') { fx.bubbleBgColor = hex; applyBubbleSettings(); }
+  else if (id === 'bubble-user-picker') { fx.bubbleUserColor = hex; applyBubbleSettings(); }
+  else if (id === 'bubble-text-picker') { fx.bubbleTextColor = hex; applyBubbleSettings(); }
+  else if (id === 'hero-clock-picker') { fx.heroClockColor = hex; applyHeroSettings(); }
+  else if (id === 'hero-date-picker') { fx.heroDateColor = hex; applyHeroSettings(); }
+  else if (id === 'hero-greet-picker') { fx.heroGreetColor = hex; applyHeroSettings(); }
+  else if (id === 'hero-greet-em-picker') { fx.heroGreetEmColor = hex; applyHeroSettings(); }
+  else if (id === 'hero-weather-picker') { fx.heroWeatherColor = hex; applyHeroSettings(); }
+  else if (id === 'hero-quip-picker') { fx.heroQuipColor = hex; applyHeroSettings(); }
+  else if (id === 'hero-quote-picker') { fx.heroQuoteColor = hex; applyHeroSettings(); }
+  else if (id === 'hero-cite-picker') { fx.heroCiteColor = hex; applyHeroSettings(); }
   if (!silent) showToast('颜色: ' + hex.toUpperCase());
 }
 function syncColorLabUi(hex) {
@@ -10348,14 +10658,16 @@ function normalizeBeatPrefetchState(state) {
 
 async function fetchBeatPrefetchAudioUrl(song) {
   if (!song) return null;
+  var isKugou = songProviderKey(song) === 'kugou';
   var isQQ = songProviderKey(song) === 'qq';
   var requestedQuality = normalizePlaybackQuality(playbackQuality);
   if (!isQQ && requestedQuality === 'jymaster' && !hasProviderSvip('netease', loginStatus)) requestedQuality = 'hires';
   if (isQQ && qqPlaybackQualityCeiling && (requestedQuality === 'jymaster' || requestedQuality === 'hires' || requestedQuality === 'lossless')) requestedQuality = qqPlaybackQualityCeiling;
   var qualityParam = '&quality=' + encodeURIComponent(requestedQuality);
-  var data = isQQ
-    ? await apiJson('/api/qq/song/url?mid=' + encodeURIComponent(song.mid || song.songmid || song.id || '') + '&mediaMid=' + encodeURIComponent(song.mediaMid || song.media_mid || '') + qualityParam)
-    : await apiJson('/api/song/url?id=' + encodeURIComponent(song.id) + qualityParam);
+  var data;
+  if (isKugou) data = await apiJson('/api/kugou/song/url?hash=' + encodeURIComponent(song.hash || song.id || '') + '&album_id=' + encodeURIComponent(song.albumId || ''));
+  else if (isQQ) data = await apiJson('/api/qq/song/url?mid=' + encodeURIComponent(song.mid || song.songmid || song.id || '') + '&mediaMid=' + encodeURIComponent(song.mediaMid || song.media_mid || '') + qualityParam);
+  else data = await apiJson('/api/song/url?id=' + encodeURIComponent(song.id) + qualityParam);
   if (!data || !data.url || data.trial) return null;
   return '/api/audio?url=' + encodeURIComponent(data.url);
 }
@@ -15346,10 +15658,28 @@ function songCoverSrc(song, size) {
 function cssImageUrl(url) {
   return String(url || '').replace(/\\/g, '\\\\').replace(/"/g, '%22');
 }
+// 没真实封面时从已有歌单/歌曲封面中挑
+function pickFallbackCover() {
+  var covers = [];
+  if (userPlaylists && userPlaylists.length) {
+    for (var i = 0; i < userPlaylists.length && covers.length < 5; i++) {
+      if (userPlaylists[i].cover) covers.push(userPlaylists[i].cover);
+    }
+  }
+  if (!covers.length && playQueue && playQueue.length) {
+    for (var i = 0; i < playQueue.length && covers.length < 5; i++) {
+      var c = songCoverSrc(playQueue[i], 300);
+      if (c) covers.push(c);
+    }
+  }
+  if (!covers.length) covers.push(''); // 最后回退空
+  return covers[Math.floor(Math.random() * covers.length)];
+}
 function setHomeArt(id, url, size) {
   var el = document.getElementById(id);
   if (!el) return;
   var src = url ? coverUrlWithSize(url, size || 260) : '';
+  if (!src) src = coverUrlWithSize(pickFallbackCover(), size || 260);
   el.style.backgroundImage = src ? 'url("' + cssImageUrl(src) + '")' : '';
   el.classList.toggle('has-cover', !!src);
   el.classList.toggle('home-skeleton', !src && homeDiscoverState.loading);
@@ -15595,6 +15925,7 @@ function renderHomeTiles() {
   renderHomeMosaic(tiles);
 }
 function renderHomeDiscover() {
+  setHomeArt('home-weather-radio-art', '', 280);
   var loggedOutHome = !homeDiscoverState.loggedIn && !hasAnyPlatformLogin();
   var weather = homeWeatherRadioState.weather;
   var radio = homeWeatherRadioState.radio;
@@ -15631,40 +15962,107 @@ function renderHomeDiscover() {
   var profileSub = document.getElementById('home-profile-sub');
   var libTitle = document.getElementById('home-library-title');
   var libSub = document.getElementById('home-library-sub');
-  if (weatherCardTitle) weatherCardTitle.textContent = '我的歌单';
-  if (weatherCardSub) {
-    weatherCardSub.textContent = playlistItem ? (((playlistItem.trackCount || 0) ? playlistItem.trackCount + ' 首 · ' : '') + (playlistItem.creator || '打开左侧歌单库')) : '打开左侧歌单库';
-  }
-  if (continueTitle) continueTitle.textContent = '继续听';
-  if (continueSub) continueSub.textContent = summary.recent ? (summary.recent.name + ' · ' + (summary.recent.artist || '')) : '最近播放会出现在这里';
-  if (profileTitle) profileTitle.textContent = summary.topArtist ? summary.topArtist.name : (summary.topSong ? summary.topSong.name : '听歌画像');
-  if (profileSub) profileSub.textContent = summary.topArtist ? ('常听歌手 · ' + summary.topArtist.plays + ' 次') : (summary.totalPlays ? summary.totalPlays + ' 次有效播放' : '播放几首后生成偏好');
-  if (loggedOutHome) {
-    if (dailyTitle) dailyTitle.textContent = '每日推荐';
-    if (dailySub) dailySub.textContent = '登录后同步你的今日歌曲';
-    if (privateTitle) privateTitle.textContent = '推荐歌曲';
-    if (privateSub) privateSub.textContent = '登录后同步更多歌曲';
-    if (libTitle) libTitle.textContent = '更多歌曲';
-    if (libSub) libSub.textContent = '播放后会继续补全推荐';
-    setHomeArt('home-weather-art', '', 280);
+  // KG 模式：免登录酷狗搜索卡片
+  if (homeSource === 'kugou') {
+    if (dailyTitle) dailyTitle.textContent = '酷狗热歌';
+    if (dailySub) dailySub.textContent = '酷狗热搜榜 · 需登录播放';
+    if (privateTitle) privateTitle.textContent = '酷狗新歌';
+    if (privateSub) privateSub.textContent = '最新上架 · 需登录播放';
+    if (libTitle) libTitle.textContent = '酷狗经典';
+    if (libSub) libSub.textContent = '华语经典 · 需登录播放';
+    if (continueTitle) continueTitle.textContent = '酷狗飙升';
+    if (continueSub) continueSub.textContent = '今日飙升 · 需登录播放';
     setHomeArt('home-daily-art', '', 280);
     setHomeArt('home-private-art', '', 280);
-    setHomeArt('home-continue-art', summary.recent && summary.recent.cover, 280);
-    setHomeArt('home-profile-art', summary.topSong && summary.topSong.cover || summary.recent && summary.recent.cover, 280);
     setHomeArt('home-library-art', '', 280);
-  } else {
-    if (dailyTitle) dailyTitle.textContent = '每日推荐';
-    if (dailySub) dailySub.textContent = daily ? ('今日歌曲 · ' + (daily.artist || '') + ' · ' + (daily.name || '')) : '同步你的今日歌曲';
-    if (privateTitle) privateTitle.textContent = '私人电台';
-    if (privateSub) privateSub.textContent = cardSongB ? ('推荐: ' + cardSongB.name + ' · ' + (cardSongB.artist || '')) : (homeDiscoverState.songs.length + ' 首 · 根据今日推荐与常听偏好');
-    if (libTitle) libTitle.textContent = cardSongC ? cardSongC.name : (summary.topArtist ? summary.topArtist.name : '更多歌曲');
-    if (libSub) libSub.textContent = cardSongC ? (cardSongC.artist || songSourceLabel(cardSongC) || '推荐歌曲') : (summary.topArtist ? ('歌手偏好 · ' + summary.topArtist.plays + ' 次') : '播放几首后生成你的偏好');
-    setHomeArt('home-weather-art', (userPlaylists[0] && userPlaylists[0].cover) || (playlistItem && playlistItem.cover) || daily && daily.cover, 280);
-    setHomeArt('home-daily-art', daily && daily.cover, 280);
-    setHomeArt('home-private-art', cardSongB && cardSongB.cover || daily && daily.cover || summary.recent && summary.recent.cover || playlistItem && playlistItem.cover, 280);
-    setHomeArt('home-continue-art', summary.recent && summary.recent.cover || playlistItem && playlistItem.cover, 280);
-    setHomeArt('home-profile-art', summary.topSong && summary.topSong.cover || podcastItem && podcastItem.cover, 280);
-    setHomeArt('home-library-art', cardSongC && cardSongC.cover || summary.topSong && summary.topSong.cover || summary.recent && summary.recent.cover || podcastItem && podcastItem.cover, 280);
+    setHomeArt('home-continue-art', '', 280);
+    setHomeArt('home-weather-radio-art', '', 280);
+    if (weatherCardTitle) weatherCardTitle.textContent = '我的歌单';
+    if (weatherCardSub) weatherCardSub.textContent = playlistItem ? (((playlistItem.trackCount || 0) ? playlistItem.trackCount + ' 首 · ' : '') + (playlistItem.creator || '登录后同步三平台歌单')) : '登录后同步三平台歌单';
+    var wr3 = document.getElementById('home-weather-radio-title');
+    var ws3 = document.getElementById('home-weather-radio-sub');
+    if (wr3) wr3.textContent = '天气电台';
+    if (ws3) ws3.textContent = '根据天气推荐歌单';
+    var libT3 = document.getElementById('home-library-title');
+    var libS3 = document.getElementById('home-library-sub');
+    if (libT3) libT3.textContent = '酷狗经典';
+    if (libS3) libS3.textContent = '华语经典 · 需登录播放';
+    renderHomeTiles();
+    return;
+  }
+  // QQ 模式卡片标题
+  var isQQMode = homeSource === 'qq';
+  if (isQQMode) {
+    var qqToplists = homeDiscoverState.qqToplists || [];
+    var qqPlaylists = homeDiscoverState.qqPlaylists || [];
+    var hotList = qqToplists.length ? qqToplists[0].toplists.find(function(t){ return t.id === 26; }) || qqToplists[0].toplists[0] : null;
+    var newList = qqToplists.length ? qqToplists[0].toplists.find(function(t){ return t.id === 27; }) || qqToplists[0].toplists[1] : null;
+    var riseList = qqToplists.length ? qqToplists[0].toplists.find(function(t){ return t.id === 62; }) || qqToplists[0].toplists[2] : null;
+    var qqPl = qqPlaylists[0] || null;
+    var qqPl2 = qqPlaylists[1] || null;
+    if (dailyTitle) dailyTitle.textContent = hotList ? 'QQ ' + hotList.title : 'QQ 热歌榜';
+    if (dailySub) dailySub.textContent = hotList ? (hotList.total + ' 首 · ' + hotList.period) : 'QQ音乐实时热门歌曲';
+    if (privateTitle) privateTitle.textContent = newList ? 'QQ ' + newList.title : 'QQ 新歌榜';
+    if (privateSub) privateSub.textContent = newList ? (newList.total + ' 首 · ' + newList.period) : 'QQ音乐最新上架';
+    if (libTitle) libTitle.textContent = riseList ? 'QQ ' + riseList.title : 'QQ 飙升榜';
+    if (libSub) libSub.textContent = riseList ? (riseList.total + ' 首 · 今日飙升') : '';
+    setHomeArt('home-weather-art', qqPl && qqPl.cover || '', 280);
+    setHomeArt('home-daily-art', hotList && hotList.cover || '', 280);
+    setHomeArt('home-private-art', newList && newList.cover || '', 280);
+    setHomeArt('home-library-art', riseList && riseList.cover || '', 280);
+    setHomeArt('home-continue-art', qqPl2 && qqPl2.cover || '', 280);
+    setHomeArt('home-weather-radio-art', '', 280);
+    // 我的歌单 + 天气电台
+    if (weatherCardTitle) weatherCardTitle.textContent = '我的歌单';
+    if (weatherCardSub) weatherCardSub.textContent = playlistItem ? (((playlistItem.trackCount || 0) ? playlistItem.trackCount + ' 首 · ' : '') + (playlistItem.creator || '网易云/QQ/酷狗 三平台')) : '网易云/QQ/酷狗 三平台';
+    var wrTitle = document.getElementById('home-weather-radio-title');
+    var wrSub = document.getElementById('home-weather-radio-sub');
+    if (wrTitle) wrTitle.textContent = '天气电台';
+    if (wrSub) wrSub.textContent = '根据天气推荐歌单';
+    if (continueTitle) continueTitle.textContent = qqPl2 ? qqPl2.name : 'QQ 精选歌单';
+    if (continueSub) continueSub.textContent = qqPl2 ? (qqPl2.trackCount + '首 · ' + (qqPl2.creator || 'QQ音乐')) : 'QQ音乐官方精选';
+  }
+  // 网易云模式卡片标题
+  if (!isQQMode) {
+    if (weatherCardTitle) weatherCardTitle.textContent = '我的歌单';
+    if (weatherCardSub) {
+      weatherCardSub.textContent = playlistItem ? (((playlistItem.trackCount || 0) ? playlistItem.trackCount + ' 首 · ' : '') + (playlistItem.creator || '网易云/QQ/酷狗 三平台')) : '网易云/QQ/酷狗 三平台';
+    }
+    var wrTitle2 = document.getElementById('home-weather-radio-title');
+    var wrSub2 = document.getElementById('home-weather-radio-sub');
+    if (wrTitle2) wrTitle2.textContent = '天气电台';
+    if (wrSub2) wrSub2.textContent = '根据天气推荐歌单';
+    var libT2 = document.getElementById('home-library-title');
+    var libS2 = document.getElementById('home-library-sub');
+    if (libT2) libT2.textContent = '新歌速递';
+    if (libS2) libS2.textContent = '发现最新华语新歌';
+    if (continueTitle) continueTitle.textContent = '继续听';
+    if (continueSub) continueSub.textContent = summary.recent ? (summary.recent.name + ' · ' + (summary.recent.artist || '')) : '最近播放会出现在这里';
+    if (profileTitle) profileTitle.textContent = summary.topArtist ? summary.topArtist.name : (summary.topSong ? summary.topSong.name : '听歌画像');
+    if (profileSub) profileSub.textContent = summary.topArtist ? ('常听歌手 · ' + summary.topArtist.plays + ' 次') : (summary.totalPlays ? summary.totalPlays + ' 次有效播放' : '播放几首后生成偏好');
+    if (loggedOutHome) {
+      if (dailyTitle) dailyTitle.textContent = '每日推荐';
+      if (dailySub) dailySub.textContent = '登录网易云同步每日推荐';
+      if (privateTitle) privateTitle.textContent = '推荐歌曲';
+      if (privateSub) privateSub.textContent = '登录后同步更多歌曲';
+      setHomeArt('home-weather-art', '', 280);
+      setHomeArt('home-daily-art', '', 280);
+      setHomeArt('home-private-art', '', 280);
+      setHomeArt('home-continue-art', summary.recent && summary.recent.cover, 280);
+      setHomeArt('home-profile-art', summary.topSong && summary.topSong.cover || summary.recent && summary.recent.cover, 280);
+      setHomeArt('home-library-art', '', 280);
+    } else {
+      if (dailyTitle) dailyTitle.textContent = '每日推荐';
+      if (dailySub) dailySub.textContent = daily ? ('今日歌曲 · ' + (daily.artist || '') + ' · ' + (daily.name || '')) : '同步你的今日歌曲';
+      if (privateTitle) privateTitle.textContent = '私人电台';
+      if (privateSub) privateSub.textContent = cardSongB ? ('推荐: ' + cardSongB.name + ' · ' + (cardSongB.artist || '')) : (homeDiscoverState.songs.length + ' 首 · 根据今日推荐与常听偏好');
+      setHomeArt('home-weather-art', (userPlaylists[0] && userPlaylists[0].cover) || (playlistItem && playlistItem.cover) || daily && daily.cover, 280);
+      setHomeArt('home-daily-art', daily && daily.cover, 280);
+      setHomeArt('home-private-art', cardSongB && cardSongB.cover || daily && daily.cover || summary.recent && summary.recent.cover || playlistItem && playlistItem.cover, 280);
+      setHomeArt('home-continue-art', summary.recent && summary.recent.cover || playlistItem && playlistItem.cover, 280);
+      setHomeArt('home-profile-art', summary.topSong && summary.topSong.cover || podcastItem && podcastItem.cover, 280);
+      setHomeArt('home-library-art', cardSongC && cardSongC.cover || summary.topSong && summary.topSong.cover || summary.recent && summary.recent.cover || podcastItem && podcastItem.cover, 280);
+    }
   }
   renderHomeTiles();
 }
@@ -15676,14 +16074,41 @@ async function loadHomeDiscover(force) {
   homeDiscoverState.error = '';
   renderHomeDiscover();
   try {
-    var data = await apiJson('/api/discover/home?t=' + Date.now());
-    if (token !== homeDiscoverToken) return;
-    homeDiscoverState.loggedIn = !!(data && data.loggedIn);
-    homeDiscoverState.mode = data && data.mode || (homeDiscoverState.loggedIn ? 'member' : 'starter');
-    homeDiscoverState.songs = homeDiscoverState.loggedIn ? (data && data.dailySongs || []).map(cloneSong) : [];
-    homeDiscoverState.playlists = homeDiscoverState.loggedIn ? (data && data.playlists || []) : [];
-    homeDiscoverState.podcasts = homeDiscoverState.loggedIn ? (data && data.podcasts || []) : [];
-    homeDiscoverState.updatedAt = Number(data && data.updatedAt) || Date.now();
+    if (homeSource === 'kugou') {
+      // 酷狗模式：搜索热门词作为推荐
+      homeDiscoverState.loggedIn = hasPlatformLogin('kugou');
+      homeDiscoverState.mode = 'kugou';
+      homeDiscoverState.songs = [];
+      homeDiscoverState.playlists = [];
+      homeDiscoverState.podcasts = [];
+      homeDiscoverState.qqToplists = null;
+      homeDiscoverState.qqPlaylists = null;
+      homeDiscoverState.updatedAt = Date.now();
+    } else if (homeSource === 'qq') {
+      // QQ 模式：排行榜 + 歌单
+      var qqData = await apiJson('/api/qq/home?t=' + Date.now());
+      if (token !== homeDiscoverToken) return;
+      homeDiscoverState.loggedIn = hasPlatformLogin('qq');
+      homeDiscoverState.mode = 'qq';
+      homeDiscoverState.songs = [];
+      homeDiscoverState.qqToplists = qqData.toplists || [];
+      homeDiscoverState.qqPlaylists = qqData.playlists || [];
+      homeDiscoverState.playlists = [];
+      homeDiscoverState.podcasts = [];
+      homeDiscoverState.updatedAt = Date.now();
+    } else {
+      // 网易云模式（默认）
+      var data = await apiJson('/api/discover/home?t=' + Date.now());
+      if (token !== homeDiscoverToken) return;
+      homeDiscoverState.loggedIn = !!(data && data.loggedIn);
+      homeDiscoverState.mode = data && data.mode || (homeDiscoverState.loggedIn ? 'member' : 'starter');
+      homeDiscoverState.songs = homeDiscoverState.loggedIn ? (data && data.dailySongs || []).map(cloneSong) : [];
+      homeDiscoverState.playlists = homeDiscoverState.loggedIn ? (data && data.playlists || []) : [];
+      homeDiscoverState.podcasts = homeDiscoverState.loggedIn ? (data && data.podcasts || []) : [];
+      homeDiscoverState.qqToplists = null;
+      homeDiscoverState.qqPlaylists = null;
+      homeDiscoverState.updatedAt = Number(data && data.updatedAt) || Date.now();
+    }
     homeDiscoverState.loaded = true;
   } catch (e) {
     console.warn('home discover failed:', e);
@@ -16054,6 +16479,32 @@ function updateEmptyHomeVisibility(opts) {
   }
   return show;
 }
+async function searchAndPlayKugou(keyword) {
+  homeForcedOpen = false; homeSuppressed = false; setHomeControlsLocked(false);
+  showToast('酷狗搜索: ' + keyword);
+  try {
+    var data = await apiJson('/api/kugou/search?keywords=' + encodeURIComponent(keyword) + '&limit=24');
+    var items = (data && data.items || []).map(function(s){ s._homeCard = 'kg-search'; return cloneSong(s); });
+    if (!items.length) { showToast('酷狗未找到结果'); return; }
+    playQueue = items; currentIdx = 0;
+    safeRenderQueuePanel('kg-search'); safeShelfRebuild('kg-search', true);
+    forcePlaybackControlsInteractive();
+    playQueueAt(0).catch(function(e){ console.warn(e); });
+  } catch(e) { showToast('酷狗搜索失败'); }
+}
+async function startHomeNewSongs() {
+  homeForcedOpen = false; homeSuppressed = false; setHomeControlsLocked(false);
+  showToast('正在搜索新歌');
+  try {
+    var data = await apiJson('/api/search?keywords=' + encodeURIComponent('华语新歌') + '&limit=24');
+    var songs = (data && data.songs || []).map(cloneSong);
+    if (!songs.length) { runHomeSearch('华语新歌'); return; }
+    playQueue = songs; currentIdx = 0;
+    safeRenderQueuePanel('home-new-songs'); safeShelfRebuild('home-new-songs', true);
+    forcePlaybackControlsInteractive();
+    playQueueAt(0).catch(function(e){ console.warn(e); });
+  } catch(e) { runHomeSearch('华语新歌'); }
+}
 function runHomeSearch(query, mode) {
   homeForcedOpen = false;
   homeSuppressed = false;
@@ -16151,11 +16602,51 @@ async function playHomePrivateRadio() {
   }
   openHomeLibrary();
 }
+async function loadQQToplistToQueue(topId, title) {
+  try {
+    showToast('正在加载 QQ ' + (title || '榜单'));
+    var data = await apiJson('/api/qq/toplist/songs?id=' + topId);
+    if (!data || !data.songs || !data.songs.length) { showToast('QQ 榜单暂无歌曲'); return; }
+    playQueue = data.songs.map(function(s){ s._homeCard = 'qq-toplist-' + topId; return cloneSong(s); });
+    currentIdx = 0;
+    safeRenderQueuePanel('qq-toplist');
+    safeShelfRebuild('qq-toplist', true);
+    forcePlaybackControlsInteractive();
+    playQueueAt(0).catch(function(e){ console.warn('[QQToplistPlay]', e); });
+  } catch(e) { console.warn('[QQToplist]', e); showToast('QQ 榜单加载失败'); }
+}
+async function loadQQPlaylistToQueue(plId, plName) {
+  try {
+    showToast('正在加载歌单');
+    var data = await apiJson('/api/qq/playlist/tracks?id=' + encodeURIComponent(plId));
+    if (!data || !data.tracks || !data.tracks.length) { showToast('歌单暂无歌曲'); return; }
+    playQueue = data.tracks.map(cloneSong);
+    currentIdx = 0;
+    safeRenderQueuePanel('qq-playlist');
+    safeShelfRebuild('qq-playlist', true);
+    forcePlaybackControlsInteractive();
+    playQueueAt(0).catch(function(e){ console.warn('[QQPlaylistPlay]', e); });
+  } catch(e) { console.warn('[QQPlaylist]', e); showToast('歌单加载失败'); }
+}
 function playHomeSong(index) {
   homeForcedOpen = false;
   homeSuppressed = false;
   setHomeControlsLocked(false);
-  // 如果已经在播放同一个卡片的队列，继续放，不重置
+  // KG 模式：搜索播放
+  if (homeSource === 'kugou') {
+    var kgQueries = ['抖音 热门 歌曲', '最新 上架 华语', '华语 经典 老歌', '飙升 排行 热门'];
+    var kgQ = kgQueries[index] || '热门 华语';
+    searchAndPlayKugou(kgQ);
+    return;
+  }
+  // QQ 模式：播放榜单（index: 0=热歌榜26, 1=新歌榜27）
+  if (homeSource === 'qq') {
+    var topIds = [26, 27]; // 热歌榜, 新歌榜
+    var topId = topIds[index] || 26;
+    var topTitles = ['QQ 热歌榜', 'QQ 新歌榜'];
+    loadQQToplistToQueue(topId, topTitles[index] || 'QQ 榜单');
+    return;
+  }
   var cardTag = 'home-song-' + index;
   if (playing && playQueue.length && currentIdx >= 0 && playQueue[currentIdx] && playQueue[currentIdx]._homeCard === cardTag) {
     forcePlaybackControlsInteractive();
@@ -16417,6 +16908,7 @@ function songDurationLabel(song) {
 }
 function songSourceLabel(song) {
   if (!song) return '未知';
+  if (song.provider === 'kugou' || song.source === 'kugou') return '酷狗音乐';
   if (song.provider === 'qq' || song.source === 'qq' || song.type === 'qq') return 'QQ 音乐';
   if (song.type === 'local') return '本地上传';
   if (song.type === 'podcast' || song.source === 'podcast') return '网易云播客';
@@ -17587,6 +18079,7 @@ document.addEventListener('click', function(e){
 updateSearchModeTabs();
 
 function songProviderKey(song) {
+  if (song && (song.provider === 'kugou' || song.source === 'kugou')) return 'kugou';
   if (song && (song.provider === 'qq' || song.source === 'qq' || song.type === 'qq')) return 'qq';
   return 'netease';
 }
@@ -17727,6 +18220,10 @@ function mergeSongSearchResults(neteaseSongs, qqSongs, limit, q) {
   return out.slice(0, limit);
 }
 async function fetchMusicSearchResults(q, mode) {
+  if (mode === 'kugou') {
+    var kgData = await apiJson('/api/kugou/search?keywords=' + encodeURIComponent(q) + '&limit=18');
+    return (kgData.items || []).map(function(s){ s.provider = 'kugou'; return cloneSong(s); });
+  }
   if (mode === 'qq') {
     var qqOnly = await apiJson('/api/qq/search?keywords=' + encodeURIComponent(q) + '&limit=12');
     return mergeSongSearchResults([], qqOnly.songs || [], 18, q);
@@ -17735,14 +18232,16 @@ async function fetchMusicSearchResults(q, mode) {
     var neOnly = await apiJson('/api/search?keywords=' + encodeURIComponent(q) + '&limit=18');
     return mergeSongSearchResults(neOnly.songs || [], [], 18, q);
   }
+  // All mode: 聚合三平台
   var result = await Promise.allSettled([
     apiJson('/api/search?keywords=' + encodeURIComponent(q) + '&limit=14'),
-    apiJson('/api/qq/search?keywords=' + encodeURIComponent(q) + '&limit=12')
+    apiJson('/api/qq/search?keywords=' + encodeURIComponent(q) + '&limit=12'),
+    apiJson('/api/kugou/search?keywords=' + encodeURIComponent(q) + '&limit=10')
   ]);
   var neteaseSongs = result[0].status === 'fulfilled' ? ((result[0].value && result[0].value.songs) || []) : [];
   var qqSongs = result[1].status === 'fulfilled' ? ((result[1].value && result[1].value.songs) || []) : [];
-  if (result[1].status === 'rejected') console.warn('QQ search failed:', result[1].reason);
-  return mergeSongSearchResults(neteaseSongs, qqSongs, 18, q);
+  var kgSongs = result[2].status === 'fulfilled' ? ((result[2].value && result[2].value.items) || []).map(function(s){ s.provider = 'kugou'; return s; }) : [];
+  return mergeSongSearchResults(neteaseSongs, qqSongs.concat(kgSongs), 24, q);
 }
 function renderSongSearchResults(songs) {
   playlist = songs || [];
@@ -18542,6 +19041,7 @@ async function playQueueAt(idx, opts) {
 
   try {
     markPlayPhase('source-url');
+    var isKugouPlayback = songProviderKey(song) === 'kugou';
     var isQQPlayback = songProviderKey(song) === 'qq';
     var requestedQuality = normalizePlaybackQuality(opts.qualityOverride || playbackQuality);
     if (!isQQPlayback && requestedQuality === 'jymaster' && !hasProviderSvip('netease', loginStatus)) requestedQuality = 'hires';
@@ -18549,9 +19049,10 @@ async function playQueueAt(idx, opts) {
       requestedQuality = qqPlaybackQualityCeiling;
     }
     var qualityParam = '&quality=' + encodeURIComponent(requestedQuality);
-    var data = isQQPlayback
-      ? await apiJson('/api/qq/song/url?mid=' + encodeURIComponent(song.mid || song.songmid || song.id || '') + '&mediaMid=' + encodeURIComponent(song.mediaMid || song.media_mid || '') + qualityParam)
-      : await apiJson('/api/song/url?id=' + song.id + qualityParam);
+    var data;
+    if (isKugouPlayback) data = await apiJson('/api/kugou/song/url?hash=' + encodeURIComponent(song.hash || song.id || '') + '&album_id=' + encodeURIComponent(song.albumId || ''));
+    else if (isQQPlayback) data = await apiJson('/api/qq/song/url?mid=' + encodeURIComponent(song.mid || song.songmid || song.id || '') + '&mediaMid=' + encodeURIComponent(song.mediaMid || song.media_mid || '') + qualityParam);
+    else data = await apiJson('/api/song/url?id=' + song.id + qualityParam);
     if (token !== trackSwitchToken) return;
     if (!data.url) {
       if (isQQPlayback && await retryQQPlaybackWithCompatibleQuality(song, idx, token, opts, data, requestedQuality)) return;
@@ -19479,9 +19980,19 @@ function renderQueuePanel(opts) {
     renderMiniQueuePanel();
     var panel = document.getElementById('playlist-panel');
     if (panel && (panel.classList.contains('show') || panel.classList.contains('peek')) && queueViewTab === 'queue') switchPlaylistTab('playlists');
+    lastPlayQueueRef = playQueue;
     return;
   }
-  $ql.innerHTML = playQueue.map(function(song, i){
+  // 新队列时重置渲染上限
+  if (lastPlayQueueRef !== playQueue) {
+    queueRenderLimit = QUEUE_PANEL_BATCH_SIZE;
+    lastPlayQueueRef = playQueue;
+  }
+  // 懒加载：初始只渲染前 N 首，滚动触底加载更多
+  var total = playQueue.length;
+  var limit = Math.min(total, queueRenderLimit || QUEUE_PANEL_BATCH_SIZE);
+  var visible = playQueue.slice(0, limit);
+  var html = visible.map(function(song, i){
     var thumb = songCoverSrc(song, 60);
     var imgTag = thumb ? '<img src="' + thumb + '" alt="" loading="lazy" decoding="async" onerror="this.style.opacity=0.2">' : '<div style="width:38px;height:38px;border-radius:6px;background:rgba(255,255,255,.06);flex-shrink:0"></div>';
     return '<div class="queue-item' + (i === currentIdx ? ' now' : '') + '" onclick="playQueueAt(' + i + ')">' +
@@ -19495,8 +20006,28 @@ function renderQueuePanel(opts) {
       '</div>' +
     '</div>';
   }).join('');
+  if (currentIdx >= 0 && currentIdx >= limit) {
+    html = '<div class="queue-current-outside" onclick="growQueueRenderLimit()" title="点击加载更多以定位到当前播放">正在播放第 ' + (currentIdx + 1) + ' 首 · 点击加载</div>' + html;
+  }
+  if (total > limit) {
+    html += '<button type="button" class="fx-mini-btn ghost queue-load-more" onclick="growQueueRenderLimit()">加载更多 ' + limit + '/' + total + '</button>';
+  }
+  $ql.innerHTML = html;
   if (opts.animate && seq === queueRenderSeq) animateVisiblePanelList($ql, '.queue-item', document.getElementById('playlist-panel'), '.queue-item.now');
   renderMiniQueuePanel({ scrollCurrent: miniQueueOpen });
+}
+function resetQueueRenderLimit() {
+  queueRenderLimit = QUEUE_PANEL_BATCH_SIZE;
+}
+function growQueueRenderLimit() {
+  var prevLimit = queueRenderLimit || QUEUE_PANEL_BATCH_SIZE;
+  var next = Math.min(playQueue.length, prevLimit + QUEUE_PANEL_BATCH_SIZE);
+  if (next <= prevLimit) return;
+  queueRenderLimit = next;
+  var panel = document.getElementById('playlist-panel');
+  var keepTop = panel ? panel.scrollTop : 0;
+  renderQueuePanel({ animate: true });
+  if (panel) requestAnimationFrame(function(){ panel.scrollTop = keepTop; });
 }
 async function refreshUserPlaylists(force) {
   if (!loginStatus.loggedIn && !qqLoginStatus.loggedIn) {
@@ -19526,11 +20057,13 @@ async function refreshUserPlaylists(force) {
     var result = await Promise.all([
       loginStatus.loggedIn ? apiJson('/api/user/playlists') : Promise.resolve({ playlists: [] }),
       loginStatus.loggedIn ? apiJson('/api/podcast/my') : Promise.resolve({ collections: [], loggedIn: false }),
-      qqLoginStatus.loggedIn ? apiJson('/api/qq/user/playlists') : Promise.resolve({ playlists: [] })
+      qqLoginStatus.loggedIn ? apiJson('/api/qq/user/playlists') : Promise.resolve({ playlists: [] }),
+      kugouLoginStatus.loggedIn ? apiJson('/api/kugou/user/playlists') : Promise.resolve({ playlists: [] })
     ]);
     var neteaseLists = (result[0].playlists || []).map(function(pl){ pl.provider = 'netease'; pl.source = 'netease'; return pl; });
     qqPlaylists = (result[2].playlists || []).map(function(pl){ pl.provider = 'qq'; pl.source = 'qq'; return pl; });
-    userPlaylists = neteaseLists.concat(qqPlaylists);
+    var kugouLists = (result[3].playlists || []).map(function(pl){ pl.provider = 'kugou'; pl.source = 'kugou'; return pl; });
+    userPlaylists = neteaseLists.concat(qqPlaylists).concat(kugouLists);
     myPodcastCollections = result[1].collections || [];
     var animatePanel = isPlaylistPanelVisibleForRender();
     renderUserPlaylistsList({ animate: animatePanel, reset: true });
@@ -19627,9 +20160,11 @@ async function openPlaylistPanelDetail(provider, pid, title) {
   renderPlaylistPanelDetailState();
   scrollPlaylistPanelDetailIntoView(key);
   try {
-    var r = provider === 'qq'
-      ? await apiJson('/api/qq/playlist/tracks?id=' + encodeURIComponent(pid))
-      : await apiJson('/api/playlist/tracks?id=' + encodeURIComponent(pid));
+    var r = provider === 'kugou'
+      ? await apiJson('/api/kugou/playlist/tracks?id=' + encodeURIComponent(pid))
+      : (provider === 'qq'
+        ? await apiJson('/api/qq/playlist/tracks?id=' + encodeURIComponent(pid))
+        : await apiJson('/api/playlist/tracks?id=' + encodeURIComponent(pid)));
     if (playlistPanelDetailState.token !== token) return;
     playlistPanelDetailState.loading = false;
     playlistPanelDetailState.tracks = (r && r.tracks || []).map(cloneSong);
@@ -19706,8 +20241,12 @@ function bindPlaylistPanelLazyRender() {
   playlistPanelLazyBound = true;
   panel.addEventListener('scroll', function(){
     maybeGrowPlaylistPanelDetailRenderLimit();
-    if (queueViewTab !== 'playlists' || playlistPanelRenderLimit >= userPlaylists.length) return;
-    if (panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 180) growPlaylistPanelRenderLimit();
+    if (queueViewTab === 'playlists' && playlistPanelRenderLimit < userPlaylists.length) {
+      if (panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 180) growPlaylistPanelRenderLimit();
+    }
+    if (queueViewTab === 'queue' && (queueRenderLimit || QUEUE_PANEL_BATCH_SIZE) < playQueue.length) {
+      if (panel.scrollTop + panel.clientHeight >= panel.scrollHeight - 200) growQueueRenderLimit();
+    }
   }, { passive: true });
 }
 function renderUserPlaylistsList(opts) {
@@ -19719,8 +20258,8 @@ function renderUserPlaylistsList(opts) {
     return;
   }
   function playlistCardHtml(pl) {
-    var provider = pl.provider === 'qq' ? 'qq' : 'netease';
-    var providerLabel = provider === 'qq' ? 'QQ' : 'NE';
+    var provider = pl.provider === 'qq' ? 'qq' : (pl.provider === 'kugou' ? 'kugou' : 'netease');
+    var providerLabel = provider === 'qq' ? 'QQ' : (provider === 'kugou' ? 'KG' : 'NE');
     var thumb = pl.cover ? (provider === 'qq' ? pl.cover : (pl.cover + '?param=88y88')) : '';
     var imgTag = thumb ? '<img src="' + thumb + '" alt="" loading="lazy" decoding="async" onerror="this.style.opacity=0.2">' : '<div style="width:44px;height:44px;border-radius:8px;background:rgba(255,255,255,.06);flex-shrink:0"></div>';
     var key = playlistPanelKey(provider, pl.id);
@@ -20303,7 +20842,44 @@ function normalizeFxArchiveSnapshot(raw) {
     shelfOpacity: archiveNumber(raw, 'shelfOpacity', fxDefaults.shelfOpacity, 0.25, 1),
     shelfBgOpacity: archiveNumber(raw, 'shelfBgOpacity', fxDefaults.shelfBgOpacity, 0.25, 0.98),
     shelfAccentColor: normalizeHexColor(raw.shelfAccentColor || fxDefaults.shelfAccentColor, fxDefaults.shelfAccentColor),
-    cam: archiveMode(raw, 'cam', /^(off|gesture)$/, fxDefaults.cam)
+    cam: archiveMode(raw, 'cam', /^(off|gesture)$/, fxDefaults.cam),
+    bubbleSize: archiveNumber(raw, 'bubbleSize', fxDefaults.bubbleSize, 0.6, 1.8),
+    bubbleBgColor: normalizeHexColor(raw.bubbleBgColor || fxDefaults.bubbleBgColor, fxDefaults.bubbleBgColor),
+    bubbleBgAlpha: archiveNumber(raw, 'bubbleBgAlpha', fxDefaults.bubbleBgAlpha, 0.08, 1),
+    bubbleOpacity: archiveNumber(raw, 'bubbleOpacity', fxDefaults.bubbleOpacity, 0.2, 1),
+    bubbleRadius: archiveNumber(raw, 'bubbleRadius', fxDefaults.bubbleRadius, 4, 60),
+    bubbleUserColor: normalizeHexColor(raw.bubbleUserColor || fxDefaults.bubbleUserColor, fxDefaults.bubbleUserColor),
+    bubbleUserAlpha: archiveNumber(raw, 'bubbleUserAlpha', fxDefaults.bubbleUserAlpha, 0.08, 1),
+    bubbleTextColor: normalizeHexColor(raw.bubbleTextColor || fxDefaults.bubbleTextColor, fxDefaults.bubbleTextColor),
+    bubbleTextAlpha: archiveNumber(raw, 'bubbleTextAlpha', fxDefaults.bubbleTextAlpha, 0.08, 1),
+    bubbleFont: normalizeLyricFontKey(raw.bubbleFont || fxDefaults.bubbleFont),
+    bubbleMaxWidth: archiveNumber(raw, 'bubbleMaxWidth', fxDefaults.bubbleMaxWidth, 200, 600),
+    bubbleDuration: archiveNumber(raw, 'bubbleDuration', fxDefaults.bubbleDuration, 12, 30),
+    bubbleCount: archiveNumber(raw, 'bubbleCount', fxDefaults.bubbleCount, 10, 50),
+    bubbleConcurrent: archiveNumber(raw, 'bubbleConcurrent', fxDefaults.bubbleConcurrent, 1, 10),
+    bubbleHAlign: archiveMode(raw, 'bubbleHAlign', /^(free|left|center|right)$/, fxDefaults.bubbleHAlign),
+    bubbleVAlign: archiveMode(raw, 'bubbleVAlign', /^(bottom-up|top-down|middle-up|middle-down)$/, fxDefaults.bubbleVAlign),
+    bubbleTravel: archiveMode(raw, 'bubbleTravel', /^(full|half)$/, fxDefaults.bubbleTravel),
+    heroClockSize: archiveNumber(raw, 'heroClockSize', fxDefaults.heroClockSize, 28, 72),
+    heroClockColor: normalizeHexColor(raw.heroClockColor || fxDefaults.heroClockColor, fxDefaults.heroClockColor),
+    heroClockFont: normalizeLyricFontKey(raw.heroClockFont || fxDefaults.heroClockFont),
+    heroDateSize: archiveNumber(raw, 'heroDateSize', fxDefaults.heroDateSize, 9, 20),
+    heroDateColor: normalizeHexColor(raw.heroDateColor || fxDefaults.heroDateColor, fxDefaults.heroDateColor),
+    heroGreetSize: archiveNumber(raw, 'heroGreetSize', fxDefaults.heroGreetSize, 14, 28),
+    heroGreetColor: normalizeHexColor(raw.heroGreetColor || fxDefaults.heroGreetColor, fxDefaults.heroGreetColor),
+    heroGreetEmColor: String(raw.heroGreetEmColor || fxDefaults.heroGreetEmColor),
+    heroGreetFont: normalizeLyricFontKey(raw.heroGreetFont || fxDefaults.heroGreetFont),
+    heroWeatherSize: archiveNumber(raw, 'heroWeatherSize', fxDefaults.heroWeatherSize, 9, 18),
+    heroWeatherColor: normalizeHexColor(raw.heroWeatherColor || fxDefaults.heroWeatherColor, fxDefaults.heroWeatherColor),
+    heroQuipSize: archiveNumber(raw, 'heroQuipSize', fxDefaults.heroQuipSize, 9, 18),
+    heroQuipColor: normalizeHexColor(raw.heroQuipColor || fxDefaults.heroQuipColor, fxDefaults.heroQuipColor),
+    heroInfoFont: normalizeLyricFontKey(raw.heroInfoFont || fxDefaults.heroInfoFont),
+    heroQuoteSize: archiveNumber(raw, 'heroQuoteSize', fxDefaults.heroQuoteSize, 14, 26),
+    heroQuoteColor: normalizeHexColor(raw.heroQuoteColor || fxDefaults.heroQuoteColor, fxDefaults.heroQuoteColor),
+    heroQuoteFont: normalizeLyricFontKey(raw.heroQuoteFont || fxDefaults.heroQuoteFont),
+    heroCiteSize: archiveNumber(raw, 'heroCiteSize', fxDefaults.heroCiteSize, 9, 18),
+    heroCiteColor: normalizeHexColor(raw.heroCiteColor || fxDefaults.heroCiteColor, fxDefaults.heroCiteColor),
+    heroGap: archiveNumber(raw, 'heroGap', fxDefaults.heroGap, 4, 24)
   };
 }
 function readUserFxArchives() {
@@ -21197,6 +21773,184 @@ function setLyricFont(key) {
   pushDesktopLyricsState(true);
   showToast('歌词字体已切换');
 }
+function setBubbleFont(key) {
+  fx.bubbleFont = normalizeLyricFontKey(key);
+  applyBubbleSettings();
+  updateBubbleFontControls();
+  showToast('弹幕字体已切换');
+}
+function setBubbleHAlign(pos) {
+  fx.bubbleHAlign = /^(free|left|center|right)$/.test(pos) ? pos : 'free';
+  applyBubbleSettings();
+  updateBubblePositionControls();
+}
+function setBubbleVAlign(pos) {
+  fx.bubbleVAlign = /^(bottom-up|top-down|middle-up|middle-down)$/.test(pos) ? pos : 'bottom-up';
+  applyBubbleSettings();
+  updateBubblePositionControls();
+}
+function setBubbleTravel(val) {
+  fx.bubbleTravel = val === 'half' ? 'half' : 'full';
+  applyBubbleSettings();
+  updateBubblePositionControls();
+  showToast('行程范围已切换');
+}
+function updateBubblePositionControls() {
+  var hSeg = document.getElementById('bubble-halign-seg');
+  if (hSeg) Array.prototype.forEach.call(hSeg.querySelectorAll('button'), function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-halign') === fx.bubbleHAlign);
+  });
+  var vSeg = document.getElementById('bubble-valign-seg');
+  if (vSeg) Array.prototype.forEach.call(vSeg.querySelectorAll('button'), function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-valign') === fx.bubbleVAlign);
+  });
+  var tSeg = document.getElementById('bubble-travel-seg');
+  if (tSeg) Array.prototype.forEach.call(tSeg.querySelectorAll('button'), function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-travel') === fx.bubbleTravel);
+  });
+}
+function updateBubbleFontControls() {
+  var seg = document.getElementById('bubble-font-seg');
+  if (!seg) return;
+  Array.prototype.forEach.call(seg.querySelectorAll('button'), function(btn){
+    btn.classList.toggle('active', btn.getAttribute('data-font') === fx.bubbleFont);
+  });
+}
+function applyBubbleSettings() {
+  var root = document.documentElement;
+  root.style.setProperty('--bubble-font-size', (fx.bubbleSize * 12) + 'px');
+  // 背景 = hex + alpha = bgAlpha * opacity
+  var bgAlpha = (fx.bubbleBgAlpha || 0.82) * (fx.bubbleOpacity || 1);
+  var bgRgb = hexToRgb(fx.bubbleBgColor || '#0e1014');
+  root.style.setProperty('--bubble-bg', 'rgba(' + bgRgb.r + ', ' + bgRgb.g + ', ' + bgRgb.b + ', ' + bgAlpha.toFixed(3) + ')');
+  root.style.setProperty('--bubble-radius', fx.bubbleRadius + 'px');
+  // 发言人颜色 = hex + alpha
+  var userRgb = hexToRgb(fx.bubbleUserColor || '#00f5d4');
+  var userAlpha = fx.bubbleUserAlpha || 0.5;
+  root.style.setProperty('--bubble-user-color', 'rgba(' + userRgb.r + ', ' + userRgb.g + ', ' + userRgb.b + ', ' + userAlpha.toFixed(2) + ')');
+  // 文字颜色 = hex + alpha
+  var textRgb = hexToRgb(fx.bubbleTextColor || '#ffffff');
+  var textAlpha = fx.bubbleTextAlpha || 0.7;
+  root.style.setProperty('--bubble-text-color', 'rgba(' + textRgb.r + ', ' + textRgb.g + ', ' + textRgb.b + ', ' + textAlpha.toFixed(2) + ')');
+  root.style.setProperty('--bubble-font-family', lyricFontStackForKey(fx.bubbleFont));
+  root.style.setProperty('--bubble-max-width', fx.bubbleMaxWidth + 'px');
+  root.style.setProperty('--bubble-duration', fx.bubbleDuration + 's');
+  updateBubbleFontControls();
+  updateBubblePositionControls();
+  // 同步取色器和数值显示
+  var bgPicker = document.getElementById('bubble-bg-picker');
+  if (bgPicker) bgPicker.value = fx.bubbleBgColor;
+  var bgVal = document.getElementById('bubble-bg-value');
+  if (bgVal) bgVal.textContent = 'rgba(' + bgRgb.r + ',' + bgRgb.g + ',' + bgRgb.b + ',' + bgAlpha.toFixed(2) + ')';
+  var userPicker = document.getElementById('bubble-user-picker');
+  if (userPicker) userPicker.value = fx.bubbleUserColor;
+  var userVal = document.getElementById('bubble-user-value');
+  if (userVal) userVal.textContent = 'rgba(' + userRgb.r + ',' + userRgb.g + ',' + userRgb.b + ',' + userAlpha.toFixed(2) + ')';
+  var textPicker = document.getElementById('bubble-text-picker');
+  if (textPicker) textPicker.value = fx.bubbleTextColor;
+  var textVal = document.getElementById('bubble-text-value');
+  if (textVal) textVal.textContent = 'rgba(' + textRgb.r + ',' + textRgb.g + ',' + textRgb.b + ',' + textAlpha.toFixed(2) + ')';
+}
+function resetBubbleBgColor() {
+  fx.bubbleBgColor = fxDefaults.bubbleBgColor;
+  fx.bubbleBgAlpha = fxDefaults.bubbleBgAlpha;
+  applyBubbleSettings();
+  showToast('气泡背景色已恢复默认');
+}
+function resetBubbleUserColor() {
+  fx.bubbleUserColor = fxDefaults.bubbleUserColor;
+  fx.bubbleUserAlpha = fxDefaults.bubbleUserAlpha;
+  applyBubbleSettings();
+  showToast('发言人颜色已恢复默认');
+}
+function resetBubbleTextColor() {
+  fx.bubbleTextColor = fxDefaults.bubbleTextColor;
+  fx.bubbleTextAlpha = fxDefaults.bubbleTextAlpha;
+  applyBubbleSettings();
+  showToast('文字颜色已恢复默认');
+}
+// ---- Hero DIY ----
+function applyHeroSettings() {
+  var root = document.documentElement;
+  // 用 CSS 变量（不用 element.style，因为问候语/天气/俏皮话等会动态 innerHTML 重建）
+  root.style.setProperty('--hero-clock-size', (fx.heroClockSize || 48) + 'px');
+  root.style.setProperty('--hero-clock-color', fx.heroClockColor || '#c8d0d8');
+  root.style.setProperty('--hero-clock-font', lyricFontStackForKey(fx.heroClockFont || 'sans'));
+  root.style.setProperty('--hero-date-size', (fx.heroDateSize || 12) + 'px');
+  root.style.setProperty('--hero-date-color', fx.heroDateColor || '#787f87');
+  root.style.setProperty('--hero-greet-size', (fx.heroGreetSize || 20) + 'px');
+  root.style.setProperty('--hero-greet-color', fx.heroGreetColor || '#8c949c');
+  root.style.setProperty('--hero-greet-em-color', fx.heroGreetEmColor || 'rgba(244,210,138,.65)');
+  root.style.setProperty('--hero-greet-font', lyricFontStackForKey(fx.heroGreetFont || 'sans'));
+  var ws = fx.heroWeatherSize || 11;
+  root.style.setProperty('--hero-weather-size', ws + 'px');
+  root.style.setProperty('--hero-weather-pill-h', Math.round(ws * 2.6) + 'px');
+  root.style.setProperty('--hero-weather-pill-p', Math.round(ws * 0.9) + 'px');
+  root.style.setProperty('--hero-weather-color', fx.heroWeatherColor || '#646c74');
+  root.style.setProperty('--hero-weather-font', lyricFontStackForKey(fx.heroInfoFont || 'sans'));
+  root.style.setProperty('--hero-quip-size', (fx.heroQuipSize || 12) + 'px');
+  root.style.setProperty('--hero-quip-color', fx.heroQuipColor || '#484e56');
+  root.style.setProperty('--hero-quip-font', lyricFontStackForKey(fx.heroInfoFont || 'sans'));
+  root.style.setProperty('--hero-quote-size', (fx.heroQuoteSize || 18) + 'px');
+  root.style.setProperty('--hero-quote-color', fx.heroQuoteColor || '#565e66');
+  root.style.setProperty('--hero-quote-font', lyricFontStackForKey(fx.heroQuoteFont || 'hei'));
+  root.style.setProperty('--hero-cite-size', (fx.heroCiteSize || 12) + 'px');
+  root.style.setProperty('--hero-cite-color', fx.heroCiteColor || '#3a4046');
+  root.style.setProperty('--hero-gap', (fx.heroGap || 10) + 'px');
+  updateHeroFontControls();
+  var pickers = {'hero-clock-picker':fx.heroClockColor,'hero-date-picker':fx.heroDateColor,'hero-greet-picker':fx.heroGreetColor,'hero-greet-em-picker':fx.heroGreetEmColor,'hero-weather-picker':fx.heroWeatherColor,'hero-quip-picker':fx.heroQuipColor,'hero-quote-picker':fx.heroQuoteColor,'hero-cite-picker':fx.heroCiteColor};
+  for (var id in pickers) { var p = document.getElementById(id); if (p) p.value = pickers[id]; }
+}
+function updateHeroFontControls() {
+  ['hero-clock-font-seg','hero-greet-font-seg','hero-info-font-seg','hero-quote-font-seg'].forEach(function(sid){
+    var seg = document.getElementById(sid);
+    if (!seg) return;
+    var key = sid === 'hero-clock-font-seg' ? 'heroClockFont' : (sid === 'hero-greet-font-seg' ? 'heroGreetFont' : (sid === 'hero-info-font-seg' ? 'heroInfoFont' : 'heroQuoteFont'));
+    Array.prototype.forEach.call(seg.querySelectorAll('button'), function(btn){
+      btn.classList.toggle('active', btn.getAttribute('data-font') === fx[key]);
+    });
+  });
+}
+function setHeroFont(group, key) {
+  fx[group] = normalizeLyricFontKey(key);
+  applyHeroSettings();
+  showToast('字体已切换');
+}
+function resetHeroSettings() {
+  ['heroClockSize','heroClockColor','heroClockFont','heroDateSize','heroDateColor','heroGreetSize','heroGreetColor','heroGreetEmColor','heroGreetFont','heroWeatherSize','heroWeatherColor','heroInfoFont','heroQuipSize','heroQuipColor','heroQuoteSize','heroQuoteColor','heroQuoteFont','heroCiteSize','heroCiteColor','heroGap'].forEach(function(k){ fx[k] = fxDefaults[k]; });
+  setRange('fx-heroclocksize', fx.heroClockSize); setRange('fx-herodatesize', fx.heroDateSize);
+  setRange('fx-herogreetsize', fx.heroGreetSize); setRange('fx-heroweathersize', fx.heroWeatherSize);
+  setRange('fx-heroquipsize', fx.heroQuipSize); setRange('fx-heroquotesize', fx.heroQuoteSize);
+  setRange('fx-herocitesize', fx.heroCiteSize); setRange('fx-herogap', fx.heroGap);
+  applyHeroSettings();
+  saveLyricLayout();
+  showToast('首页已恢复默认');
+}
+function resetBubbleSettings() {
+  ['bubbleSize','bubbleBgColor','bubbleBgAlpha','bubbleOpacity','bubbleRadius','bubbleUserColor','bubbleUserAlpha','bubbleTextColor','bubbleTextAlpha','bubbleFont','bubbleMaxWidth','bubbleDuration','bubbleCount','bubbleConcurrent','bubbleHAlign','bubbleVAlign','bubbleTravel'].forEach(function(k){
+    fx[k] = fxDefaults[k];
+  });
+  setRange('fx-bubblesize', fx.bubbleSize);
+  setRange('fx-bubbleopacity', fx.bubbleOpacity);
+  setRange('fx-bubbleradius', fx.bubbleRadius);
+  setRange('fx-bubblemaxwidth', fx.bubbleMaxWidth);
+  setRange('fx-bubbleduration', fx.bubbleDuration);
+  setRange('fx-bubblecount', fx.bubbleCount);
+  setRange('fx-bubbleconcurrent', fx.bubbleConcurrent);
+  applyBubbleSettings();
+  restartCommentBubbles();
+  saveLyricLayout();
+  showToast('弹幕已恢复默认');
+}
+function rgbaStringToHex6(rgba) {
+  var m = String(rgba).match(/rgba?\((\d+)[,\s]+(\d+)[,\s]+(\d+)/);
+  if (!m) return '#0e1014';
+  return '#' + [Number(m[1]), Number(m[2]), Number(m[3])].map(function(v){ return ('0' + v.toString(16)).slice(-2); }).join('');
+}
+function hexToRgbString(hex) {
+  var c = hexToRgb(hex);
+  return c.r + ', ' + c.g + ', ' + c.b;
+}
 function setLyricGlowLinked(linked, openPicker) {
   fx.lyricGlowLinked = linked !== false;
   if (!fx.lyricGlowLinked) fx.lyricGlowColor = normalizeHexColor(fx.lyricGlowColor || fx.lyricHighlightColor || '#9db8cf');
@@ -21555,6 +22309,19 @@ function updateFxInputs() {
   setRange('fx-bloom', fx.bloomStrength);
   setRange('fx-scatter', fx.scatter);
   setRange('fx-bgfade', fx.bgFade);
+  setRange('fx-bubblesize', fx.bubbleSize);
+  setRange('fx-bubbleopacity', fx.bubbleOpacity);
+  setRange('fx-bubbleradius', fx.bubbleRadius);
+  setRange('fx-bubblemaxwidth', fx.bubbleMaxWidth);
+  setRange('fx-bubbleduration', fx.bubbleDuration);
+  setRange('fx-bubblecount', fx.bubbleCount);
+  setRange('fx-bubbleconcurrent', fx.bubbleConcurrent);
+  setRange('fx-heroclocksize', fx.heroClockSize); setRange('fx-herodatesize', fx.heroDateSize);
+  setRange('fx-herogreetsize', fx.heroGreetSize); setRange('fx-heroweathersize', fx.heroWeatherSize);
+  setRange('fx-heroquipsize', fx.heroQuipSize); setRange('fx-heroquotesize', fx.heroQuoteSize);
+  setRange('fx-herocitesize', fx.heroCiteSize); setRange('fx-herogap', fx.heroGap);
+  updateBubbleFontControls();
+  updateBubblePositionControls();
   updateLyricGlowControls();
   // 同步开关
   document.getElementById('t-float').classList.toggle('on', fx.floatLayer);
@@ -21627,6 +22394,8 @@ function resetFxSliderValue(id, key, btn) {
   if (key === 'controlGlassChromaticOffset') applyControlGlassChromaticOffset();
   syncFxUniforms();
   if (key === 'lyricLetterSpacing' || key === 'lyricLineHeight' || key === 'lyricWeight') refreshCurrentLyricStyle();
+  if (/^bubble/.test(key)) applyBubbleSettings();
+  if (/^hero/.test(key)) applyHeroSettings();
   saveLyricLayout();
   animateFxResetButton(btn);
   showToast('已恢复默认数值');
@@ -21649,7 +22418,7 @@ function ensureFxSliderResetButton(id, key) {
 }
 var fxPanelTab = 'presets';
 function setFxPanelTab(tab) {
-  var allowed = { presets:1, appearance:1, lyrics:1, motion:1, advanced:1 };
+  var allowed = { presets:1, appearance:1, lyrics:1, motion:1, bubble:1, hero:1, advanced:1 };
   fxPanelTab = allowed[tab] ? tab : 'presets';
   var panel = document.getElementById('fx-panel');
   if (panel) panel.setAttribute('data-active-tab', fxPanelTab);
@@ -21671,6 +22440,8 @@ function fxPanelTargetForNode(node, current) {
   var inputId = fxPanelInputId(node);
   if (id === 'preset-grid' || id === 'user-archive-grid') return 'presets';
   if (id === 'fx-lyric-fold') return 'lyrics';
+  if (id === 'fx-bubble-fold') return 'bubble';
+  if (id === 'fx-hero-fold') return 'hero';
   if (id === 'fx-overlay-fold' || id === 'fx-stage-fold') return 'motion';
   if (id === 'fx-advanced' || node.classList.contains('fx-actions')) return 'advanced';
   if (node.classList.contains('lyric-color-row') || node.classList.contains('cover-color-pop') || node.classList.contains('color-lab-pop') || node.classList.contains('cover-color-loupe')) return 'appearance';
@@ -21692,6 +22463,8 @@ function organizeFxPanel() {
     ['appearance', '\u5916\u89c2'],
     ['lyrics', '\u6b4c\u8bcd'],
     ['motion', '\u52a8\u6001'],
+    ['bubble', '\u5f39\u5e55'],
+    ['hero', '时间页'],
     ['advanced', '\u9ad8\u7ea7']
   ];
   var tabs = document.createElement('div');
@@ -21731,7 +22504,7 @@ function organizeFxPanel() {
     }
     (pages[target] || pages.presets).appendChild(node);
   });
-  ['fx-lyric-fold','fx-overlay-fold','fx-stage-fold','fx-advanced'].forEach(function(id){
+  ['fx-lyric-fold','fx-overlay-fold','fx-stage-fold','fx-bubble-fold','fx-hero-fold','fx-advanced'].forEach(function(id){
     var fold = document.getElementById(id);
     if (fold) fold.classList.add('open');
   });
@@ -22234,6 +23007,13 @@ function bindFxPanel() {
     ['fx-lyricscale','lyricScale'],['fx-lyricx','lyricOffsetX'],['fx-lyricy','lyricOffsetY'],['fx-lyricz','lyricOffsetZ'],['fx-lyrictiltx','lyricTiltX'],['fx-lyrictilty','lyricTiltY'],
     ['fx-point','point'],['fx-speed','speed'],['fx-twist','twist'],
     ['fx-color','color'],['fx-bloom','bloomStrength'],['fx-scatter','scatter'],['fx-bgfade','bgFade'],
+    ['fx-bubblesize','bubbleSize'],['fx-bubbleopacity','bubbleOpacity'],['fx-bubbleradius','bubbleRadius'],
+    ['fx-bubblemaxwidth','bubbleMaxWidth'],['fx-bubbleduration','bubbleDuration'],['fx-bubblecount','bubbleCount'],
+    ['fx-bubbleconcurrent','bubbleConcurrent'],
+    ['fx-heroclocksize','heroClockSize'],['fx-herodatesize','heroDateSize'],
+    ['fx-herogreetsize','heroGreetSize'],['fx-heroweathersize','heroWeatherSize'],
+    ['fx-heroquipsize','heroQuipSize'],['fx-heroquotesize','heroQuoteSize'],
+    ['fx-herocitesize','heroCiteSize'],['fx-herogap','heroGap'],
   ];
   ids.forEach(function(pair){
     var el = document.getElementById(pair[0]);
@@ -22281,6 +23061,11 @@ function bindFxPanel() {
       if (pair[1] === 'lyricLetterSpacing' || pair[1] === 'lyricLineHeight' || pair[1] === 'lyricWeight' || pair[1] === 'lyricScale' || pair[1] === 'lyricGlowStrength') pushDesktopLyricsState(true);
       if (/^(desktopLyricsSize|desktopLyricsOpacity|desktopLyricsY)$/.test(pair[1])) pushDesktopLyricsState(true);
       if (pair[1] === 'wallpaperOpacity') pushWallpaperState(true);
+      if (/^bubble/.test(pair[1])) {
+        applyBubbleSettings();
+        if (pair[1] === 'bubbleCount' || pair[1] === 'bubbleConcurrent' || pair[1] === 'bubbleDuration') restartCommentBubbles();
+      }
+      if (/^hero/.test(pair[1])) applyHeroSettings();
       saveLyricLayout();
     });
   });
@@ -22334,6 +23119,30 @@ function bindFxPanel() {
     shelfAccentPicker.addEventListener('input', function(){ setShelfAccentColor(shelfAccentPicker.value, true); });
     shelfAccentPicker.addEventListener('change', function(){ showToast('歌单架颜色: ' + shelfAccentHex().toUpperCase()); });
   }
+  var bubbleBgPicker = document.getElementById('bubble-bg-picker');
+  if (bubbleBgPicker) {
+    bubbleBgPicker.addEventListener('input', function(){
+      fx.bubbleBgColor = bubbleBgPicker.value;
+      applyBubbleSettings();
+    });
+    bubbleBgPicker.addEventListener('change', function(){ showToast('气泡背景: ' + bubbleBgPicker.value.toUpperCase()); });
+  }
+  var bubbleUserPicker = document.getElementById('bubble-user-picker');
+  if (bubbleUserPicker) {
+    bubbleUserPicker.addEventListener('input', function(){
+      fx.bubbleUserColor = bubbleUserPicker.value;
+      applyBubbleSettings();
+    });
+    bubbleUserPicker.addEventListener('change', function(){ showToast('发言人颜色: ' + bubbleUserPicker.value.toUpperCase()); });
+  }
+  var bubbleTextPicker = document.getElementById('bubble-text-picker');
+  if (bubbleTextPicker) {
+    bubbleTextPicker.addEventListener('input', function(){
+      fx.bubbleTextColor = bubbleTextPicker.value;
+      applyBubbleSettings();
+    });
+    bubbleTextPicker.addEventListener('change', function(){ showToast('文字颜色: ' + bubbleTextPicker.value.toUpperCase()); });
+  }
   var bgImageInput = document.getElementById('background-image-input');
   if (bgImageInput) {
     bgImageInput.addEventListener('change', function(e){
@@ -22342,7 +23151,7 @@ function bindFxPanel() {
       e.target.value = '';
     });
   }
-  ['ui-accent-picker','visual-tint-picker','home-accent-picker','home-icon-picker','visual-icon-picker','bg-color-picker','shelf-accent-picker','lyric-color-picker','lyric-highlight-picker','lyric-glow-picker'].forEach(function(id){
+  ['ui-accent-picker','visual-tint-picker','home-accent-picker','home-icon-picker','visual-icon-picker','bg-color-picker','shelf-accent-picker','lyric-color-picker','lyric-highlight-picker','lyric-glow-picker','bubble-bg-picker','bubble-user-picker','bubble-text-picker','hero-clock-picker','hero-date-picker','hero-greet-picker','hero-greet-em-picker','hero-weather-picker','hero-quip-picker','hero-quote-picker','hero-cite-picker'].forEach(function(id){
     bindColorLabPicker(document.getElementById(id));
   });
   bindColorLabRows();
@@ -22747,8 +23556,10 @@ function updateProgressDetailText() {
   return parts.join(' · ');
 }
 function initUpdatePreview() {
+  // 更新按钮始终可见
+  var entry = document.getElementById('update-entry');
+  if (entry) { entry.classList.add('available'); entry.style.display = ''; }
   renderUpdatePreviewPanel();
-  setUpdatePreviewVisible(true);
   checkLatestUpdate();
   setTimeout(startUpdateIconBreathing, 760);
 }
@@ -22757,13 +23568,9 @@ function setUpdatePreviewVisible(visible) {
   updatePreviewState.visible = !!visible;
   var entry = document.getElementById('update-entry');
   if (!entry) return;
-  entry.classList.toggle('available', updatePreviewState.visible);
-  if (!updatePreviewState.visible && window.gsap) {
-    window.gsap.killTweensOf(entry);
-    window.gsap.set(entry, { autoAlpha: 0, y: 0, clearProps: 'boxShadow,filter,scale' });
-    return;
-  }
-  if (updatePreviewState.visible && window.gsap) {
+  entry.classList.toggle('available', true);
+  entry.classList.toggle('has-update', !!updatePreviewState.updateAvailable);
+  if (window.gsap) {
     window.gsap.fromTo(entry,
       { autoAlpha: 0, y: -6, scale: 0.92, filter: 'blur(6px)' },
       { autoAlpha: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.62, delay: 0.18, ease: 'expo.out', overwrite: true }
@@ -22776,7 +23583,6 @@ async function checkLatestUpdate() {
     var data = await apiJson('/api/update/latest?t=' + Date.now());
     applyLatestUpdateInfo(data);
   } catch (e) {
-    updatePreviewState.preview = true;
     updatePreviewState.updateAvailable = false;
     updatePreviewState.hero = '当前版本，更新检测已就绪。';
     renderUpdatePreviewPanel();
@@ -22802,7 +23608,7 @@ function applyLatestUpdateInfo(data) {
     updatePreviewState.notes = release.notes.slice(0, 4);
   }
   renderUpdatePreviewPanel();
-  setUpdatePreviewVisible(updatePreviewState.updateAvailable || updatePreviewState.preview);
+  setUpdatePreviewVisible(true);
 }
 
 function startUpdateIconBreathing() {
@@ -22878,7 +23684,7 @@ function syncUpdatePreviewStateClass() {
     else if (isReady && updatePreviewState.installerOpened) label.textContent = '安装包已打开';
     else if (isReady && updatePreviewState.installerPath) label.textContent = updatePreviewState.cached ? '打开已下载安装包' : '打开安装包';
     else if (isReady) label.textContent = updatePreviewState.configured ? '打开安装包' : '预览完成';
-    else label.textContent = updatePreviewState.patchAvailable ? '安装快速补丁' : ((canDownloadUpdate || canOpenRelease) ? '下载完整安装包' : '立即更新');
+    else label.textContent = updatePreviewState.patchAvailable ? '安装快速补丁' : ((canDownloadUpdate || canOpenRelease) ? '下载完整安装包' : (updatePreviewState.updateAvailable ? '立即更新' : '已是最新'));
   }
   if (btn) btn.disabled = false;
   var foot = document.getElementById('update-footnote');
@@ -23313,11 +24119,15 @@ function onUserBtnClick() {
   else showLoginModal();
 }
 function platformMeta(provider) {
+  if (provider === 'kugou') return { key: 'kugou', short: 'KG', label: '酷狗音乐', app: '酷狗音乐 App', dot: 'kugou' };
   if (provider === 'qq') return { key: 'qq', short: 'QQ', label: 'QQ 音乐', app: 'QQ 音乐 App', dot: 'qq' };
   return { key: 'netease', short: 'NE', label: '网易云音乐', app: '网易云音乐 App', dot: 'netease' };
 }
+var kugouLoginStatus = { loggedIn: false, userId: '', nickname: '', avatar: '' };
 function platformStatus(provider) {
-  return provider === 'qq' ? qqLoginStatus : loginStatus;
+  if (provider === 'kugou') return kugouLoginStatus;
+  if (provider === 'qq') return qqLoginStatus;
+  return loginStatus;
 }
 function providerVipType(provider, status) {
   status = status || platformStatus(provider) || {};
@@ -23353,21 +24163,41 @@ function hasPlatformLogin(provider) {
   var st = platformStatus(provider);
   return !!(st && st.loggedIn);
 }
+var homeSource = localStorage.getItem('lanote-home-source') || 'netease';
+function switchHomeSource(src) {
+  if (src !== 'netease' && src !== 'qq' && src !== 'kugou') src = 'netease';
+  homeSource = src;
+  localStorage.setItem('lanote-home-source', src);
+  document.querySelectorAll('.hero-source-btn').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-source') === src);
+  });
+  homeDiscoverState.loaded = false;
+  loadHomeDiscover(true);
+  showToast(src === 'qq' ? '已切换到 QQ音乐 首页' : '已切换到 网易云 首页');
+}
+function syncHomeSourceUI() {
+  document.querySelectorAll('.hero-source-btn').forEach(function(b){
+    b.classList.toggle('active', b.getAttribute('data-source') === homeSource);
+  });
+}
 function hasAnyPlatformLogin() {
-  return hasPlatformLogin('netease') || hasPlatformLogin('qq');
+  return hasPlatformLogin('netease') || hasPlatformLogin('qq') || hasPlatformLogin('kugou');
 }
 function firstLoggedProvider() {
   if (hasPlatformLogin(activeAccountProvider)) return activeAccountProvider;
   if (hasPlatformLogin('netease')) return 'netease';
   if (hasPlatformLogin('qq')) return 'qq';
+  if (hasPlatformLogin('kugou')) return 'kugou';
   return 'netease';
 }
 function providerAvatarSrc(provider, status) {
   status = status || platformStatus(provider) || {};
   if (status.avatar) return avatarSrc(status.avatar);
   var meta = platformMeta(provider);
-  var fill = provider === 'qq' ? '#bfd66b' : '#d95b67';
-  var bg = provider === 'qq' ? '#11150b' : '#180b0f';
+  var fills = { qq: '#bfd66b', kugou: '#00bfff', netease: '#d95b67' };
+  var bgs = { qq: '#11150b', kugou: '#001520', netease: '#180b0f' };
+  var fill = fills[provider] || fills.netease;
+  var bg = bgs[provider] || bgs.netease;
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96"><rect width="96" height="96" rx="48" fill="' + bg + '"/><circle cx="48" cy="48" r="34" fill="' + fill + '" opacity=".16"/><text x="48" y="56" text-anchor="middle" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="' + fill + '">' + meta.short + '</text></svg>';
   return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
 }
@@ -23498,12 +24328,68 @@ function renderUserBtn() {
   }
   updatePlaybackQualityUi();
 }
+async function openKugouLogin() {
+  var canOpen = !!(window.desktopWindow && typeof window.desktopWindow.openKugouMusicLogin === 'function');
+  if (!canOpen) { showToast('酷狗登录仅支持桌面版'); return; }
+  var modal = document.getElementById('login-modal');
+  if (modal && modal.classList.contains('show')) closeLoginModal();
+  closeUserModal();
+  showToast('正在打开酷狗登录窗口…');
+  try {
+    var r = await window.desktopWindow.openKugouMusicLogin();
+    if (r && r.ok && r.cookie) {
+      showToast('酷狗登录成功，正在同步…');
+      var saveRes = await apiJson('/api/kugou/login/cookie', { method: 'POST', body: JSON.stringify({ cookie: r.cookie }) });
+      if (saveRes && saveRes.loggedIn) {
+        kugouLoginStatus = { loggedIn: true, userId: saveRes.userId || '', nickname: saveRes.nickname || '酷狗用户', avatar: saveRes.avatar || '' };
+        showToast('酷狗已登录');
+        renderUserBtn();
+        renderHomeDiscover();
+        refreshUserPlaylists(true);
+      } else { showToast('酷狗 cookie 无效，请重试'); }
+    } else if (r && r.reused) {
+      showToast('酷狗已处于登录状态');
+    } else {
+      showToast('酷狗登录已取消');
+    }
+  } catch(e) { console.warn('kugou login:', e); showToast('酷狗登录失败'); }
+}
+async function submitKugouCookieLogin() {
+  var input = document.getElementById('kugou-cookie-input');
+  if (!input) return;
+  var raw = String(input.value || '').trim();
+  if (!raw) { showToast('请粘贴酷狗 cookie'); return; }
+  try {
+    var saveRes = await apiJson('/api/kugou/login/cookie', { method: 'POST', body: JSON.stringify({ cookie: raw }) });
+    if (saveRes && saveRes.loggedIn) {
+      kugouLoginStatus = saveRes;
+      showToast('酷狗手动登录成功');
+      closeLoginModal();
+      renderHomeDiscover();
+      refreshUserPlaylists(true);
+    } else { showToast('酷狗 cookie 无效'); }
+  } catch(e) { showToast('酷狗登录失败'); }
+}
+function clearKugouLogin() {
+  apiJson('/api/kugou/logout', { method: 'POST' }).then(function(){
+    kugouLoginStatus = { loggedIn: false, userId: '', nickname: '', avatar: '' };
+    if (window.desktopWindow && typeof window.desktopWindow.clearKugouMusicLogin === 'function') {
+      window.desktopWindow.clearKugouMusicLogin();
+    }
+    activeAccountProvider = firstLoggedProvider();
+    renderUserBtn();
+    updateUserModalUi();
+    showToast('酷狗已登出');
+  }).catch(function(){ showToast('登出失败'); });
+}
 async function showLoginModal(opts) {
   opts = opts || {};
-  if (opts.provider) loginProvider = opts.provider === 'qq' ? 'qq' : 'netease';
+  if (opts.provider) loginProvider = opts.provider === 'qq' ? 'qq' : (opts.provider === 'kugou' ? 'kugou' : 'netease');
   var modal = document.getElementById('login-modal');
   openGsapModal(modal);
   updateLoginProviderUi();
+  // 酷狗登录：用户需在弹窗里点"酷狗音乐"tab才会触发，不自动弹
+  if (loginProvider === 'kugou') loginProvider = 'kugou'; // 保留选中态，但不自动弹窗
   await refreshQr();
 }
 function closeLoginModal() {
@@ -23511,13 +24397,14 @@ function closeLoginModal() {
   closeGsapModal(document.getElementById('login-modal'));
 }
 function setLoginProvider(provider, silent) {
-  loginProvider = provider === 'qq' ? 'qq' : 'netease';
+  loginProvider = provider === 'qq' ? 'qq' : (provider === 'kugou' ? 'kugou' : 'netease');
   updateLoginProviderUi();
-  if (!silent && document.getElementById('login-modal').classList.contains('show')) refreshQr();
+  if (!silent && document.getElementById('login-modal').classList.contains('show') && provider !== 'kugou') refreshQr();
 }
 function updateLoginProviderUi() {
   var meta = platformMeta(loginProvider);
   var isQQ = loginProvider === 'qq';
+  var isKG = loginProvider === 'kugou';
   var title = document.getElementById('login-modal-title');
   var desc = document.getElementById('login-modal-desc');
   var shell = document.getElementById('qr-shell');
@@ -23528,19 +24415,28 @@ function updateLoginProviderUi() {
   var qqCard = document.getElementById('qq-web-login-card');
   var neteaseBtn = document.getElementById('login-provider-netease');
   var qqBtn = document.getElementById('login-provider-qq');
+  var kgBtn = document.getElementById('login-provider-kugou');
   var canOpenNeteaseWeb = !!(window.desktopWindow && typeof window.desktopWindow.openNeteaseMusicLogin === 'function');
   if (neteaseBtn) neteaseBtn.classList.toggle('active', loginProvider === 'netease');
   if (qqBtn) qqBtn.classList.toggle('active', isQQ);
-  if (title) title.textContent = '扫码登录' + meta.label;
-  if (desc) desc.innerHTML = isQQ
-    ? '打开 <b>QQ 音乐官方网页登录窗口</b> 扫码，成功后会自动同步账号会话。'
-    : (canOpenNeteaseWeb
-      ? '打开 <b>网易云音乐官方网页登录窗口</b> 扫码，避开接口二维码风控；成功后会自动同步账号会话。'
-      : '使用 <b>网易云音乐 App</b> 扫码，可同步歌单、红心与播客。');
+  if (kgBtn) kgBtn.classList.toggle('active', isKG);
+  if (title) title.textContent = isKG ? '酷狗音乐登录' : ('扫码登录' + meta.label);
+  if (desc) {
+    if (isKG) desc.innerHTML = '点击下方按钮打开<b>酷狗音乐官方登录窗口</b>，扫码后自动同步。';
+    else if (isQQ) desc.innerHTML = '打开 <b>QQ 音乐官方网页登录窗口</b> 扫码，成功后会自动同步账号会话。';
+    else if (canOpenNeteaseWeb) desc.innerHTML = '打开 <b>网易云音乐官方网页登录窗口</b> 扫码，避开接口二维码风控；成功后会自动同步账号会话。';
+    else desc.innerHTML = '使用 <b>网易云音乐 App</b> 扫码，可同步歌单、红心与播客。';
+  }
   if (shell) {
-    shell.classList.toggle('web-login-preview', isQQ || canOpenNeteaseWeb);
+    shell.classList.toggle('web-login-preview', isQQ || isKG || canOpenNeteaseWeb);
     shell.classList.toggle('qq-preview', isQQ);
-    shell.classList.toggle('netease-preview', !isQQ && canOpenNeteaseWeb);
+    shell.classList.toggle('kugou-preview', isKG);
+    shell.classList.toggle('netease-preview', !isQQ && !isKG && canOpenNeteaseWeb);
+  }
+  if (st) {
+    if (isKG) st.textContent = '点击下方按钮打开酷狗官方登录窗口';
+    else if (isQQ) st.textContent = '点击下方按钮打开 QQ 音乐官方登录窗口';
+    else if (canOpenNeteaseWeb) st.textContent = '点击下方按钮打开网易云音乐官方登录窗口';
   }
   if (qqPanel) qqPanel.classList.toggle('show', isQQ && qqManualCookieOpen);
   if (qqCookieToggle) {
@@ -23803,22 +24699,25 @@ function updateUserModalUi() {
       var vipLabel = neVipLevel === 'svip' ? '网易云 SVIP' : (neVipLevel === 'vip' ? '网易云 VIP' : '普通用户');
       vipEl.textContent = 'UID: ' + ((st && st.userId) || '-') + '  ·  ' + vipLabel;
       vipEl.style.color = hasProviderVip('netease', st) ? 'rgba(244,210,138,0.86)' : 'rgba(255,255,255,0.5)';
+    } else if (activeAccountProvider === 'kugou') {
+      vipEl.textContent = 'UID: ' + ((st && st.userId) || '-') + '  ·  酷狗音乐';
+      vipEl.style.color = 'rgba(0,191,255,0.82)';
     } else {
       var qqVipLabel = hasProviderVip('qq', st) ? 'QQ VIP 会员' : 'QQ 音乐会话';
       vipEl.textContent = 'UID: ' + ((st && st.userId) || '-') + '  ·  ' + qqVipLabel;
       vipEl.style.color = hasProviderVip('qq', st) ? 'rgba(0,245,212,0.82)' : 'rgba(0,245,212,0.58)';
     }
   }
-  ['netease','qq','both'].forEach(function(key){
+  ['netease','qq','kugou','both'].forEach(function(key){
     var btn = document.getElementById('user-provider-' + key);
     if (btn) btn.classList.toggle('active', key === 'both' ? dualAccountMode : (!dualAccountMode && activeAccountProvider === key));
   });
   if (addNetease) addNetease.style.display = hasPlatformLogin('netease') ? 'none' : '';
-  if (addQQ) addQQ.textContent = hasPlatformLogin('qq') ? '查看 QQ 音乐' : '补登 QQ 音乐';
-  if (logoutBtn) logoutBtn.textContent = activeAccountProvider === 'qq' ? '退出 QQ 音乐' : '退出网易云';
-  if (hint) hint.textContent = dualAccountMode
-    ? '右上角已切换为双平台并排展示。'
-    : '可切换右上角展示的平台；“我两个都要”会并排放两个登录状态。';
+  if (addQQ) addQQ.style.display = hasPlatformLogin('qq') ? 'none' : '';
+  var addKugou = document.getElementById('account-add-kugou');
+  if (addKugou) addKugou.style.display = hasPlatformLogin('kugou') ? 'none' : '';
+  if (logoutBtn) logoutBtn.textContent = activeAccountProvider === 'qq' ? '退出 QQ 音乐' : (activeAccountProvider === 'kugou' ? '退出酷狗' : '退出网易云');
+  if (hint) hint.textContent = '点击上方平台切换账号；下方可补登未登录的平台。';
 }
 function showUserModal() {
   if (!hasAnyPlatformLogin()) return showLoginModal();
@@ -23827,7 +24726,12 @@ function showUserModal() {
 }
 function closeUserModal() { closeGsapModal(document.getElementById('user-modal')); }
 function setActiveAccountProvider(provider) {
-  provider = provider === 'qq' ? 'qq' : 'netease';
+  provider = provider === 'qq' ? 'qq' : (provider === 'kugou' ? 'kugou' : 'netease');
+  if (provider === 'kugou' && !hasPlatformLogin('kugou')) {
+    closeUserModal();
+    showLoginModal({ provider: 'kugou' });
+    return;
+  }
   if (!hasPlatformLogin(provider)) {
     openProviderLogin(provider);
     return;
@@ -23859,12 +24763,17 @@ function requestDualLoginMode() {
   enableDualAccountView();
 }
 function openProviderLogin(provider) {
-  provider = provider === 'qq' ? 'qq' : 'netease';
+  provider = provider === 'qq' ? 'qq' : (provider === 'kugou' ? 'kugou' : 'netease');
   closeUserModal();
   loginProvider = provider;
   showLoginModal({ provider: provider });
 }
 async function logoutActiveAccount() {
+  if (activeAccountProvider === 'kugou') {
+    clearKugouLogin();
+    closeUserModal();
+    return;
+  }
   if (activeAccountProvider === 'qq') {
     try { await apiJson('/api/qq/logout'); } catch (e) {}
     try {
@@ -26574,7 +27483,12 @@ function toggleFullscreen() {
 // ============================================================
 applyDiyMode(diyPlayerMode, { save: false });
 bindFxPanel();
+applyBubbleSettings();
+applyHeroSettings();
+syncHomeSourceUI();
+apiJson('/api/kugou/login/status').then(function(r){ if(r&&r.loggedIn)kugouLoginStatus=r; }).catch(function(){});
 applySavedLyricPaletteState();
+setTimeout(function(){ initUpdatePreview(); }, 3000);
 bindQualityControl();
 bindVolumeControls();
 initControlGlassSurface();
@@ -27056,19 +27970,37 @@ function spawnCommentBubble(comment){
   if(!commentBubblesEnabled)return;
   var container=document.getElementById('comment-bubbles');
   if(!container)return;
-  // 清理过多气泡：保持同时最多5个
+  // 同时显示上限
+  var maxConcurrent=(typeof fx!=='undefined'&&fx.bubbleConcurrent)||3;
   var bubbles=container.querySelectorAll('.comment-bubble');
-  if(bubbles.length>=5)return;
+  if(bubbles.length>=maxConcurrent)return;
   var el=document.createElement('div');
   el.className='comment-bubble';
-  el.style.left=(8+Math.random()*55)+'%';
-  el.style.animationDuration=(24+Math.random()*10)+'s';
+  // 水平对齐
+  var ha=(typeof fx!=='undefined'&&fx.bubbleHAlign)||'free';
+  if(ha==='left')el.style.left=(5+Math.random()*6)+'%';
+  else if(ha==='right'){el.style.left='auto';el.style.right=(5+Math.random()*4)+'%';}
+  else if(ha==='center')el.style.left=(36+Math.random()*10)+'%';
+  else el.style.left=(8+Math.random()*65)+'%';
+  // 垂直起始 + 方向 (容器 top:8% bottom:120px, 用 top 时需清除 CSS bottom)
+  var va=(typeof fx!=='undefined'&&fx.bubbleVAlign)||'bottom-up';
+  if(va==='top-down'||va==='middle-up'||va==='middle-down'){
+    el.style.bottom='auto';
+    if(va==='top-down')el.style.top='5%';
+    else el.style.top='50%';
+    if(va==='top-down'||va==='middle-down')el.classList.add('bubble-down');
+  }
+  // 行程范围
+  if((typeof fx!=='undefined'&&fx.bubbleTravel)==='half')el.classList.add('bubble-half');
+  // bottom-up: 不设 top/bottom，用 CSS 的 bottom:0
   var text=comment.content||'';
   var preview=escHtml(text.length>60?text.slice(0,60)+'...':text);
   var full=escHtml(text);
   el.innerHTML='<div class="c-preview">'+preview+'</div><div class="c-full">'+full+'</div><div class="c-user">—— '+(comment.user&&comment.user.nickname||'匿名')+'</div>';
   container.appendChild(el);
-  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},32000);
+  // 停留时长用 fx.bubbleDuration（CSS 变量控制动画），清理也比动画多留 4s
+  var dur=(typeof fx!=='undefined'&&fx.bubbleDuration)||18;
+  setTimeout(function(){if(el.parentNode)el.parentNode.removeChild(el)},(dur+4)*1000);
 }
 async function loadCommentsForSong(song){
   if(!song||!song.id||!commentBubblesEnabled)return;
@@ -27083,11 +28015,12 @@ async function loadCommentsForSong(song){
     return;
   }
   try{
+    var count=typeof fx!=='undefined'&&fx.bubbleCount?fx.bubbleCount:50;
     var endpoint=provider==='qq'
-      ?'/api/qq/song/comments?id='+encodeURIComponent(song.id)+'&mid='+encodeURIComponent(song.mid||song.songmid||'')
-      :'/api/song/comments?id='+encodeURIComponent(song.id);
+      ?'/api/qq/song/comments?id='+encodeURIComponent(song.id)+'&mid='+encodeURIComponent(song.mid||song.songmid||'')+'&limit='+count
+      :'/api/song/comments?id='+encodeURIComponent(song.id)+'&limit='+count;
     var data=await apiJson(endpoint,{timeoutMs:8000});
-    var comments=(data&&(data.hotComments||data.comments||[])).slice(0,25);
+    var comments=(data&&(data.hotComments||data.comments||[])).slice(0,count);
     if(comments.length){
       commentBubbleSongs[key]=comments;
       scheduleCommentBubbles(comments,song.duration||audio&&audio.duration||240);
@@ -27098,14 +28031,43 @@ var commentBubbleTimers=[];
 function scheduleCommentBubbles(comments,songDurationSec){
   clearCommentBubbleTimers();
   var total=comments.length;
-  var interval=Math.max(8,Math.min(20,(songDurationSec-10)/total));
+  if(!total)return;
+  // 间隔自适应：既要铺满歌曲时长，又要满足同时显示数
+  var maxConc=(typeof fx!=='undefined'&&fx.bubbleConcurrent)||3;
+  var bubbleLife=((typeof fx!=='undefined'&&fx.bubbleDuration)||18)+4;
+  var spreadInterval=(songDurationSec-8)/Math.max(1,total);
+  var concurrentInterval=bubbleLife/Math.max(1,maxConc);
+  var interval=Math.max(1.5,Math.min(spreadInterval,concurrentInterval,15));
+  var loopDelay=total*interval*1000;
   comments.forEach(function(c,i){
     commentBubbleTimers.push(setTimeout(function(){spawnCommentBubble(c);commentBubbleSeq++},i*interval*1000));
   });
+  // 循环：放完一轮后若歌曲仍在播，从头再来
+  var loopKey=commentBubbleLastId;
+  commentBubbleTimers.push(setTimeout(function(){
+    if(!playing||commentBubbleLastId!==loopKey)return;
+    commentBubbleSeq=0;
+    scheduleCommentBubbles(comments,songDurationSec);
+  },loopDelay+2000));
 }
 function clearCommentBubbleTimers(){
   commentBubbleTimers.forEach(function(t){clearTimeout(t)});
   commentBubbleTimers=[];
+}
+function restartCommentBubbles(){
+  // 中途改设置时重建弹幕调度
+  if(!playing||!playQueue||currentIdx<0||!commentBubblesEnabled)return;
+  var song=playQueue[currentIdx];
+  if(!song||!song.id)return;
+  var provider=song.provider||'netease';
+  var key=provider+'|'+song.id;
+  var comments=commentBubbleSongs[key];
+  if(!comments||!comments.length)return;
+  clearCommentBubbleTimers();
+  var container=document.getElementById('comment-bubbles');
+  if(container)container.innerHTML='';
+  commentBubbleSeq=0;
+  scheduleCommentBubbles(comments,song.duration||audio&&audio.duration||240);
 }
 // 切歌检测
 setInterval(function(){
@@ -27247,17 +28209,21 @@ body.desktop-shell #playlist-panel{width:min(300px,30vw)!important;right:4px!imp
 body.desktop-shell #playlist-panel .queue-head{padding:8px 12px!important}
 body.desktop-shell #playlist-panel .queue-body{font-size:11px!important}
 body.desktop-shell #playlist-panel .fx-title{font-size:13px!important}
-/* 更新按钮隐藏 */
-#update-entry{display:none!important}
 /* 评论漂浮气泡 */
-#comment-bubbles{position:fixed;z-index:6;left:0;right:0;bottom:120px;top:45%;pointer-events:none;overflow:hidden}
-.comment-bubble{position:absolute;bottom:0;max-width:300px;padding:10px 16px;border-radius:16px;background:rgba(14,16,20,.82);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:rgba(255,255,255,.7);font-size:12px;line-height:1.5;animation:float-up 18s ease-in forwards;box-shadow:0 4px 20px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04);pointer-events:none;transition:background .2s,transform .2s}
-.comment-bubble:hover{animation-play-state:paused!important;background:rgba(20,24,30,.95)!important;pointer-events:auto!important;transform:scale(1.04)!important;z-index:10!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;max-height:none!important;cursor:pointer}
-.comment-bubble:hover .c-full{display:block!important}
+#comment-bubbles{position:fixed;z-index:6;left:0;right:0;bottom:120px;top:8%;pointer-events:none;overflow:hidden}
+.comment-bubble{position:absolute;bottom:0;max-width:var(--bubble-max-width,300px);padding:10px 16px;border-radius:var(--bubble-radius,16px);background:var(--bubble-bg,rgba(14,16,20,.82));border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:var(--bubble-text-color,rgba(255,255,255,.7));font-size:var(--bubble-font-size,12px);line-height:1.5;animation:float-up var(--bubble-duration,18s) ease-in forwards;box-shadow:0 4px 20px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.04);pointer-events:auto;transition:background .2s;font-family:var(--bubble-font-family,inherit)}
+.comment-bubble:hover{animation-play-state:paused!important;background:rgba(20,24,30,.95)!important;pointer-events:auto!important;z-index:10!important;box-shadow:0 8px 32px rgba(0,0,0,.5)!important;max-height:none!important;cursor:pointer}
+.comment-bubble:hover .c-preview{display:none}.comment-bubble:hover .c-full{display:block!important}
 .comment-bubble .c-preview{overflow:hidden;max-height:36px}
 .comment-bubble .c-full{display:none}
-.comment-bubble .c-user{font-size:10px;color:rgba(0,245,212,.5);margin-top:6px;text-align:right}
-@keyframes float-up{0%{opacity:0;transform:translateY(30px) scale(.9)}5%{opacity:.8;transform:translateY(0) scale(1)}70%{opacity:.5}100%{opacity:0;transform:translateY(-200px) scale(1.03)}}
+.comment-bubble .c-user{font-size:calc(var(--bubble-font-size,12px) * 0.78);color:var(--bubble-user-color,rgba(0,245,212,.5));margin-top:6px;text-align:right}
+@keyframes float-up{0%{opacity:0;transform:translateY(30px) scale(.9)}5%{opacity:.8;transform:translateY(0) scale(1)}70%{opacity:.5}100%{opacity:0;transform:translateY(-110vh) scale(1.03)}}
+@keyframes float-down{0%{opacity:0;transform:translateY(-30px) scale(.9)}5%{opacity:.8;transform:translateY(0) scale(1)}70%{opacity:.5}100%{opacity:0;transform:translateY(110vh) scale(1.03)}}
+@keyframes float-up-half{0%{opacity:0;transform:translateY(30px) scale(.9)}5%{opacity:.8;transform:translateY(0) scale(1)}55%{opacity:.45}100%{opacity:0;transform:translateY(-52vh) scale(1.03)}}
+@keyframes float-down-half{0%{opacity:0;transform:translateY(-30px) scale(.9)}5%{opacity:.8;transform:translateY(0) scale(1)}55%{opacity:.45}100%{opacity:0;transform:translateY(52vh) scale(1.03)}}
+.comment-bubble.bubble-down{animation-name:float-down}
+.comment-bubble.bubble-half:not(.bubble-down){animation-name:float-up-half}
+.comment-bubble.bubble-half.bubble-down{animation-name:float-down-half}
 /* 沉浸模式：隐藏所有右侧面板 */
 body.immersive-mode #playlist-panel,
 body.immersive-mode #playlist-panel *,
@@ -27280,7 +28246,15 @@ body.desktop-shell #bottom-bar #play-btn{width:34px!important;height:34px!import
 body.desktop-shell #bottom-bar .control-cluster{height:56px!important;gap:8px!important}
 body.desktop-shell #bottom-bar #time-display{font-size:10px!important}
 body.desktop-shell #bottom-bar #progress-bar{height:3px!important}
-body.desktop-shell #bottom-bar .control-cluster.actions,.control-cluster.extra{display:none!important}
+body.desktop-shell #bottom-bar .control-cluster.extra{display:none!important}
+body.desktop-shell #bottom-bar #quality-control,
+body.desktop-shell #bottom-bar #heart-btn,
+body.desktop-shell #bottom-bar #collect-btn{display:none!important}
+body.desktop-shell #bottom-bar .control-cover{width:38px!important;height:38px!important;border-radius:9px!important}
+body.desktop-shell #bottom-bar .control-title{font-size:12px!important}
+body.desktop-shell #bottom-bar .control-artist{font-size:10.5px!important}
+body.desktop-shell #bottom-bar .control-meta{max-width:220px!important;gap:2px!important}
+body.desktop-shell #bottom-bar .control-track{gap:8px!important}
 body.desktop-shell #bottom-bar #thumb-wrap{display:none!important}
 /* 搜索栏缩小 */
 body.desktop-shell #search-stack{width:min(360px,44vw)!important}

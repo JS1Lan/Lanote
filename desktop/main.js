@@ -32,10 +32,13 @@ const MIN_WINDOWED_HEIGHT = 520;
 const APP_NAME = 'Mineradio';
 const APP_USER_MODEL_ID = 'com.mineradio.desktop';
 const APP_ICON_ICO = path.join(__dirname, '..', 'build', 'icon.ico');
-const NETEASE_LOGIN_PARTITION = 'persist:lanote-netease-login';
+const NETEASE_LOGIN_PARTITION = 'persist:mineradio-netease-login';
 const NETEASE_LOGIN_URL = 'https://music.163.com/#/login';
-const QQ_LOGIN_PARTITION = 'persist:lanote-qqmusic-login';
+const QQ_LOGIN_PARTITION = 'persist:mineradio-qqmusic-login';
 const QQ_LOGIN_URL = 'https://y.qq.com/n/ryqq/profile';
+const KUGOU_LOGIN_PARTITION = 'persist:mineradio-kugou-login';
+const KUGOU_LOGIN_URL = 'https://www.kugou.com/';
+const KUGOU_LOGIN_CHECK_URLS = ['kugou.com', 'kgmusic.com'];
 
 const CHROMIUM_PERFORMANCE_SWITCHES = [
   ['autoplay-policy', 'no-user-gesture-required'],
@@ -608,6 +611,94 @@ async function clearQQMusicLoginSession() {
   return { ok: true };
 }
 
+// ---- 酷狗音乐登录 ----
+function isKugouCookieDomain(domain) {
+  const n = String(domain || '').replace(/^\./, '').toLowerCase();
+  return n === 'kugou.com' || n.endsWith('.kugou.com') || n === 'kgmusic.com' || n.endsWith('.kgmusic.com');
+}
+function kugouCookieHasLogin(cookieText) {
+  const obj = parseCookieHeader(cookieText);
+  const kugoo = decodeKugooComposite(obj.KuGoo || obj.kugoo || obj.KUGOO || '');
+  const userid = String(obj.KugooID || obj.userid || kugoo.userid || kugoo.kugooid || '').trim();
+  const token = String(obj.t || obj.token || kugoo.token || kugoo.t || '').trim();
+  return !!(userid && token);
+}
+function decodeKugooComposite(raw) {
+  const out = {};
+  try {
+    const text = decodeURIComponent(String(raw || '').replace(/\+/g, ' '));
+    text.split('&').forEach(pair => { const idx = pair.indexOf('='); if (idx > 0) out[pair.slice(0, idx).trim()] = pair.slice(idx + 1).trim(); });
+  } catch (e) {}
+  return out;
+}
+function parseCookieHeader(header) {
+  const obj = {};
+  if (!header) return obj;
+  String(header).split(/[;,]/g).forEach(p => {
+    const idx = p.indexOf('=');
+    if (idx > 0) obj[p.slice(0, idx).trim()] = p.slice(idx + 1).trim();
+  });
+  return obj;
+}
+async function readKugouLoginCookieHeader(cookieSession) {
+  const cookies = await cookieSession.cookies.get({});
+  return buildCookieHeaderForCookies(cookies, isKugouCookieDomain);
+}
+function buildCookieHeaderForCookies(cookies, domainFilter) {
+  return cookies.filter(c => domainFilter(c.domain || '')).map(c => c.name + '=' + c.value).join('; ');
+}
+
+async function openKugouLoginWindow(owner) {
+  const cookieSession = session.fromPartition(KUGOU_LOGIN_PARTITION);
+  const initialCookie = await readKugouLoginCookieHeader(cookieSession);
+  if (kugouCookieHasLogin(initialCookie)) return { ok: true, cookie: initialCookie, reused: true };
+
+  return new Promise((resolve) => {
+    const finish = (result) => { resolve(result || { ok: false, error: 'cancelled' }); };
+    let loginWindow;
+    try {
+      loginWindow = new BrowserWindow({
+        width: 440, height: 880,
+        parent: owner || undefined,
+        modal: !!owner,
+        title: '酷狗音乐登录 - 请在页面右上角点登录',
+        minimizable: true,
+        autoHideMenuBar: true,
+        webPreferences: {
+          partition: KUGOU_LOGIN_PARTITION,
+          nodeIntegration: false,
+          contextIsolation: true,
+        },
+      });
+      loginWindow.setMenuBarVisibility(false);
+      let resolved = false;
+      const checkKugouCookie = async () => {
+        try {
+          const cookie = await readKugouLoginCookieHeader(cookieSession);
+          if (kugouCookieHasLogin(cookie)) { resolved = true; finish({ ok: true, cookie }); return true; }
+        } catch (e) {}
+        return false;
+      };
+      loginWindow.webContents.on('did-navigate', async () => { if (!resolved) await checkKugouCookie(); });
+      loginWindow.webContents.on('did-navigate-in-page', async () => { if (!resolved) await checkKugouCookie(); });
+      // 每秒轮询 cookie（酷狗登录是 SPA 弹窗，不会导航）
+      const pollInterval = setInterval(async () => {
+        if (resolved) { clearInterval(pollInterval); return; }
+        if (loginWindow.isDestroyed()) { clearInterval(pollInterval); return; }
+        await checkKugouCookie();
+      }, 1500);
+      loginWindow.on('closed', () => { clearInterval(pollInterval); if (!resolved) { resolved = true; finish({ ok: false, error: 'window closed' }); } });
+      loginWindow.loadURL(KUGOU_LOGIN_URL).catch(e => finish({ ok: false, error: e.message }));
+    } catch (e) { finish({ ok: false, error: e.message }); }
+  });
+}
+
+async function clearKugouLoginSession() {
+  const cookieSession = session.fromPartition(KUGOU_LOGIN_PARTITION);
+  await cookieSession.clearStorageData({ storages: ['cookies', 'localstorage', 'indexdb', 'cachestorage'] });
+  return { ok: true };
+}
+
 async function clearNeteaseMusicLoginSession() {
   const cookieSession = session.fromPartition(NETEASE_LOGIN_PARTITION);
   await cookieSession.clearStorageData({
@@ -1176,6 +1267,14 @@ ipcMain.handle('qq-music-clear-login', async () => {
   return clearQQMusicLoginSession();
 });
 
+ipcMain.handle('kugou-music-open-login', async (event) => {
+  return openKugouLoginWindow(getSenderWindow(event));
+});
+
+ipcMain.handle('kugou-music-clear-login', async () => {
+  return clearKugouLoginSession();
+});
+
 ipcMain.handle('lanote-open-update-installer', async (_event, filePath) => {
   try {
     const target = path.resolve(String(filePath || ''));
@@ -1425,7 +1524,7 @@ async function createWindow() {
     setTimeout(() => applyWindowedBounds(mainWindow), 50);
   });
 
-  await mainWindow.loadURL(`http://127.0.0.1:${port}`);
+  await mainWindow.loadURL(`http://127.0.0.1:${port}?v=${Date.now()}`);
 }
 
 app.setName(APP_NAME);
